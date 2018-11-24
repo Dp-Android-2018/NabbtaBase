@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">NabbtaBase</string>
+    <string name="app_name">Nabbta</string>
+    <string name="password">Password</string>
+    <string name="email_phone">Email/Phone</string>
+    <string name="forget_password"><u>Forget Password!</u></string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password_confirmation">Password Confirmation</string>
+    <string name="email_address">Email Address</string>
+    <string name="next">Next</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="policy"><u>shipment policy</u></string>
+    <string name="terms_and_conditions"><u>Terms and conditions</u></string>
+    <string name="pass_text">Confirm new password</string>
+    <string name="old_password">old password</string>
+    <string name="my_orders">My Orders</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>
