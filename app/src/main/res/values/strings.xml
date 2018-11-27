@@ -19,4 +19,7 @@
     <string name="old_password">old password</string>
     <string name="my_orders">My Orders</string>
     <string name="edit_profile">Edit Profile</string>
+
+
+    <string name="text_policy">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </string>
 </resources>

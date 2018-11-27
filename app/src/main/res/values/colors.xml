@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#50b748</color>
     <color name="text_color_green">#50b748</color>
+    <color name="green_color_op80">#cc50b748</color>
+    <color name="green_color_op10">#1a50b748</color>
+    <color name="green_color_op50">#8050b748</color>
+    <color name="transparent">#00000000</color>
+    <color name="pics_color">#e59124</color>
 </resources>

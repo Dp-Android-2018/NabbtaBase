@@ -1,0 +1,10 @@
+ext.configurations =[:]
+def configurations=[:]
+
+configurations.minSdkVersion= 21
+configurations.targetSdkVersion= 28
+configurations.compileSdkVersion= 28
+configurations.versionCode= 1
+configurations.versionName= "1.0"
+
+ext.configurations =configurations

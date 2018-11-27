@@ -13,6 +13,9 @@
         </activity>
 
         <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".SignupStep2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

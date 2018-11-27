@@ -1,0 +1,12 @@
+//////////top level repositories//////////////////////////////
+def addTopLevelFilesRepositories (RepositoryHandler handler){
+
+    handler.google()
+    handler.jcenter()
+}
+ext.addTopLevelFilesRepositories=this.&addTopLevelFilesRepositories
+//////////////////////Top Level Dependencies/////////////////////////
+def addTopLevelFileDependencies (DependencyHandler handler){
+    handler.classpath "com.android.tools.build:gradle:$versions.gradleVersion"
+}
+ext.addTopLevelFileDependencies=this.&addTopLevelFileDependencies

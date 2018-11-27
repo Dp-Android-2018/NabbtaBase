@@ -1,0 +1,13 @@
+ext.versions = [:]
+def versions = [:]
+versions.gradleVersion = '3.2.1'
+versions.appCompatVersion='28.0.0'
+versions.junitVersion = '4.12'
+versions.testRunnerVersion ='1.0.2'
+versions.espressoVersion = '3.0.2'
+versions.constraintLayoutVersion = '1.1.3'
+versions.dagger_version = '2.11'
+versions.retrofit= '2.3.0'
+versions.pin_view='1.4.2'
+versions.circleimageview='2.2.0'
+ext.versions=versions
