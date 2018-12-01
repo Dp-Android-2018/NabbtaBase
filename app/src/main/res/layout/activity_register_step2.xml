@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.RegisterStep2ViewModel"/>
+    </data>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -163,7 +169,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
-        android:onClick="policy"/>
+        android:onClick="@{ViewModel::policy}"/>
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -234,3 +240,4 @@
         android:layout_marginTop="10dp"/>
 
 </android.support.constraint.ConstraintLayout>
+</layout>

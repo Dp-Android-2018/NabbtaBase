@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.ProductDetailedViewModel"/>
+    </data>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -286,3 +292,4 @@
         android:background="@color/green_color_op10"/>
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
+</layout>

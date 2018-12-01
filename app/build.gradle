@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.configurations.compileSdkVersion
-
     defaultConfig {
         applicationId "dp.com.nabbtabase"
         minSdkVersion rootProject.ext.configurations.minSdkVersion
@@ -10,6 +9,13 @@ android {
         versionCode rootProject.ext.configurations.versionCode
         versionName rootProject.ext.configurations.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.RegisterStep1ViewModel"/>
+    </data>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -60,6 +66,7 @@
         android:textCursorDrawable="@null"
         android:layout_marginStart="8dp"
         android:hint="@string/first_name"
+        android:text="@={ViewModel.firstName}"
         android:textColor="@android:color/black"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
@@ -81,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/last_name"
+        android:text="@={ViewModel.lastName}"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
         android:textSize="11sp"
@@ -103,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/email_address"
-
+        android:text="@={ViewModel.email}"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
         android:textSize="11sp"
@@ -128,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/password"
+        android:text="@={ViewModel.password}"
         android:textColor="@android:color/black"
         android:textSize="11sp"
         android:textCursorDrawable="@null"
@@ -152,6 +161,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/password_confirmation"
+        android:text="@={ViewModel.passwordConfirmation}"
         android:textColor="@android:color/black"
         android:textSize="11sp"
         android:textCursorDrawable="@null"
@@ -206,3 +216,4 @@
         android:layout_marginTop="10dp"/>
 
 </android.support.constraint.ConstraintLayout>
+</layout>

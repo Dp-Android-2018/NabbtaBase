@@ -10,4 +10,5 @@ versions.dagger_version = '2.11'
 versions.retrofit= '2.3.0'
 versions.pin_view='1.4.2'
 versions.circleimageview='2.2.0'
+versions.architectureComponents='1.0.0'
 ext.versions=versions

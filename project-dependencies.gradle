@@ -15,6 +15,7 @@ def AppModuleDependencies(DependencyHandler handler){
     cardViewDependencies(handler)
     circleImageViewDependencies(handler)
     recyclerViewDependencies(handler)
+    architectureComponentsDependencies(handler)
 }
 ext.AppModuleDependencies = this.&AppModuleDependencies
 
@@ -24,7 +25,6 @@ def jarFileDependency(DependencyHandler handler){
 
 def annotationDependency(DependencyHandler handler){
     handler.implementation "com.android.support:support-annotations:$versions.appCompatVersion"
-
 }
 
 def appCompatDependencies(DependencyHandler handler){
@@ -71,5 +71,10 @@ def circleImageViewDependencies(DependencyHandler handler)
 def recyclerViewDependencies(DependencyHandler handler)
 {
     handler.implementation "com.android.support:recyclerview-v7:$versions.appCompatVersion"
+}
+def architectureComponentsDependencies(DependencyHandler handler)
+{
+    handler.implementation "android.arch.lifecycle:extensions:$versions.architectureComponents"
+    handler.annotationProcessor "android.arch.lifecycle:compiler:$versions.architectureComponents"
 }
 

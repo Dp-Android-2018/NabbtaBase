@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.CardViewModel"/>
+    </data>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -134,3 +140,4 @@
 
 
 </android.support.constraint.ConstraintLayout>
+</layout>

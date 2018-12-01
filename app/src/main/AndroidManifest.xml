@@ -12,10 +12,10 @@
         <activity android:name=".MainActivity">
         </activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".view.activity.LoginActivity">
 
         </activity>
-        <activity android:name=".SignupStep2Activity">
+        <activity android:name=".view.activity.RegisterStep2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
