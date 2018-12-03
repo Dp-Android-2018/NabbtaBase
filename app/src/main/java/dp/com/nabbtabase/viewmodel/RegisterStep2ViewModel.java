@@ -1,41 +1,47 @@
 package dp.com.nabbtabase.viewmodel;
 
-import android.app.Activity;
-import android.app.Application;
-import android.app.Dialog;
-import android.arch.lifecycle.AndroidViewModel;
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
-import dp.com.nabbtabase.R;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
+import dp.com.nabbtabase.servise.model.pojo.Country;
+import dp.com.nabbtabase.servise.model.request.RegisterRequest;
+import dp.com.nabbtabase.view.callback.CallBackInterface;
 
 public class RegisterStep2ViewModel extends AndroidViewModel {
 
-    private Context context;
+    private RegisterRequest registerRequest;
+    private CallBackInterface callBackInterface;
+    private LiveData<List<Country>> countries;
+    public ObservableField<String>phone;
+    public ObservableField<String>address;
+    public ObservableField<String>countryName;
+    public ObservableField<String>cityName;
+
+
 
     public RegisterStep2ViewModel(@NonNull Application application) {
         super(application);
+        initVariables();
     }
 
 
-    public void policy(View view){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater =((Activity)context).getLayoutInflater();
-        View filter = inflater.inflate(R.layout.bottom_dialog_layout, null);
-        builder.setView(filter);
-        builder.setCancelable(true);
-        Dialog dialog=builder.create();
-        Window window=dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity=Gravity.BOTTOM;
-        window.setAttributes(wlp);
-        window.setBackgroundDrawableResource(R.color.transparent);
-        dialog.show();
+    public void initVariables(){
+        phone=new ObservableField<>();
+        address=new ObservableField<>();
+        countryName=new ObservableField<>();
+        cityName=new ObservableField<>();
+    }
+    public void setRegisterRequest(RegisterRequest registerRequest) {
+        this.registerRequest = registerRequest;
+    }
+
+    public void setCallBackInterface(CallBackInterface callBackInterface) {
+        this.callBackInterface = callBackInterface;
     }
 }

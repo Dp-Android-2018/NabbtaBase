@@ -7,8 +7,8 @@ public class ConfigurationFile {
        public static final String COUNTRIES_URL ="api/utilities/countries";
        public static final String CATEGORIES_URL="api/utilities/categories";
        public static final String LOGIN_URL="api/login";
-       public static final String CLIENT_REGISTER_URL="api/clients/register";
-       public static final String COMPANY_REGISTER_URL="api/companies/register";
+       public static final String OFFERS="api/search/offers";
+       public static final String CLIENT_REGISTER_URL="api/register";
        public static final String CHANGE_PASSWORD_URL="api/change-password";
        public static final String FORGET_PASSWORD_URL="api/forget";
        public static final String UPDATE_METADATA="api/companies/company-meta-data";
@@ -32,16 +32,8 @@ public class ConfigurationFile {
        }
 
     public static class Constants{
-        public static final String API_KEY="MUaJWwkyZOZKnbvZczGoFDt0sLyeS0eCkoKXtam00nobixvPC2BV2rcP3TKJSLYUVTesDXhTmTfsr9Qu0TK145yCJOPIKwsvEqvWEUfSOun7PZyMWfTlBWeKB56OYiHm";
+        public static final String API_KEY="MUaJWwkyZOZKnbvZczGoFDt0sLyeS0eCkoKXtam00nobixvPC2BV2rcP3TKJSLYU";
         public static final String CONTENT_TYPE="application/json";
-        public static final String CLINIC="CLINIC";
-        public static final String SPA="SPA";
-        public static final String HOSPITAL="HOSPITAL";
-        public static final String FIRM="FIRM";
-        public static final String CLIENT="client";
-        public static final String COMPANY="company";
-        public static final String ACCEPT="approved";
-        public static final String PEND="pending";
 
         public static final int SUCCESS_CODE=200;
         public static final int SUCCESS_CODE_SECOND=201;
@@ -51,7 +43,7 @@ public class ConfigurationFile {
         public static final int ALREADY_ACTIVATED=403;
         public static final int TRY_LATER=429;
 //////////////////////////////////////////////////////////////////////////
-        public static final int FILL_ALL_DATA_ERROR=-601;
+        public static final int FILL_ALL_DATA_ERROR_CODE =-601;
         public static final int INVALED_EMAIL=-602;
         public static final int PASSWORD_LENGTH_ERROR=-603;
         public static final int PASSWORD_CONFIRMATION_ERROR=-604;
@@ -72,6 +64,8 @@ public class ConfigurationFile {
         public static final int MOVE_TO_MAP_ACT=7;
         public static final int MOVE_TO_SPECIALIZATION_ACT=8;
         public static final int SPECIALIZATION_ADAPTER=9;
+        public static final int SKIP=10;
+        public static final int REGISTER_STEP2=11;
 
     }
     public static class SharedPrefConstants{
@@ -81,7 +75,7 @@ public class ConfigurationFile {
         public static final String CLIENT_REQUEST="CLIENTREGISTERREQUEST";
         public static final String COUNTRY_DATA="COUNTRY";
         public static final String CITY_DATA="CITY";
-        public static final String COMPANYITEMINFO="COMPANYINFO";
+        public static final String REGISTER_STEP1_DATA="REGISTERSTEP1DATA";
         public static final String CONTAINER_RESERVATION="RESERVATION";
         public static final String COMPANY_REQUEST="REQUEST";
         public static final String ADDRESS_REQUEST="ADDRESSREQUEST";

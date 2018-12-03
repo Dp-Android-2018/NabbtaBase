@@ -22,7 +22,7 @@ public class LoginRegisterContent {
     private String device_token;
 
     @SerializedName("phones")
-    private List<String> phones;
+    private List<Phone> phones;
 
     @SerializedName("address")
     private Address address;
@@ -67,11 +67,11 @@ public class LoginRegisterContent {
         this.device_token = device_token;
     }
 
-    public List<String> getPhones() {
+    public List<Phone> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<String> phones) {
+    public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 

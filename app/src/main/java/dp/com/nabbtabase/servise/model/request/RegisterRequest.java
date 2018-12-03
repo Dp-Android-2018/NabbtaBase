@@ -2,9 +2,11 @@ package dp.com.nabbtabase.servise.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import dp.com.nabbtabase.servise.model.pojo.Address;
 
-public class RegisterRequest {
+public class RegisterRequest implements Serializable {
     @SerializedName("name")
     private String name;
 

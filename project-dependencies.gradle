@@ -16,6 +16,8 @@ def AppModuleDependencies(DependencyHandler handler){
     circleImageViewDependencies(handler)
     recyclerViewDependencies(handler)
     architectureComponentsDependencies(handler)
+    bottomBarDependencies(handler)
+    rxDependencies(handler)
 }
 ext.AppModuleDependencies = this.&AppModuleDependencies
 
@@ -23,12 +25,16 @@ def jarFileDependency(DependencyHandler handler){
     handler.implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-def annotationDependency(DependencyHandler handler){
+def annotationDependency(DependencyHandler handler)
+{
     handler.implementation "com.android.support:support-annotations:$versions.appCompatVersion"
 }
 
-def appCompatDependencies(DependencyHandler handler){
+def appCompatDependencies(DependencyHandler handler)
+{
     handler.implementation "com.android.support:appcompat-v7:$versions.appCompatVersion"
+    handler.implementation "com.android.support:support-v4:$versions.appCompatVersion"
+    handler.implementation "com.android.support:design:$versions.appCompatVersion"
 }
 
 def testDependencies(DependencyHandler handler){
@@ -76,5 +82,17 @@ def architectureComponentsDependencies(DependencyHandler handler)
 {
     handler.implementation "android.arch.lifecycle:extensions:$versions.architectureComponents"
     handler.annotationProcessor "android.arch.lifecycle:compiler:$versions.architectureComponents"
+}
+
+def bottomBarDependencies(DependencyHandler handler)
+{
+    handler.implementation "com.roughike:bottom-bar:$versions.bottomBar"
+}
+
+def rxDependencies(DependencyHandler handler)
+{
+    handler.implementation "io.reactivex.rxjava2:rxandroid:$versions.rx"
+    handler.implementation "io.reactivex.rxjava2:rxjava:$versions.rx"
+    handler.implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }
 

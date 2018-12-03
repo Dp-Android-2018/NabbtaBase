@@ -22,4 +22,6 @@
 
 
     <string name="text_policy">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </string>
+    <string name="fill_all_data_error_message">Please Fill All Data!</string>
+    <string name="password_lengrh_error_message">Password must be more than 8 character</string>
 </resources>

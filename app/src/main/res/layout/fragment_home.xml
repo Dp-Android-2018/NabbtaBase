@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.HomeViewModel"/>
+    </data>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,14 +31,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_bestseller"
         android:layout_width="match_parent"
         android:layout_height="207dp"
         android:layout_marginTop="10dp"
         android:background="@color/green_color_op10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView58" />
+        app:layout_constraintTop_toBottomOf="@+id/textView58"
+        tools:listitem="@layout/product_item_grid_layout"/>
 
     <TextView
         android:id="@+id/textView59"
@@ -45,17 +52,18 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_bestseller" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rv_offers"
         android:layout_width="match_parent"
         android:layout_height="207dp"
         android:layout_marginTop="16dp"
         android:background="@color/green_color_op10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+        app:layout_constraintTop_toBottomOf="@+id/textView59"
+        tools:listitem="@layout/product_item_grid_layout"/>
 
     <TextView
         android:id="@+id/textView60"
@@ -68,18 +76,19 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_offers" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_new"
         android:layout_width="match_parent"
         android:layout_height="207dp"
         android:layout_marginTop="16dp"
         android:background="@color/green_color_op10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView60" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView60"
+        tools:listitem="@layout/product_item_grid_layout"/>
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
+</layout>

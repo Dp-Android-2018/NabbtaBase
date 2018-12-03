@@ -1,6 +1,7 @@
 package dp.com.nabbtabase.utils;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dp.com.nabbtabase.R;
+import dp.com.nabbtabase.application.MyApp;
+import dp.com.nabbtabase.dagger.component.NetworkComponent;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
+import dp.com.nabbtabase.servise.repository.EndPoints;
 
 
 /**
@@ -79,6 +83,12 @@ public class CustomUtils {
             default:
                 return bitmap;
         }
+    }
+
+    public EndPoints getEndpoint(Application application){
+        NetworkComponent daggerNetworkComponent=((MyApp)application).getDaggerNetworkComponent();
+        EndPoints endPoint=daggerNetworkComponent.getEndPoint();
+        return endPoint;
     }
 
     public Bitmap rotate(Bitmap bitmap, float degrees) {

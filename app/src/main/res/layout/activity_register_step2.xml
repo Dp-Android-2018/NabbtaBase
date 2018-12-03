@@ -9,6 +9,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -58,7 +59,7 @@
         android:textCursorDrawable="@null"
         android:hint="@string/country"
         android:textColor="@android:color/black"
-        android:textSize="11sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
@@ -81,7 +82,7 @@
         android:focusable="false"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
-        android:textSize="11sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="@+id/imageView8" />
@@ -101,15 +102,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/phone"
+        android:text="@={ViewModel.phone}"
         android:textCursorDrawable="@null"
         android:inputType="phone"
         android:textColor="@android:color/black"
         android:textColorLink="@color/text_color_green"
-        android:textSize="11sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
-
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="17dp"
@@ -127,9 +128,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/address"
+        android:text="@={ViewModel.address}"
         android:inputType="textPassword"
         android:textColor="@android:color/black"
-        android:textSize="11sp"
+        android:textSize="16sp"
         android:textCursorDrawable="@null"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
@@ -169,7 +171,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
-        android:onClick="@{ViewModel::policy}"/>
+        android:onClick="policy"/>
 
     <CheckBox
         android:id="@+id/checkBox2"

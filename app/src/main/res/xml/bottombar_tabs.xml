@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        id="@+id/products"
+        icon="@drawable/product_icon"
+        title="products" />
+    <tab
+        id="@+id/service"
+        icon="@drawable/service_icon"
+        title="services" />
+    <tab
+        id="@+id/main_tap"
+        icon="@drawable/home_icon"
+        title="home" />
+    <tab
+        id="@+id/offer"
+        icon="@drawable/offer_icon"
+        title="offers"/>
+    <tab
+        id="@+id/profile"
+        icon="@drawable/user"
+        title="profile"/>
+</tabs>

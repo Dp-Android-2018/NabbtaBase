@@ -20,8 +20,6 @@ public class SharedPrefrenceUtils {
         prefs = context.getSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, context.MODE_PRIVATE);
         editor = context.getSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, context.MODE_PRIVATE).edit();
     }
-
-
     public void addStringToSharedPrederances(String title, String value) {
 
             editor.putString(title, value);

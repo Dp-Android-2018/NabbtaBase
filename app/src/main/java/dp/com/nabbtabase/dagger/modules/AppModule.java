@@ -1,4 +1,4 @@
-package dp.com.nabbtabase.modules;
+package dp.com.nabbtabase.dagger.modules;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package dp.com.nabbtabase.modules;
+package dp.com.nabbtabase.dagger.modules;
 
 import android.content.Context;
 
@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dp.com.nabbtabase.R;
+import dp.com.nabbtabase.servise.repository.EndPoints;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -42,5 +43,11 @@ public class NetworkModule {
                 .client(okHttpClient)
                 .build();
         return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    EndPoints getRerofitEndPoint(Retrofit retrofit){
+        return retrofit.create(EndPoints.class);
     }
 }
