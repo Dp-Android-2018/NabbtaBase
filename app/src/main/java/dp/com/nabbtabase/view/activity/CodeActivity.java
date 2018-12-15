@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -37,6 +38,7 @@ public class CodeActivity extends AppCompatActivity implements CallBackInterface
         super.onCreate(savedInstanceState);
         login =getIntent().getStringExtra(ConfigurationFile.IntentConstants.LOGIN_INFO);
         viewModel=ViewModelProviders.of(this).get(CodeViewModel.class);
+        viewModel.setLogin(login);
         binding=DataBindingUtil.setContentView(CodeActivity.this,R.layout.activity_code);
         binding.setViewModel(viewModel);
         CodeRepository.getInstance().setCallBackInterface(this);
@@ -54,17 +56,31 @@ public class CodeActivity extends AppCompatActivity implements CallBackInterface
 
     @Override
     public void updateUi(int code) {
-
+        switch (code){
+            case ConfigurationFile.Constants.INVALED_EMAIL:{
+                Snackbar.make(binding.clRoot,R.string.invaled_mail,Snackbar.LENGTH_LONG).show();
+                break;
+            }
+            case ConfigurationFile.Constants.MOVE_TO_CODE_ACTIVITY:{
+                Snackbar.make(binding.clRoot,"code has been sent",Snackbar.LENGTH_LONG).show();
+                break;
+            }
+        }
     }
 
     @Override
     public void errorMessage(String error) {
 
-        System.out.println("Token is  "+error);
-        resetPasswordRequest=new ResetPasswordRequest();
-        resetPasswordRequest.setLogin(login);
-        resetPasswordRequest.setToken(error);
-        Intent intent=new Intent(this,ResetPasswordActivity.class);
-        intent.putExtra(ConfigurationFile.IntentConstants.RESET_PASSWORD_DATA,resetPasswordRequest);
+        System.out.println("Errore : "+error);
+        if(error.endsWith("seconds")){
+            Snackbar.make(binding.clRoot,error,Snackbar.LENGTH_LONG).show();
+        }else {
+            resetPasswordRequest = new ResetPasswordRequest();
+            resetPasswordRequest.setLogin(login);
+            resetPasswordRequest.setToken(error);
+            Intent intent = new Intent(CodeActivity.this, ResetPasswordActivity.class);
+            intent.putExtra(ConfigurationFile.IntentConstants.RESET_PASSWORD_DATA, resetPasswordRequest);
+            startActivity(intent);
+        }
     }
 }

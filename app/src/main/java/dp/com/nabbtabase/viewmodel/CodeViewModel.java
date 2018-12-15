@@ -3,9 +3,11 @@ package dp.com.nabbtabase.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import dp.com.nabbtabase.servise.model.request.CheckCodeRequest;
 import dp.com.nabbtabase.servise.model.response.CheckCodeResponse;
+import dp.com.nabbtabase.servise.repository.ForgetPasswordRepository;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,4 +27,8 @@ public class CodeViewModel extends AndroidViewModel {
         this.login = login;
     }
 
+
+    public void resend(View view){
+        ForgetPasswordRepository.getInstance().sendCode(application,login);
+    }
 }

@@ -67,7 +67,7 @@ public  class LoginActivity extends AppCompatActivity implements CallBackInterfa
                 startActivity(intent);
                 break;
             }case ConfigurationFile.Constants.INVALED_EMAIL:{
-                Snackbar.make(binding.clRoot,"Mail or Phone incorrect try after 2 mints",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(binding.clRoot,R.string.invaled_mail,Snackbar.LENGTH_LONG).show();
                 break;
             }
         }

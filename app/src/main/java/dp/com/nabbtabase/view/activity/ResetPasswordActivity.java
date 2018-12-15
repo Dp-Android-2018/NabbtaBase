@@ -1,6 +1,7 @@
 package dp.com.nabbtabase.view.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import dp.com.nabbtabase.MyViewModelFactory;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityResetPasswordBinding;
 import dp.com.nabbtabase.servise.model.request.ResetPasswordRequest;
+import dp.com.nabbtabase.servise.repository.ResetPasswordRepository;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.viewmodel.ResetPasswordViewModel;
@@ -26,10 +28,12 @@ public class ResetPasswordActivity extends AppCompatActivity implements CallBack
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resetPasswordRequest=(ResetPasswordRequest) getIntent().getSerializableExtra(ConfigurationFile.IntentConstants.RESET_PASSWORD_DATA);
-        viewModel=ViewModelProviders.of(this,new MyViewModelFactory(this.getApplication(),resetPasswordRequest)).get(ResetPasswordViewModel.class);
+        viewModel=ViewModelProviders.of(this).get(ResetPasswordViewModel.class);
+        viewModel.setResetPasswordRequest(resetPasswordRequest);
         viewModel.setCallBackInterface(this);
         binding=DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
         binding.setViewModel(viewModel);
+        ResetPasswordRepository.getInstance().setCallBackInterface(this);
     }
 
     @Override
@@ -50,6 +54,14 @@ public class ResetPasswordActivity extends AppCompatActivity implements CallBack
                 Snackbar.make(binding.clRoot,R.string.password_confirmation,Snackbar.LENGTH_LONG).show();
                 break;
             }
+            case ConfigurationFile.Constants.SUCCESS_CODE:
+            {
+                Intent intent=new Intent(this,LoginActivity.class);
+                startActivity(intent);
+                finishAffinity();
+                break;
+            }
+
 
         }
 

@@ -28,4 +28,5 @@
     <string name="enter_mail_phone">Enter mail or phone</string>
     <string name="comment_successfully_message">comment added successfully</string>
     <string name="comment_before_message">you have commented before</string>
+    <string name="invaled_mail">Mail or Phone incorrect try again</string>
 </resources>

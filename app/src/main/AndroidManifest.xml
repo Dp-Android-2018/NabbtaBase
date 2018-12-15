@@ -35,6 +35,7 @@
         </activity>
         <activity android:name=".view.activity.ProductDetailedActivity"/>
         <activity android:name=".view.activity.CodeActivity"/>
+        <activity android:name=".view.activity.ResetPasswordActivity"/>
 
     </application>
 

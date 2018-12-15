@@ -20,6 +20,7 @@ public class ForgetPasswordRepository {
 
     private static ForgetPasswordRepository instance;
     private CallBackInterface callBackInterface;
+    ForgetPasswordRequest request;
 
     private ForgetPasswordRepository() {
     }
@@ -35,8 +36,10 @@ public class ForgetPasswordRepository {
         this.callBackInterface = callBackInterface;
     }
 
-    public void sendCode(Application application, ForgetPasswordRequest request){
+    public void sendCode(Application application, String  login){
 
+        request=new ForgetPasswordRequest();
+        request.setLogin(login);
         CustomUtils.getInstance().getEndpoint(application).forgetPassword(
                 ConfigurationFile.Constants.API_KEY,
                 ConfigurationFile.Constants.CONTENT_TYPE,

@@ -19,10 +19,6 @@ public class MyViewModelFactory implements ViewModelProvider.Factory {
         this.mParam = param;
     }
 
-    public MyViewModelFactory(Application mApplication, ResetPasswordRequest resetPasswordRequest) {
-        this.mApplication = mApplication;
-        this.resetPasswordRequest = resetPasswordRequest;
-    }
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {

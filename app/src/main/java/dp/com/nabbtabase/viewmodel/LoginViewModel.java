@@ -23,7 +23,6 @@ public class LoginViewModel extends AndroidViewModel {
     private Application application;
     private LoginRequest request;
     private CallBackInterface callBackInterface;
-    private ForgetPasswordRequest forgetPasswordRequest;
     private LiveData<LoginRegisterContent> data;
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -61,9 +60,7 @@ public class LoginViewModel extends AndroidViewModel {
         if (ValidationUtils.isEmpty(mail.get())){
             callBackInterface.updateUi(ConfigurationFile.Constants.ENTER_MAIL);
         }else {
-            forgetPasswordRequest=new ForgetPasswordRequest();
-            forgetPasswordRequest.setLogin(mail.get());
-            ForgetPasswordRepository.getInstance().sendCode(application,forgetPasswordRequest);
+            ForgetPasswordRepository.getInstance().sendCode(application,mail.get());
         }
     }
 
