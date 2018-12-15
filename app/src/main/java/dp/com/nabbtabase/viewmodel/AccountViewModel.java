@@ -1,10 +1,15 @@
 package dp.com.nabbtabase.viewmodel;
 
+import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
+
+import dp.com.nabbtabase.utils.CustomUtils;
+import dp.com.nabbtabase.view.activity.LoginActivity;
 
 public class AccountViewModel extends AndroidViewModel {
     Context context;
@@ -12,6 +17,9 @@ public class AccountViewModel extends AndroidViewModel {
         super(application);
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     public void myOrders(View view){
 
@@ -34,7 +42,10 @@ public class AccountViewModel extends AndroidViewModel {
     }
 
     public void logout(View view){
-
+        CustomUtils.getInstance().clearSharedPref(context);
+        Intent intent=new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+        ((Activity)context).finishAffinity();
     }
 
 

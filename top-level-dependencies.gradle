@@ -3,6 +3,7 @@ def addTopLevelFilesRepositories (RepositoryHandler handler){
 
     handler.google()
     handler.jcenter()
+    handler.maven {url "https://jitpack.io"}
 }
 ext.addTopLevelFilesRepositories=this.&addTopLevelFilesRepositories
 //////////////////////Top Level Dependencies/////////////////////////

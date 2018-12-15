@@ -1,19 +1,27 @@
 package dp.com.nabbtabase.servise.repository;
 
 import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+
+import org.json.JSONObject;
+
+import java.util.List;
 
 import dp.com.nabbtabase.servise.model.request.RegisterRequest;
-import dp.com.nabbtabase.servise.model.response.LoginRegisterResponse;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
+import dp.com.nabbtabase.view.activity.ContainerActivity;
+import dp.com.nabbtabase.view.callback.CallBackInterface;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
+import okhttp3.ResponseBody;
 
 public class RegisterRepository  {
 
     private static RegisterRepository instance;
+    private CallBackInterface callBackInterface;
+    private Context context;
 
     private RegisterRepository() { }
 
@@ -22,6 +30,11 @@ public class RegisterRepository  {
             instance=new RegisterRepository();
         }
         return instance;
+    }
+
+    public void setCallBackInterface(CallBackInterface callBackInterface,Context context) {
+        this.callBackInterface = callBackInterface;
+        this.context=context;
     }
 
     public void register(Application application, RegisterRequest request){
@@ -34,8 +47,20 @@ public class RegisterRepository  {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginRegisterResponseResponse -> {
 
-                }, throwable -> {
+                    if(loginRegisterResponseResponse.code()==ConfigurationFile.Constants.SUCCESS_CODE_SECOND){
+                        CustomUtils.getInstance().saveDataToPrefs(loginRegisterResponseResponse.body().getLoginRegisterContent(),context);
 
+                    }else if(loginRegisterResponseResponse.code()==ConfigurationFile.Constants.INVALED_DATA_CODE){
+                        JSONObject jObjError = new JSONObject(loginRegisterResponseResponse.errorBody().string());
+                        String error= (String) jObjError.getJSONArray("errors").get(0);
+                        callBackInterface.errorMessage(error);
+                    }
+                    callBackInterface.updateUi(loginRegisterResponseResponse.code());
+                }, throwable -> {
+                    Log.e("register error",throwable.getMessage());
                 });
+
+
+
     }
 }

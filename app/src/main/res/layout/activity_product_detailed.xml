@@ -1,295 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="ViewModel"
             type="dp.com.nabbtabase.viewmodel.ProductDetailedViewModel"/>
     </data>
 <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_color_op10">
-<android.support.constraint.ConstraintLayout
+    android:background="@color/green_color_op10"
+    android:id="@+id/sv_root">
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
 
-    <View
-        android:id="@+id/view6"
         android:layout_width="match_parent"
-        android:layout_height="193dp"
-        android:background="@drawable/product_header_shape"
-        android:backgroundTint="@color/green_color_op80"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/image_shape"
-        android:backgroundTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
+        <me.crosswall.lib.coverflow.core.PagerContainer
+            android:id="@+id/pager_container"
+            android:layout_width="match_parent"
+            android:layout_height="193dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/product_header_shape"
+            android:backgroundTint="@color/green_color_op80">
+            <!--android:layout_height="@dimen/dp108h"-->
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="@drawable/image_shape"/>
+        </me.crosswall.lib.coverflow.core.PagerContainer>
 
-    <ImageButton
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="21dp"
-        android:background="@drawable/add_to_card_button_shape"
-        android:src="@drawable/add_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/add_to_card_button_shape"
+            android:src="@drawable/add_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Peacelily plant"
-        android:textColor="@color/text_color_green"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{ViewModel.product.name}"
+            android:maxLines="1"
+            android:textColor="@color/text_color_green"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pager_container" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Indoor trees"
-        android:textColor="@color/text_color_green"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ViewModel.product.category.name}"
+            android:textColor="@color/text_color_green"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="90 rs"
-        android:textColor="@color/text_color_green"
-        android:textSize="21sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ViewModel.salePrice}"
+            android:textColor="@color/text_color_green"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="21dp"
-        android:text="Description:"
-        android:textColor="@color/text_color_green"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="rs"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_green"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toTopOf="@+id/textView19" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="320dp"
-        android:layout_height="158dp"
-        android:layout_marginStart="5dp"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:scrollbars="vertical"
-        android:textColor="@color/text_color_green"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="21dp"
+            android:text="Description:"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
-        android:text="Dimensions:"
-        android:textColor="@color/text_color_green"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="320dp"
+            android:layout_height="158dp"
+            android:layout_marginStart="5dp"
+            android:paddingStart="5dp"
+            android:text="@{ViewModel.product.description}"
+            android:maxLines="8"
+            android:paddingEnd="5dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/text_color_green"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="30cm x 120cm"
-        android:textColor="@color/text_color_green"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:text="Dimensions:"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <TextView
-        android:id="@+id/review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="21dp"
-        android:text="Reviews:"
-        android:textColor="@color/text_color_green"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-    <View
-        android:id="@+id/recyc_top"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/text_color_green"
-        app:layout_constraintTop_toBottomOf="@id/review"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="9dp" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyeler"
-        android:layout_width="match_parent"
-        android:layout_height="152dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyc_top"/>
-    <View
-        android:id="@+id/recyc_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/text_color_green"
-        app:layout_constraintTop_toBottomOf="@id/recyeler"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{ViewModel.dimension}"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-    <View
-        android:id="@+id/view7"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/text_color_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyc_bottom" />
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="21dp"
+            android:text="Reviews:"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="25dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/feedback"
-        app:layout_constraintBottom_toBottomOf="@+id/view7"
-        app:layout_constraintStart_toStartOf="@+id/view7"
-        app:layout_constraintTop_toTopOf="@+id/view7" />
+        <View
+            android:id="@+id/recyc_top"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:background="@color/text_color_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/review" />
 
-    <EditText
-        android:id="@+id/editText8"
-        android:layout_width="310dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/image_shape"
-        android:backgroundTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView17"
-        app:layout_constraintEnd_toEndOf="@+id/view7"
-        app:layout_constraintStart_toEndOf="@+id/imageView17"
-        app:layout_constraintTop_toTopOf="@+id/imageView17" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_comments"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyc_top"
+            tools:listitem="@layout/comment_list_item"/>
 
-    <Button
-        android:layout_width="60dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/button_shape"
-        android:backgroundTint="@android:color/white"
-        android:text="Submit"
-        android:textColor="@color/text_color_green"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        <View
+            android:id="@+id/recyc_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/text_color_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_comments" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
-        android:theme="@style/RatingBar"
-        app:layout_constraintStart_toStartOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/text_color_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyc_bottom" />
 
-    <View
-        android:id="@+id/view8"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/green_color_op50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view7" />
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="25dp"
+            android:layout_height="27dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/feedback"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintEnd_toStartOf="@+id/editText8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view7" />
 
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="11dp"
-        android:text="ship to Riyadh (change city)"
-        android:textColor="@android:color/white"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toTopOf="@+id/view8" />
+        <EditText
+            android:id="@+id/editText8"
+            android:layout_width="310dp"
+            android:layout_height="35dp"
+            android:background="@drawable/image_shape"
+            android:backgroundTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView17"
+            app:layout_constraintTop_toTopOf="@+id/imageView17"
+            app:layout_constraintVertical_bias="0.454"
+            android:text="@={ViewModel.comment}"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:text="Delivered by Wednesday, Oct24"
-        android:textColor="@android:color/white"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@android:color/white"
+            android:text="Submit"
+            android:textColor="@color/text_color_green"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/editText8"
+            app:layout_constraintTop_toBottomOf="@+id/editText8"
+            android:onClick="@{ViewModel::createComment}"/>
 
-    <Button
-        android:layout_width="220dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_shape"
-        android:text="ADD TO CART"
-        android:textColor="@android:color/white"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/view8"
-        app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintStart_toStartOf="@+id/view8" />
+        <RatingBar
+            style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:theme="@style/RatingBar"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize=".5"
+            app:layout_constraintStart_toStartOf="@+id/editText8"
+            app:layout_constraintTop_toBottomOf="@+id/editText8"
+            android:rating="@={ViewModel.rate}"/>
 
-    <TextView
-        android:id="@+id/bought"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="17dp"
-        android:text="People also bought"
-        android:textColor="@color/text_color_green"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/view8"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/green_color_op50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view7" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="183dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bought"
-        android:background="@color/green_color_op10"/>
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="11dp"
+            android:text="ship to Riyadh (change city)"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/view8"
+            app:layout_constraintTop_toTopOf="@+id/view8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="Delivered by Wednesday, Oct24"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/view8"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <Button
+            android:layout_width="220dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_shape"
+            android:text="ADD TO CART"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view8"
+            app:layout_constraintEnd_toEndOf="@+id/view8"
+            app:layout_constraintStart_toStartOf="@+id/view8" />
+
+        <TextView
+            android:id="@+id/bought"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="17dp"
+            android:text="People also bought"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view8" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/green_color_op10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bought"
+            tools:listitem="@layout/product_item_grid_layout"/>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
 </layout>

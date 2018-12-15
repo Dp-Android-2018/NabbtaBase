@@ -23,6 +23,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         viewModel=ViewModelProviders.of(this).get(AccountViewModel.class);
+        viewModel.setContext(getContext());
         binding=DataBindingUtil.inflate(inflater, R.layout.fragment_account,container,false);
         binding.setViewModel(viewModel);
         View view=binding.getRoot();

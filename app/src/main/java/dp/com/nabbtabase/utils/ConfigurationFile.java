@@ -8,25 +8,26 @@ public class ConfigurationFile {
        public static final String CATEGORIES_URL="api/utilities/categories";
        public static final String LOGIN_URL="api/login";
        public static final String OFFERS="api/search/offers";
+       public static final String BESET_SELLER ="api/search/best-seller";
        public static final String CLIENT_REGISTER_URL="api/register";
        public static final String CHANGE_PASSWORD_URL="api/change-password";
-       public static final String FORGET_PASSWORD_URL="api/forget";
-       public static final String UPDATE_METADATA="api/companies/company-meta-data";
+       public static final String FORGET_PASSWORD_URL="api/phone/send";
+       public static final String RESET_PASSWORD_URL="api/forget/reset/{token}";
        public static final String CHECK_MAIL="api/check/email";
        public static final String CHECK_PHONE="api/check/phone";
        public static final String CHECK_ACTIVATION_STATUS="api/activate/check";
        public static final String SEND_ACTIVATION_MAIL="api/activate/email/send";
        public static final String PHONE_ACTIVATION="api/activate/phone";
        public static final String SEND_ACTIVATION_CODE="api/activate/phone/send";
-       public static final String CHECK_ACTIVATION_CODE="api/activate/phone/sent";
+       public static final String CHECK__CODE="api/forget";
        public static final String CREATE_CLIENT_RESERVATION="api/clients/reservation";
        public static final String COMPANY_APPROVE_RESERVATION="api/companies/reservation";
        public static final String GET_RESERVATION_URL="api/reservations/{status}";
        public static final String GET_RESERVATION_DETAIL_URL="api/reservation/{id}";
        public static final String GET_COMPANY_DETAIL="api/company/{id}/data";
-       public static final String GET_COMPANY_COMMENTS="api/company/{id}/comments";
-       public static final String COMPANY_SEARCH="api/search";
-       public static final String CREATE_COMMENT="api/clients/comments";
+       public static final String GET_PRODUCT_COMMENTS="api/product/{id}/comments";
+       public static final String PRODUCTS_SEARCH="api/search";
+       public static final String CREATE_COMMENT="api/rate";
        public static final String GET_SPECIALIZATION_URL="api/utilities/specializations";
        public static final String DELETE_RESERVATION_URL="api/companies/reservation/{id}";
        }
@@ -38,6 +39,7 @@ public class ConfigurationFile {
         public static final int SUCCESS_CODE=200;
         public static final int SUCCESS_CODE_SECOND=201;
         public static final int INVALED_DATA_CODE=422;
+        public static final int SECONDS_WAIT=429;
         public static final int INVALED_EMAIL_PASSWORD=401;
         public static final int SUSBENDED=417;
         public static final int ALREADY_ACTIVATED=403;
@@ -58,14 +60,15 @@ public class ConfigurationFile {
         public static final int GETIMAGE=1;
         public static final int PICK_IMAGE_REQUEST=2;
         public static final int SELECT_COUNTRY=3;
-        public static final int MOVE_TO_COUNTRY_ACT=4;
+        public static final int SIGNUP=4;
         public static final int MOVE_TO_CITY_ACT=5;
-        public static final int COUNTRY_ADAPTER=6;
-        public static final int MOVE_TO_MAP_ACT=7;
+        public static final int SHOW_COUNTRY_DIALOG =6;
+        public static final int MOVE_TO_CODE_ACTIVITY=7;
         public static final int MOVE_TO_SPECIALIZATION_ACT=8;
         public static final int SPECIALIZATION_ADAPTER=9;
         public static final int SKIP=10;
         public static final int REGISTER_STEP2=11;
+        public static final int ENTER_MAIL=12;
 
     }
     public static class SharedPrefConstants{
@@ -74,15 +77,16 @@ public class ConfigurationFile {
     public static class IntentConstants{
         public static final String CLIENT_REQUEST="CLIENTREGISTERREQUEST";
         public static final String COUNTRY_DATA="COUNTRY";
-        public static final String CITY_DATA="CITY";
+        public static final String RESET_PASSWORD_DATA="RESETPASSWORD";
         public static final String REGISTER_STEP1_DATA="REGISTERSTEP1DATA";
+        public static final String PRODUCT_DATA="PRODUCTDATA";
         public static final String CONTAINER_RESERVATION="RESERVATION";
         public static final String COMPANY_REQUEST="REQUEST";
         public static final String ADDRESS_REQUEST="ADDRESSREQUEST";
         public static final String LONGITUDE_REQUEST="longitude";
         public static final String LATITUDE_REQUEST="latitude";
         public static final String SPECIALIZATION_DATA="SPECIALIZATION";
-        public static final String TYPE="type";
+        public static final String LOGIN_INFO="LOGININFO";
         public static final String REQUEST_ITEM_DATA="ITEMREQUEST";
         public static final int REQUEST_CODE_COUNTRY=111;
         public static final int REQUEST_CODE_CITY=222;

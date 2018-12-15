@@ -32,7 +32,8 @@
             android:src="@drawable/signup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{ViewModel::signup}"/>
 
         <TextView
             android:id="@+id/textView"
@@ -118,7 +119,8 @@
             android:textSize="10dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView29"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/editText"
+            android:onClick="@{ViewModel::forgetPassword}"/>
 
         <Button
             android:id="@+id/button"

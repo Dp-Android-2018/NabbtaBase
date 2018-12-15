@@ -27,6 +27,7 @@ import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.dagger.component.NetworkComponent;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.repository.EndPoints;
+import dp.com.nabbtabase.view.activity.ContainerActivity;
 
 
 /**
@@ -39,6 +40,7 @@ public class CustomUtils {
     private static String selectedTime;
     private Dialog dialog=null;
     private AlertDialog registerDialog=null;
+    private SharedPrefrenceUtils pref;
     private CustomUtils(){}
     public static CustomUtils getInstance(){
         if(customUtils==null)
@@ -89,6 +91,11 @@ public class CustomUtils {
         NetworkComponent daggerNetworkComponent=((MyApp)application).getDaggerNetworkComponent();
         EndPoints endPoint=daggerNetworkComponent.getEndPoint();
         return endPoint;
+    }
+
+    public void moveToContainer(Context context){
+        Intent intent=new Intent(context,ContainerActivity.class);
+        context.startActivity(intent);
     }
 
     public Bitmap rotate(Bitmap bitmap, float degrees) {
@@ -161,6 +168,11 @@ public class CustomUtils {
         SharedPrefrenceUtils prefrenceUtils=new SharedPrefrenceUtils(context);
         LoginRegisterContent userData=(LoginRegisterContent) prefrenceUtils.getSavedObject(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, LoginRegisterContent.class);
         return userData;
+    }
+
+    public void saveDataToPrefs(LoginRegisterContent data,Context context){
+        pref=new SharedPrefrenceUtils(context);
+        pref.saveObjectToSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME,data);
     }
 
 

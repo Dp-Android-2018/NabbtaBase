@@ -14,6 +14,7 @@ import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityContainerBinding;
 import dp.com.nabbtabase.view.fragment.AccountFragment;
 import dp.com.nabbtabase.view.fragment.HomeFragment;
+import dp.com.nabbtabase.view.fragment.OffersFragment;
 import dp.com.nabbtabase.viewmodel.ContainerViewModel;
 
 public class ContainerActivity extends AppCompatActivity {
@@ -53,8 +54,8 @@ public class ContainerActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.offer:{
-//                        MainTabFragment mainTabFragment=new MainTabFragment();
-//                        navigationFragments(mainTabFragment);
+                        OffersFragment offersFragment=new OffersFragment();
+                        navigationFragments(offersFragment);
                         break;
                     }
                     case R.id.profile:{

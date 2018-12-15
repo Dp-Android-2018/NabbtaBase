@@ -59,7 +59,8 @@ public class RegisterStep1ViewModel extends AndroidViewModel {
             callBackInterface.updateUi(ConfigurationFile.Constants.PASSWORD_CONFIRMATION_ERROR);
         }else {
             // TODO: 12/3/2018 next step
-            registerRequest.setName(firstName.get()+" "+lastName.get());
+            registerRequest.setFirstName(firstName.get());
+            registerRequest.setLastName(lastName.get());
             registerRequest.setEmail(email.get());
             registerRequest.setPassword(password.get());
             registerRequest.setPassword_confirmation(passwordConfirmation.get());

@@ -3,6 +3,7 @@ package dp.com.nabbtabase.servise.repository;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.util.Log;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.model.request.LoginRequest;
@@ -16,6 +17,7 @@ public class LoginRepository {
 
     private static LoginRepository instance;
     private CallBackInterface callBackInterface;
+    private Context context;
 
     private LoginRepository() { }
 
@@ -36,8 +38,10 @@ public class LoginRepository {
                     Log.i("Login cond",""+loginRegisterResponseResponse.code());
                     if (loginRegisterResponseResponse.code()==ConfigurationFile.Constants.SUCCESS_CODE){
                         data.setValue(loginRegisterResponseResponse.body().getLoginRegisterContent());
+                        CustomUtils.getInstance().saveDataToPrefs(loginRegisterResponseResponse.body().getLoginRegisterContent(),context);
                     }
                     callBackInterface.updateUi(loginRegisterResponseResponse.code());
+
 
                 }, throwable -> {
 
@@ -48,7 +52,8 @@ public class LoginRepository {
         return data;
     }
 
-    public void setCallBackInterface(CallBackInterface callBackInterface) {
+    public void setCallBackInterface(CallBackInterface callBackInterface,Context context) {
         this.callBackInterface = callBackInterface;
+        this.context=context;
     }
 }

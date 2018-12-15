@@ -58,11 +58,13 @@
         android:focusable="false"
         android:textCursorDrawable="@null"
         android:hint="@string/country"
+        android:text="@{ViewModel.countryName}"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        android:onClick="@{ViewModel::country}"/>
 
     <ImageView
         android:id="@+id/imageView8"
@@ -79,13 +81,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/city"
+        android:text="@{ViewModel.cityName}"
         android:focusable="false"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        android:onClick="@{ViewModel::city}"/>
 
     <ImageView
         android:id="@+id/imageView9"
@@ -121,15 +125,14 @@
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
-
     <EditText
         android:id="@+id/editText4"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/address"
-        android:text="@={ViewModel.address}"
-        android:inputType="textPassword"
+        android:text="@={ViewModel.addressName}"
+        android:inputType="textPostalAddress"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textCursorDrawable="@null"
@@ -217,7 +220,8 @@
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkBox2"/>
+        app:layout_constraintTop_toBottomOf="@id/checkBox2"
+        android:onClick="@{ViewModel::signUp}"/>
     <View
         android:id="@+id/view"
         android:layout_width="117dp"

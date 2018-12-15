@@ -7,8 +7,11 @@ import java.io.Serializable;
 import dp.com.nabbtabase.servise.model.pojo.Address;
 
 public class RegisterRequest implements Serializable {
-    @SerializedName("name")
-    private String name;
+    @SerializedName("first_name")
+    private String firstName;
+
+    @SerializedName("last_name")
+    private String lastName;
 
     @SerializedName("email")
     private String email;
@@ -22,18 +25,29 @@ public class RegisterRequest implements Serializable {
     @SerializedName("phone")
     private String phone;
 
+    @SerializedName("city_id")
+    private int cityId;
+
     @SerializedName("address")
-    private Address address;
+    private String address;
 
     @SerializedName("device_token")
     private String device_token;
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -68,11 +82,19 @@ public class RegisterRequest implements Serializable {
         this.phone = phone;
     }
 
-    public Address getAddress() {
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

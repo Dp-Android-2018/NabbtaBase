@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityLoginBinding;
+import dp.com.nabbtabase.servise.repository.ForgetPasswordRepository;
 import dp.com.nabbtabase.servise.repository.LoginRepository;
 import dp.com.nabbtabase.utils.ConfigurationFile;
+import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.viewmodel.LoginViewModel;
 
-public class LoginActivity extends AppCompatActivity implements CallBackInterface {
+public  class LoginActivity extends AppCompatActivity implements CallBackInterface {
     private LoginViewModel viewModel;
     private ActivityLoginBinding binding;
 
@@ -27,14 +29,15 @@ public class LoginActivity extends AppCompatActivity implements CallBackInterfac
         viewModel.setCallBackInterface(this);
         binding=DataBindingUtil.setContentView(this,R.layout.activity_login);
         binding.setViewModel(viewModel);
-        LoginRepository.getInstance().setCallBackInterface(this);
+        LoginRepository.getInstance().setCallBackInterface(this,LoginActivity.this);
+        ForgetPasswordRepository.getInstance().setCallBackInterface(this);
     }
 
     @Override
     public void updateUi(int code) {
         switch (code){
             case ConfigurationFile.Constants.SKIP:{
-                moveToContainer();
+                CustomUtils.getInstance().moveToContainer(this);
                 break;
             }
             case ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE:{
@@ -46,15 +49,34 @@ public class LoginActivity extends AppCompatActivity implements CallBackInterfac
                 break;
             }
             case ConfigurationFile.Constants.SUCCESS_CODE:{
-                moveToContainer();
+                CustomUtils.getInstance().moveToContainer(this);
                 break;
             }
-
+            case ConfigurationFile.Constants.ENTER_MAIL:{
+                Snackbar.make(binding.clRoot,R.string.enter_mail_phone,Snackbar.LENGTH_LONG).show();
+                break;
+            }
+            case ConfigurationFile.Constants.SIGNUP:{
+                Intent intent=new Intent(this,RegisterStep1Activity.class);
+                startActivity(intent);
+                break;
+            }
+            case ConfigurationFile.Constants.MOVE_TO_CODE_ACTIVITY:{
+                Intent intent=new Intent(this,CodeActivity.class);
+                intent.putExtra(ConfigurationFile.IntentConstants.LOGIN_INFO,viewModel.mail.get());
+                startActivity(intent);
+                break;
+            }case ConfigurationFile.Constants.INVALED_EMAIL:{
+                Snackbar.make(binding.clRoot,"Mail or Phone incorrect try after 2 mints",Snackbar.LENGTH_LONG).show();
+                break;
+            }
         }
     }
 
-    public void moveToContainer(){
-        Intent intent=new Intent(this,ContainerActivity.class);
-        startActivity(intent);
+    @Override
+    public void errorMessage(String error) {
+        Snackbar.make(binding.clRoot,error,Snackbar.LENGTH_LONG).show();
     }
+
+
 }

@@ -6,8 +6,11 @@ import java.util.List;
 
 public class LoginRegisterContent {
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("first_name")
+    private String firstName;
+
+    @SerializedName("last_name")
+    private String lastName;
 
     @SerializedName("email")
     private String email;
@@ -16,7 +19,7 @@ public class LoginRegisterContent {
     private String activated;
 
     @SerializedName("api_token")
-    private String api_token;
+    private String apiToken;
 
     @SerializedName("device_token")
     private String device_token;
@@ -24,15 +27,23 @@ public class LoginRegisterContent {
     @SerializedName("phones")
     private List<Phone> phones;
 
-    @SerializedName("address")
+    @SerializedName("addressName")
     private Address address;
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -51,12 +62,12 @@ public class LoginRegisterContent {
         this.activated = activated;
     }
 
-    public String getApi_token() {
-        return api_token;
+    public String getApiToken() {
+        return apiToken;
     }
 
-    public void setApi_token(String api_token) {
-        this.api_token = api_token;
+    public void setApiToken(String apiToken) {
+        this.apiToken = apiToken;
     }
 
     public String getDevice_token() {

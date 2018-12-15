@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.OffersViewModel"/>
+    </data>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_offers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green_color_op10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/product_item_grid_layout" />
+
+</android.support.constraint.ConstraintLayout>
+</layout>

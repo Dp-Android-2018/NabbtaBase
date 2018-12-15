@@ -62,4 +62,9 @@ public class RegisterStep1Activity extends AppCompatActivity implements CallBack
         }
 
     }
+
+    @Override
+    public void errorMessage(String error) {
+
+    }
 }

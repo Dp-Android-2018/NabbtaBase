@@ -18,6 +18,9 @@ def AppModuleDependencies(DependencyHandler handler){
     architectureComponentsDependencies(handler)
     bottomBarDependencies(handler)
     rxDependencies(handler)
+    picassoDependencies(handler)
+    sliderDependencies(handler)
+    lottieDependencies(handler)
 }
 ext.AppModuleDependencies = this.&AppModuleDependencies
 
@@ -62,7 +65,7 @@ def retrofitDependencies(DependencyHandler handler){
 }
 
 def pinViewDependencies(DependencyHandler handler){
-    handler.implementation "com.chaos.view:pinview:$versions.pin_view"
+    handler.implementation "com.github.GoodieBag:Pinview:$versions.pin_view"
 }
 
 def cardViewDependencies(DependencyHandler handler)
@@ -94,5 +97,18 @@ def rxDependencies(DependencyHandler handler)
     handler.implementation "io.reactivex.rxjava2:rxandroid:$versions.rx"
     handler.implementation "io.reactivex.rxjava2:rxjava:$versions.rx"
     handler.implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+}
+def picassoDependencies(DependencyHandler handler)
+{
+    handler.implementation "com.squareup.picasso:picasso:$versions.picasso"
+}
+
+def sliderDependencies(DependencyHandler handler)
+{
+    handler.implementation 'com.github.crosswall:Android-Coverflow:release-v1.0.5'
+}
+def lottieDependencies(DependencyHandler handler)
+{
+    handler.implementation "com.airbnb.android:lottie:$versions.lottie"
 }
 

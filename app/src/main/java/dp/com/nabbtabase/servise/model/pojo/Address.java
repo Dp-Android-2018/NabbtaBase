@@ -14,7 +14,7 @@ public class Address implements Serializable {
     @SerializedName("country")
     private Country country;
 
-    @SerializedName("address")
+    @SerializedName("addressName")
     private String address;
 
     public int getId() {
