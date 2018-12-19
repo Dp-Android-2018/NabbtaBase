@@ -91,12 +91,9 @@ public class ProductDetailedActivity extends AppCompatActivity implements CallBa
     }
 
     private void observeViewModel(ProductDetailedViewModel viewModel){
-        viewModel.getComments().observe(this, new Observer<List<Comment>>() {
-            @Override
-            public void onChanged(@Nullable List<Comment> comments) {
-                if (comments!=null){
-                    adapter.setComments(comments);
-                }
+        viewModel.getComments().observe(this, comments -> {
+            if (comments!=null){
+                adapter.setComments(comments);
             }
         });
     }

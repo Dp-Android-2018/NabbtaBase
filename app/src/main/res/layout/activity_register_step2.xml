@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/et_first_name"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/iv_address"
         android:layout_width="17dp"
         android:layout_height="23dp"
         android:layout_marginTop="30dp"
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/et_address"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -136,9 +136,9 @@
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textCursorDrawable="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_address"
+        app:layout_constraintStart_toEndOf="@+id/iv_address"
+        app:layout_constraintTop_toTopOf="@+id/iv_address" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -149,7 +149,7 @@
         android:buttonTint="@color/text_color_green"
         android:textColorLink="@color/text_color_green"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/et_address" />
 
     <TextView
         android:id="@+id/textView2"

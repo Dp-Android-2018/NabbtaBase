@@ -12,13 +12,18 @@ import java.util.Objects;
 
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ProductItemGridLayoutBinding;
+import dp.com.nabbtabase.databinding.ProductItemLinearLayoutBinding;
 import dp.com.nabbtabase.servise.model.pojo.Product;
 import dp.com.nabbtabase.view.viewholder.ProductViewHolder;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     List<?extends Product>products;
+    private boolean grid;
 
+        public ProductsAdapter(boolean grid) {
+        this.grid = grid;
+    }
 
     public void setProducts(List<? extends Product> products) {
         if(this.products==null)
@@ -58,18 +63,36 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         }
     }
 
+    public void setGrid(boolean grid) {
+        this.grid = grid;
+    }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 
-        ProductItemGridLayoutBinding binding=DataBindingUtil.inflate
-                (LayoutInflater.from(parent.getContext()), R.layout.product_item_grid_layout,parent,false);
-        return new ProductViewHolder(binding);
+
+        if(grid) {
+            ProductItemGridLayoutBinding binding;
+            binding = DataBindingUtil.inflate
+                    (LayoutInflater.from(parent.getContext()), R.layout.product_item_grid_layout, parent, false);
+            return new ProductViewHolder(binding);
+        }else {
+            ProductItemLinearLayoutBinding binding ;
+            binding = DataBindingUtil.inflate
+                    (LayoutInflater.from(parent.getContext()), R.layout.product_item_linear_layout, parent, false);
+            return new ProductViewHolder(binding);
+        }
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.bindProduct(products.get(position));
+        if(grid) {
+            holder.bindProduct(products.get(position));
+        }else {
+            holder.bindProductLinear(products.get(position));
+        }
     }
 
     @Override

@@ -29,4 +29,7 @@
     <string name="comment_successfully_message">comment added successfully</string>
     <string name="comment_before_message">you have commented before</string>
     <string name="invaled_mail">Mail or Phone incorrect try again</string>
+    <string name="data_updated_successfully">Data updated successfully</string>
+    <string name="password_changed_message">Password Changed Successfully</string>
+    <string name="request_service">Request Service</string>
 </resources>

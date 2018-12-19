@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make((findViewById(R.id.cl_root)),"No Internet Connection",Snackbar.LENGTH_LONG).show();
             }
                 finish();
-        },4000);
+        },3000);
 
     }
 }

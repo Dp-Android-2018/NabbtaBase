@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.viewmodel.ShippingAddressViewModel"/>
+    </data>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl_shipping_address_root">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/user_icon"
+        app:layout_constraintEnd_toStartOf="@+id/et_first_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_first_name"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/first_name"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/user_icon"
+        app:layout_constraintEnd_toStartOf="@+id/et_last_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <EditText
+        android:id="@+id/et_last_name"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/last_name"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/iv_country_flag"
+        android:layout_width="19dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/flag_icon"
+        app:layout_constraintEnd_toStartOf="@+id/et_country"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_last_name" />
+
+    <EditText
+        android:id="@+id/et_country"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:focusable="false"
+        android:hint="@string/country"
+        android:onClick="country"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_country_flag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_country_flag"
+        app:layout_constraintTop_toTopOf="@+id/iv_country_flag" />
+
+    <ImageView
+        android:id="@+id/iv_city_flag"
+        android:layout_width="19dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/flag_icon"
+        app:layout_constraintEnd_toEndOf="@+id/iv_country_flag"
+        app:layout_constraintStart_toStartOf="@+id/iv_country_flag"
+        app:layout_constraintTop_toBottomOf="@+id/iv_country_flag" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:focusable="false"
+        android:hint="@string/city"
+        android:onClick="city"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_city_flag"
+        app:layout_constraintStart_toEndOf="@+id/iv_city_flag"
+        app:layout_constraintTop_toTopOf="@+id/iv_city_flag" />
+
+    <ImageView
+        android:id="@+id/iv_phone"
+        android:layout_width="26dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/call_icon"
+        app:layout_constraintEnd_toEndOf="@+id/iv_city_flag"
+        app:layout_constraintStart_toStartOf="@+id/iv_city_flag"
+        app:layout_constraintTop_toBottomOf="@+id/iv_city_flag" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:textColor="@android:color/black"
+        android:textColorLink="@color/text_color_green"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_phone"
+        app:layout_constraintStart_toEndOf="@+id/iv_phone"
+        app:layout_constraintTop_toTopOf="@+id/iv_phone" />
+
+    <ImageView
+        android:id="@+id/iv_address"
+        android:layout_width="17dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/placeholder"
+        app:layout_constraintEnd_toEndOf="@+id/iv_phone"
+        app:layout_constraintStart_toStartOf="@+id/iv_phone"
+        app:layout_constraintTop_toBottomOf="@+id/iv_phone" />
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/address"
+        android:inputType="textPostalAddress"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_address"
+        app:layout_constraintStart_toEndOf="@+id/iv_address"
+        app:layout_constraintTop_toTopOf="@+id/iv_address" />
+
+    <Button
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_shape"
+        android:text="Done"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_address"
+        android:onClick="done"/>
+
+</android.support.constraint.ConstraintLayout>
+</layout>

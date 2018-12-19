@@ -34,7 +34,7 @@ public class NewArrivalProducts {
         CustomUtils.getInstance().getEndpoint(application).getProducts(
                 ConfigurationFile.Constants.API_KEY,
                 ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,"-time",null)
+                ConfigurationFile.Constants.CONTENT_TYPE,"-time",null,"0")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productsResponse -> {

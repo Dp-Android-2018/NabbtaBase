@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="ViewModel"
             type="dp.com.nabbtabase.viewmodel.ProfileViewModel"/>
     </data>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/cl_root">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image"
@@ -34,13 +35,12 @@
         app:layout_constraintTop_toBottomOf="@id/image"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/et_first_name"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:textCursorDrawable="@null"
         android:layout_marginStart="8dp"
         android:hint="@string/first_name"
-        android:text="@={ViewModel.firstName}"
         android:textColor="@android:color/black"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
@@ -58,12 +58,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/et_last_name"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/last_name"
-        android:text="@{ViewModel.lastName}"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@null"
         android:textSize="11sp"
@@ -82,21 +81,22 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <EditText
+        android:id="@+id/tv_mail"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/email_address"
-        android:text="@{ViewModel.email}"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
         android:textSize="11sp"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/imageView9"
         android:inputType="textEmailAddress"/>
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/iv_address"
         android:layout_width="26dp"
         android:layout_height="21dp"
         android:layout_marginTop="30dp"
@@ -106,20 +106,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/tv_phone"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/phone"
-        android:text="@{ViewModel.phone}"
         android:inputType="phone"
+        android:focusable="false"
         android:textColor="@android:color/black"
         android:textColorLink="@color/text_color_green"
         android:textCursorDrawable="@null"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_address"
+        app:layout_constraintStart_toEndOf="@+id/iv_address"
+        app:layout_constraintTop_toTopOf="@+id/iv_address" />
 
     <Button
         android:layout_width="167dp"
@@ -129,12 +129,12 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_shape"
         android:text="Done"
-        android:onClick="@{ViewModel::done}"
+        android:onClick="done"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>

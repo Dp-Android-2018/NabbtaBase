@@ -40,13 +40,13 @@ public class Product implements Serializable {
     private float rating;
 
     @SerializedName("category")
-    private Category category;
+    private SubCategory category;
 
-    public Category getCategory() {
+    public SubCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(SubCategory category) {
         this.category = category;
     }
 

@@ -17,8 +17,8 @@ public class CardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel=ViewModelProviders.of(this).get(CardViewModel.class);
-        binding=DataBindingUtil.setContentView(this, R.layout.activity_card);
+        viewModel = ViewModelProviders.of(this).get(CardViewModel.class);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_card);
         binding.setViewModel(viewModel);
 
     }

@@ -9,11 +9,16 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import dp.com.nabbtabase.utils.CustomUtils;
+import dp.com.nabbtabase.view.activity.ChangePasswordActivity;
 import dp.com.nabbtabase.view.activity.LoginActivity;
+import dp.com.nabbtabase.view.activity.ProfileActivity;
+import dp.com.nabbtabase.view.activity.ShippingAddressActivity;
 
 public class AccountViewModel extends AndroidViewModel {
     Context context;
+    Intent intent;
     public AccountViewModel(@NonNull Application application) {
+
         super(application);
     }
 
@@ -26,15 +31,18 @@ public class AccountViewModel extends AndroidViewModel {
     }
 
     public void editProfile(View view){
-
+        intent=new Intent(context,ProfileActivity.class);
+        context.startActivity(intent);
     }
 
     public void shippingAddress(View view){
-
+        intent=new Intent(context,ShippingAddressActivity.class);
+        context.startActivity(intent);
     }
 
     public void changePassword(View view){
-
+        intent=new Intent(context,ChangePasswordActivity.class);
+        context.startActivity(intent);
     }
 
     public void changeLanguage(View view){

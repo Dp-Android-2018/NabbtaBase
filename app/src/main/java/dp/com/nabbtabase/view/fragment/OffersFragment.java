@@ -29,7 +29,7 @@ public class OffersFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding=DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.fragment_offers,container,false);
-        offersAdapter=new ProductsAdapter();
+        offersAdapter=new ProductsAdapter(true);
         binding.rvOffers.setLayoutManager(new GridLayoutManager(getContext(),2));
         binding.rvOffers.setAdapter(offersAdapter);
         return binding.getRoot();

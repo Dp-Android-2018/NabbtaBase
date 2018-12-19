@@ -8,13 +8,25 @@ public class Address implements Serializable {
     @SerializedName("id")
     private int id;
 
+    @SerializedName("first_name")
+    private String firstName;
+
+    @SerializedName("last_name")
+    private String lastName;
+
+
+
     @SerializedName("city")
     private City city;
 
     @SerializedName("country")
     private Country country;
 
-    @SerializedName("addressName")
+    @SerializedName("phone")
+    private String phone;
+
+
+    @SerializedName("address")
     private String address;
 
     public int getId() {
@@ -47,5 +59,29 @@ public class Address implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

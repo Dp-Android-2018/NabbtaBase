@@ -2,9 +2,9 @@ package dp.com.nabbtabase.servise.model.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import java.util.List;
 
-public class Category implements Serializable {
+public class Category {
 
     @SerializedName("id")
     private int id;
@@ -12,6 +12,8 @@ public class Category implements Serializable {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("children")
+    private List<SubCategory>subCategories;
 
     public int getId() {
         return id;
@@ -27,5 +29,13 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }

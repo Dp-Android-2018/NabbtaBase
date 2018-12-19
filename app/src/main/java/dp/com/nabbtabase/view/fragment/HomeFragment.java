@@ -32,9 +32,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding=DataBindingUtil.inflate(inflater, R.layout.fragment_home,container,false);
-        bestSellerAdapter=new ProductsAdapter();
-        offersAdapter=new ProductsAdapter();
-        newArrivalsAdapter=new ProductsAdapter();
+        bestSellerAdapter=new ProductsAdapter(true);
+        offersAdapter=new ProductsAdapter(true);
+        newArrivalsAdapter=new ProductsAdapter(true);
         setRecycler();
         View view=binding.getRoot();
         return view;

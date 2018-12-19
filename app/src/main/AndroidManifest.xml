@@ -3,7 +3,8 @@
     package="dp.com.nabbtabase">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
@@ -33,9 +34,15 @@
         <activity android:name=".view.activity.ContainerActivity">
 
         </activity>
-        <activity android:name=".view.activity.ProductDetailedActivity"/>
-        <activity android:name=".view.activity.CodeActivity"/>
-        <activity android:name=".view.activity.ResetPasswordActivity"/>
+        <activity android:name=".view.activity.ProductDetailedActivity" />
+        <activity android:name=".view.activity.CodeActivity" />
+        <activity android:name=".view.activity.ResetPasswordActivity" />
+        <activity android:name=".view.activity.ProfileActivity" />
+        <activity android:name=".view.activity.ChangePasswordActivity" />
+        <activity android:name=".view.activity.ShippingAddressActivity" />
+        <activity android:name=".view.activity.ServiceDetailedActivity" />
+        <activity android:name=".view.activity.RequestServiceStep1Activity" />
+
 
     </application>
 

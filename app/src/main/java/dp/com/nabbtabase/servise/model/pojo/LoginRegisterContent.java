@@ -24,8 +24,8 @@ public class LoginRegisterContent {
     @SerializedName("device_token")
     private String device_token;
 
-    @SerializedName("phones")
-    private List<Phone> phones;
+    @SerializedName("phone")
+    private String phones;
 
     @SerializedName("addressName")
     private Address address;
@@ -78,11 +78,11 @@ public class LoginRegisterContent {
         this.device_token = device_token;
     }
 
-    public List<Phone> getPhones() {
+    public String getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(String phones) {
         this.phones = phones;
     }
 
