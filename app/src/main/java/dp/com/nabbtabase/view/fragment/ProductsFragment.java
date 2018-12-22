@@ -135,7 +135,7 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
     public void selectSubcategory(){
         // Log.i("Countries size vm",""+countries.getValue().size());
         if(!countrySelected){
-            Snackbar.make(binding.clProductRoot,"Select category first",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.clProductRoot,R.string.select_category_message,Snackbar.LENGTH_LONG).show();
             return;
         }
         select="city";
