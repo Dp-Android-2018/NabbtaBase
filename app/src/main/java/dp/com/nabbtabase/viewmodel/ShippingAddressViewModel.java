@@ -28,7 +28,7 @@ public class ShippingAddressViewModel extends AndroidViewModel {
 
     public void setRequest(ShippingAddressRequest request) {
         this.request = request;
-        code=ShippingAddressRepository.getInstance().shippingAddress(application,request);
+        //code=ShippingAddressRepository.getInstance().shippingAddress(application,request);
     }
 
     public LiveData<Integer> getCode() {

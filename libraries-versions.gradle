@@ -15,4 +15,6 @@ versions.bottomBar='2.3.1'
 versions.rx='2.1.0'
 versions.picasso= '2.5.2'
 versions.lottie='2.2.5'
+versions.imagePicker='1.2.2'
+versions.placePicker='11.8.0'
 ext.versions=versions

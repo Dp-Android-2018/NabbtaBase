@@ -33,4 +33,25 @@
     <string name="password_changed_message">Password Changed Successfully</string>
     <string name="request_service">Request Service</string>
     <string name="select_category_message">Select category first</string>
+    <string name="select_image">select your Image</string>
+    <string name="upload_image_erroe_message">you have uploaded all five images</string>
+    <string name="select_time">Select Time</string>
+    <string name="select_date">Select Date</string>
+    <string name="location">Select Location</string>
+    <string name="requested_successfully">Requested successfully</string>
+    <string name="you_must_be_Register">you must be registered</string>
+    <string name="product_added_to_cart_message">Product Added To Cart Successfully</string>
+    <string name="proceed_to_checkout">PROCEED TO CHECKOUT</string>
+    <string name="cart_item_deleted_message">Product Deleted successfully</string>
+    <string name="the_cart_is_empty">The Cart Is Empty</string>
+    <string name="ship_to_my_address">Ship to my address</string>
+    <string name="ship_to_another_address">Ship to another address</string>
+    <string name="service_history_text">Services History</string>
+    <string name="continue_to_payment">continue to payment</string>
+    <string name="online_payment_sadad">Online Payment (Sadad)</string>
+    <string name="cash_on_delivery_cod">Cash On Delivery (COD)</string>
+    <string name="place_order">PLACE ORDER</string>
+    <string name="pay">Pay</string>
+    <string name="sdad">Sadad user name</string>
+    <string name="rs">rs</string>
 </resources>

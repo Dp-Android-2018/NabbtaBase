@@ -15,6 +15,7 @@ import dp.com.nabbtabase.databinding.ActivityChangePasswordBinding;
 import dp.com.nabbtabase.servise.model.request.ChangePasswordRequest;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.ValidationUtils;
+import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ChangePasswordViewModel;
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=DataBindingUtil.setContentView(this, R.layout.activity_change_password);
+        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
     }
 
     public void changepassword(View view){

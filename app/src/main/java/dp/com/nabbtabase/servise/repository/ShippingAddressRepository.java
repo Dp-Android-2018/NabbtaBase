@@ -5,10 +5,12 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import dp.com.nabbtabase.servise.model.request.ShippingAddressRequest;
+import dp.com.nabbtabase.servise.model.response.ShippingAddressResponse;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class ShippingAddressRepository {
 
@@ -24,8 +26,8 @@ public class ShippingAddressRepository {
         return instance;
     }
 
-    public LiveData<Integer> shippingAddress(Application application, ShippingAddressRequest request){
-        MutableLiveData<Integer>code=new MutableLiveData<>();
+    public LiveData<Response<ShippingAddressResponse>> shippingAddress(Application application, ShippingAddressRequest request){
+        MutableLiveData<Response<ShippingAddressResponse>>response=new MutableLiveData<>();
         String token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
         System.out.println("token : "+token);
         CustomUtils.getInstance().getEndpoint(application).shippingAddress(
@@ -35,10 +37,11 @@ public class ShippingAddressRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {
-                    code.setValue(stringResponseResponse.code());
+                    response.setValue(stringResponseResponse);
                 }, throwable -> {
 
                 });
-        return code;
+        //System.out.println("code on repository get value "+response.getValue().code());
+        return response;
     }
 }

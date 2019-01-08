@@ -26,6 +26,10 @@ public class ServiceListItemViewModel {
         return service.getName();
     }
 
+    public String getImageUrl(){
+        return service.getImageUrl();
+    }
+
     public void onItemClick(View view){
         Intent intent=new Intent(context,ServiceDetailedActivity.class);
         intent.putExtra(ConfigurationFile.IntentConstants.SERVICE_DATA,service);

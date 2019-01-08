@@ -2,7 +2,9 @@ package dp.com.nabbtabase.utils;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,9 +18,17 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.view.Window;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +38,8 @@ import dp.com.nabbtabase.dagger.component.NetworkComponent;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.repository.EndPoints;
 import dp.com.nabbtabase.view.activity.ContainerActivity;
+import dp.com.nabbtabase.view.callback.UpdateDateListener;
+import dp.com.nabbtabase.view.callback.UpdateTimeListener;
 
 
 /**
@@ -36,27 +48,29 @@ import dp.com.nabbtabase.view.activity.ContainerActivity;
 
 public class CustomUtils {
 
-    private static  CustomUtils customUtils=null;
+    private static CustomUtils customUtils = null;
     private static String selectedTime;
-    private Dialog dialog=null;
-    private AlertDialog registerDialog=null;
+    private static String selectedDate;
+    private Dialog dialog = null;
+    private AlertDialog registerDialog = null;
     private SharedPrefrenceUtils pref;
-    private CustomUtils(){}
-    public static CustomUtils getInstance(){
-        if(customUtils==null)
-            customUtils=new CustomUtils();
+
+    private CustomUtils() {
+    }
+
+    public static CustomUtils getInstance() {
+        if (customUtils == null)
+            customUtils = new CustomUtils();
 
         return customUtils;
     }
 
 
-
-    public String encodeImage(Bitmap bm)
-    {
+    public String encodeImage(Bitmap bm) {
         int nh = (int) (bm.getHeight() * (512.0 / bm.getWidth()));
         bm = Bitmap.createScaledBitmap(bm, 512, nh, true);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] b = baos.toByteArray();
         String encImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encImage;
@@ -87,14 +101,14 @@ public class CustomUtils {
         }
     }
 
-    public EndPoints getEndpoint(Application application){
-        NetworkComponent daggerNetworkComponent=((MyApp)application).getDaggerNetworkComponent();
-        EndPoints endPoint=daggerNetworkComponent.getEndPoint();
+    public EndPoints getEndpoint(Application application) {
+        NetworkComponent daggerNetworkComponent = ((MyApp) application).getDaggerNetworkComponent();
+        EndPoints endPoint = daggerNetworkComponent.getEndPoint();
         return endPoint;
     }
 
-    public void moveToContainer(Context context){
-        Intent intent=new Intent(context,ContainerActivity.class);
+    public void moveToContainer(Context context) {
+        Intent intent = new Intent(context, ContainerActivity.class);
         context.startActivity(intent);
     }
 
@@ -113,7 +127,7 @@ public class CustomUtils {
     public String uriToFilename(Uri uri, Context context) {
 
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        String picturePath="";
+        String picturePath = "";
         if (uri != null) {
             Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
             assert cursor != null;
@@ -126,7 +140,7 @@ public class CustomUtils {
     }
 
 
-    public  boolean checkIfAlreadyhavePermission(Context context, String permission) {
+    public boolean checkIfAlreadyhavePermission(Context context, String permission) {
         if (ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else {
@@ -134,12 +148,12 @@ public class CustomUtils {
         }
     }
 
-    public  void requestForSpecificPermission(Context context, String[]permissions, int requestCode) {
-        ActivityCompat.requestPermissions((Activity)context, permissions, requestCode);
+    public void requestForSpecificPermission(Context context, String[] permissions, int requestCode) {
+        ActivityCompat.requestPermissions((Activity) context, permissions, requestCode);
     }
 
 
-    public Boolean isValidMobileNumber(String s){
+    public Boolean isValidMobileNumber(String s) {
         Pattern p = Pattern.compile("(0/1)?[0-9]{9}");
 
         // Pattern class contains matcher() method
@@ -149,75 +163,74 @@ public class CustomUtils {
         return (m.find() && m.group().equals(s));
     }
 
-//    public void showProgressDialog(Context activity){
-//        dialog = new Dialog(activity);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.custom_dialog_layout);
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-//        dialog.setCancelable(false);
-//        if (!dialog.isShowing())
-//            dialog.show();
-//    }
+    public void showProgressDialog(Context activity){
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        if (!dialog.isShowing())
+            dialog.show();
+    }
 
-    public void cancelDialog(){
+    public void cancelDialog() {
         dialog.dismiss();
     }
 
-    public LoginRegisterContent getSaveUserObject(Context context){
+    public LoginRegisterContent getSaveUserObject(Context context) {
 
-        SharedPrefrenceUtils prefrenceUtils=new SharedPrefrenceUtils(context);
-        LoginRegisterContent userData=(LoginRegisterContent) prefrenceUtils.getSavedObject(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, LoginRegisterContent.class);
+        SharedPrefrenceUtils prefrenceUtils = new SharedPrefrenceUtils(context);
+        LoginRegisterContent userData = (LoginRegisterContent) prefrenceUtils.getSavedObject(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, LoginRegisterContent.class);
         return userData;
     }
 
-    public void saveDataToPrefs(LoginRegisterContent data,Context context){
-        pref=new SharedPrefrenceUtils(context);
-        pref.saveObjectToSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME,data);
+    public void saveDataToPrefs(LoginRegisterContent data, Context context) {
+        pref = new SharedPrefrenceUtils(context);
+        pref.saveObjectToSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, data);
     }
 
 
-    public void openCamera(Activity activity){
+    public void openCamera(Activity activity) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        activity.startActivityForResult(cameraIntent,1);
+        activity.startActivityForResult(cameraIntent, 1);
     }
 
-    public void openGallery(Activity activity, boolean checker){
+    public void openGallery(Activity activity, boolean checker) {
         Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            if (checker==true){
-                pickPhoto.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+        if (checker == true) {
+            pickPhoto.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
 //**These following line is the important one!
-                pickPhoto.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-            }
+            pickPhoto.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        }
 
-        activity.startActivityForResult(pickPhoto ,1);
+        activity.startActivityForResult(pickPhoto, 1);
     }
 
-    public String firstCharacters(String name){
+    public String firstCharacters(String name) {
         String[] splited = name.split("\\s+");
-        String workshoptitle="";
-        for (int i=0;i<splited.length;i++)
-            workshoptitle=workshoptitle+splited[i].toUpperCase().charAt(0);
+        String workshoptitle = "";
+        for (int i = 0; i < splited.length; i++)
+            workshoptitle = workshoptitle + splited[i].toUpperCase().charAt(0);
 
         return workshoptitle;
     }
 
 
-
-    public void playStore(Context context){
+    public void playStore(Context context) {
         try {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" +context.getPackageName())));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
         } catch (android.content.ActivityNotFoundException anfe) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" +context.getPackageName())));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
         }
     }
 
-    public void shareApp(Context context){
+    public void shareApp(Context context) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" +context.getPackageName());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + context.getPackageName());
         sendIntent.setType("text/plain");
-        context.startActivity(Intent.createChooser(sendIntent,"Send To"));
+        context.startActivity(Intent.createChooser(sendIntent, "Send To"));
     }
 
 //    public void uploadFireBasePic(StorageReference storageReference, Uri selectedImageUri , TaskMonitor callback){
@@ -238,11 +251,10 @@ public class CustomUtils {
 //    }
 
 
-    public void clearSharedPref(Context context){
-        SharedPrefrenceUtils prefrenceUtils=new SharedPrefrenceUtils(context);
+    public void clearSharedPref(Context context) {
+        SharedPrefrenceUtils prefrenceUtils = new SharedPrefrenceUtils(context);
         prefrenceUtils.clearToken();
     }
-
 
 
 //    public String getFirebaseToken(Context context){
@@ -253,5 +265,48 @@ public class CustomUtils {
 //        return MyFirebaseInstanceIdService.TOKEN;
 //    }
 
+
+    public void showTimePickerDialog(Context context, UpdateTimeListener listener) {
+        Calendar mCuurTime = Calendar.getInstance();
+        int hour = mCuurTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mCuurTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(context, (view, hourOfDay, minute1) -> {
+            selectedTime = ((hourOfDay < 10 ? "0" + hourOfDay : String.valueOf(hourOfDay)) + ":" +
+                    (minute1 < 10 ? "0" + minute1 : minute1));
+            listener.onTimeSet(selectedTime);
+        }, hour, minute, true);
+        mTimePicker.setTitle(context.getString(R.string.select_time));
+        mTimePicker.show();
+    }
+
+    public void showDatePickerDialog(Context context, UpdateDateListener listener) {
+        Calendar mCuurDate = Calendar.getInstance();
+        int year = mCuurDate.get(Calendar.YEAR);
+        int month = mCuurDate.get(Calendar.MONTH);
+        int day = mCuurDate.get(Calendar.DAY_OF_WEEK);
+        DatePickerDialog mDatePicker;
+        mDatePicker = new DatePickerDialog(context, (view, year1, month1, dayOfMonth) -> {
+            selectedDate = String.valueOf(year1) + "-" + String.valueOf(month1) + "-" + String.valueOf(dayOfMonth);
+            System.out.println("Date on utils : "+selectedDate);
+            listener.onDateSet(selectedDate);
+        }, year, month, mCuurDate.get(Calendar.DATE));
+        mDatePicker.setTitle(context.getString(R.string.select_date));
+        mDatePicker.show();
+    }
+
+
+
+    public void startPlacePicker(Activity activity){
+        try {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            activity.startActivityForResult(builder.build(activity),
+                    ConfigurationFile.Constants.PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

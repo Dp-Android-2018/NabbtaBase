@@ -18,6 +18,7 @@ import dp.com.nabbtabase.view.fragment.HomeFragment;
 import dp.com.nabbtabase.view.fragment.OffersFragment;
 import dp.com.nabbtabase.view.fragment.ProductsFragment;
 import dp.com.nabbtabase.view.fragment.ServicesFragment;
+import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ContainerViewModel;
 
 public class ContainerActivity extends AppCompatActivity {
@@ -32,9 +33,13 @@ public class ContainerActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_container);
         binding.setViewModel(viewModel);
         binding.bottomBar.setDefaultTab(R.id.main_tap);
+        setActionBar();
         bottombar();
     }
 
+    public void setActionBar(){
+        binding.actionBar.setViewModel(new ActionBarViewModel(this,true,true,false));
+    }
 
     public void bottombar() {
         binding.bottomBar.setOnTabSelectListener(new OnTabSelectListener() {

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.view.activity.RequestServiceStep2Activity"/>
+    </data>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_root">
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="25dp"
@@ -38,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <EditText
+        android:id="@+id/et_last_name"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -60,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <EditText
+        android:id="@+id/et_email"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -82,17 +92,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <EditText
+        android:id="@+id/tv_address"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:hint="@string/email_address"
+        android:focusable="false"
+        android:hint="@string/location"
         android:textCursorDrawable="@null"
         android:textColor="@android:color/black"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_address"
         app:layout_constraintStart_toEndOf="@+id/iv_address"
         app:layout_constraintTop_toTopOf="@+id/iv_address"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:onClick="getLocation"/>
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="26dp"
@@ -104,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_address" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/et_phone"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -129,7 +142,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
     <View
         android:id="@+id/view11"
@@ -165,6 +178,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view11" />
-
-
 </android.support.constraint.ConstraintLayout>
+</layout>

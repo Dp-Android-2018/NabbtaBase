@@ -20,6 +20,7 @@ import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
+import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ProfileViewModel;
 
 public class ProfileActivity extends AppCompatActivity{
@@ -35,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity{
         //viewModel.setCallBackInterface(this,this);
         data=CustomUtils.getInstance().getSaveUserObject(this);
         binding=DataBindingUtil.setContentView(this, R.layout.activity_profile);
+        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
         setData();
     }
 

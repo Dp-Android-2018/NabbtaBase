@@ -19,7 +19,6 @@ import dp.com.nabbtabase.viewmodel.ResetPasswordViewModel;
 
 public class ResetPasswordActivity extends AppCompatActivity implements CallBackInterface {
 
-
     ResetPasswordViewModel viewModel;
     ActivityResetPasswordBinding binding;
     ResetPasswordRequest resetPasswordRequest;

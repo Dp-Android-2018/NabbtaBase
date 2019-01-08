@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="ViewModel"
-            type="dp.com.nabbtabase.viewmodel.ProductItemViewModel"/>
+            type="dp.com.nabbtabase.viewmodel.ProductItemViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
         android:layout_width="142dp"
         android:layout_height="190dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="22dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="22dp"
-        app:cardCornerRadius="10dp"
-        android:onClick="@{ViewModel::onItemClick}">
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/text_color_green"
+        android:onClick="@{ViewModel::onItemClick}"
+        app:cardCornerRadius="10dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/text_color_green">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView14"
-                android:layout_width="133dp"
-                android:layout_height="134dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/image_shape"
-                android:src="@drawable/product_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                bind:imageUrl="@{ViewModel.image}" />
+                <ImageView
+                    android:id="@+id/cardView1"
+                    android:layout_width="133dp"
+                    android:layout_height="134dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/product_icon"
+                    android:padding="15dp"
+                    bind:imageUrl="@{ViewModel.image}"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/image_shape"/>
 
             <TextView
                 android:id="@+id/textView16"
@@ -48,10 +49,11 @@
                 android:maxLines="1"
                 android:text="@{ViewModel.product.name}"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView1" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -80,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="rs"
+                android:text="@string/rs"
                 android:textColor="@android:color/white"
                 android:textSize="10sp"
                 bind:layout_constraintBottom_toBottomOf="@+id/textView69"

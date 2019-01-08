@@ -42,6 +42,17 @@ public class Product implements Serializable {
     @SerializedName("category")
     private SubCategory category;
 
+    @SerializedName("in_cart")
+    private boolean inCart;
+
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
+    }
+
     public SubCategory getCategory() {
         return category;
     }

@@ -31,6 +31,7 @@ import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.view.adapter.PopupRecyclerAdapter;
 import dp.com.nabbtabase.view.callback.CloseCountryDialogInterface;
+import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ShippingAddressViewModel;
 
 public class ShippingAddressActivity extends AppCompatActivity implements CloseCountryDialogInterface {
@@ -52,6 +53,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         observableViewModel(viewModel);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shipping_address);
         initVariables();
+        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
     }
 
     public void initVariables() {

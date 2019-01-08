@@ -1,14 +1,21 @@
 package dp.com.nabbtabase.servise.model.pojo;
 
-import com.google.gson.annotations.SerializedName;
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class ServiceContent implements Serializable {
+import com.google.firebase.appindexing.builders.StickerBuilder;
+import com.google.gson.annotations.SerializedName;
+
+public class ServiceContent implements Parcelable {
     @SerializedName("id")
     private int id;
 
     @SerializedName("name")
     private String name;
+
+    @SerializedName("image")
+    private String imageUrl;
+
 
     @SerializedName("description")
     private String description;
@@ -29,7 +36,13 @@ public class ServiceContent implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
     public String getDescription() {
         return description;
     }
@@ -38,35 +51,35 @@ public class ServiceContent implements Serializable {
         this.description = description;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.imageUrl);
+        dest.writeString(this.description);
+    }
 
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(this.name);
-//        dest.writeString(this.description);
-//        dest.writeInt(this.id);
-//    }
-//
-//    public ServiceContent(Parcel in) {
-//        id = in.readInt();
-//        name = in.readString();
-//        description = in.readString();
-//    }
-//
-//    public static final Creator<ServiceContent> CREATOR = new Creator<ServiceContent>() {
-//        @Override
-//        public ServiceContent createFromParcel(Parcel in) {
-//            return new ServiceContent(in);
-//        }
-//
-//        @Override
-//        public ServiceContent[] newArray(int size) {
-//            return new ServiceContent[size];
-//        }
-//    };
-//
-//    @Override
-//    public int describeContents() {
-//        return hashCode();
-//    }
+    public ServiceContent(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        imageUrl=in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<ServiceContent> CREATOR = new Creator<ServiceContent>() {
+        @Override
+        public ServiceContent createFromParcel(Parcel in) {
+           return new ServiceContent(in);
+       }
+
+        @Override
+        public ServiceContent[] newArray(int size) {
+            return new ServiceContent[size];
+        }
+    };
 }

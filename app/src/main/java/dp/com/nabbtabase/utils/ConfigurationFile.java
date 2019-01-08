@@ -14,17 +14,17 @@ public class ConfigurationFile {
        public static final String FORGET_PASSWORD_URL="api/phone/send";
        public static final String RESET_PASSWORD_URL="api/forget/reset/{token}";
        public static final String SHIPPING_ADDRESS_URL="api/address";
-       public static final String CHECK_PHONE="api/check/phone";
-       public static final String CHECK_ACTIVATION_STATUS="api/activate/check";
-       public static final String SEND_ACTIVATION_MAIL="api/activate/email/send";
-       public static final String PHONE_ACTIVATION="api/activate/phone";
-       public static final String SEND_ACTIVATION_CODE="api/activate/phone/send";
+       public static final String UPLOAD_IMAGE="api/media";
+       public static final String SERVICE_REQUEST="api/service-request";
+       public static final String ADD_TO_CART_ULR="api/cart";
+       public static final String CART_PRODUCTS="api/cart";
+       public static final String DELETE_ITEM_FROM_CART="api/cart/{id}";
        public static final String CHECK__CODE="api/forget";
        public static final String EDIT_PROFILE_URL="api/profile";
        public static final String SERVICES_URL="api/utilities/services";
-       public static final String GET_RESERVATION_URL="api/reservations/{status}";
-       public static final String GET_RESERVATION_DETAIL_URL="api/reservation/{id}";
-       public static final String GET_COMPANY_DETAIL="api/company/{id}/data";
+       public static final String UPDATE_CART_ITEM="api/cart/{id}";
+       public static final String SERVICES_HISTORY="api/service-request";
+       public static final String CREATE_ORDER="api/order";
        public static final String GET_PRODUCT_COMMENTS="api/product/{id}/comments";
        public static final String PRODUCTS_SEARCH="api/search";
        public static final String CREATE_COMMENT="api/rate";
@@ -57,7 +57,7 @@ public class ConfigurationFile {
 
 
         ////////////////////////////////////////////////////////////////////
-        public static final int GETIMAGE=1;
+        public static final int PLACE_PICKER_REQUEST=1;
         public static final int PICK_IMAGE_REQUEST=2;
         public static final int SELECT_COUNTRY=3;
         public static final int SIGNUP=4;
@@ -76,11 +76,11 @@ public class ConfigurationFile {
     }
     public static class IntentConstants{
         public static final String CLIENT_REQUEST="CLIENTREGISTERREQUEST";
-        public static final String COUNTRY_DATA="COUNTRY";
+        public static final String SERVICE_REQUEST_1STEP_DATA="servicestep1data";
         public static final String RESET_PASSWORD_DATA="RESETPASSWORD";
         public static final String REGISTER_STEP1_DATA="REGISTERSTEP1DATA";
         public static final String PRODUCT_DATA="PRODUCTDATA";
-        public static final String CONTAINER_RESERVATION="RESERVATION";
+        public static final String ADDRESS_ID="ADDRESSID";
         public static final String SERVICE_DATA="SERVICE";
         public static final String SERVICE_ID="SERVICEID";
         public static final String ADDRESS_REQUEST="ADDRESSREQUEST";

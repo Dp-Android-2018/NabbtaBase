@@ -4,15 +4,24 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +51,12 @@
         <activity android:name=".view.activity.ShippingAddressActivity" />
         <activity android:name=".view.activity.ServiceDetailedActivity" />
         <activity android:name=".view.activity.RequestServiceStep1Activity" />
-
-
+        <activity android:name=".view.activity.RequestServiceStep2Activity"/>
+        <activity android:name=".view.activity.RequestServiceStep3Activity"/>
+        <activity android:name=".view.activity.CartActivity"/>
+        <activity android:name=".view.activity.ServicesHistoryActivity"/>
+        <activity android:name=".view.activity.DeliveryOptionsActivity"/>
+        <activity android:name=".view.activity.PaymentActivity"/>
     </application>
 
 </manifest>

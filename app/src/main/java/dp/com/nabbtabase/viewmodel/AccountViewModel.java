@@ -12,6 +12,7 @@ import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.view.activity.ChangePasswordActivity;
 import dp.com.nabbtabase.view.activity.LoginActivity;
 import dp.com.nabbtabase.view.activity.ProfileActivity;
+import dp.com.nabbtabase.view.activity.ServicesHistoryActivity;
 import dp.com.nabbtabase.view.activity.ShippingAddressActivity;
 
 public class AccountViewModel extends AndroidViewModel {
@@ -56,6 +57,8 @@ public class AccountViewModel extends AndroidViewModel {
         ((Activity)context).finishAffinity();
     }
 
-
-
+    public void servicesHistory(View view){
+        Intent intent=new Intent(context,ServicesHistoryActivity.class);
+        context.startActivity(intent);
+    }
 }

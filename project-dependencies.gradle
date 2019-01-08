@@ -21,6 +21,8 @@ def AppModuleDependencies(DependencyHandler handler){
     picassoDependencies(handler)
     sliderDependencies(handler)
     lottieDependencies(handler)
+    imagePickerDependencies(handler)
+    placePickerDependencies(handler)
 }
 ext.AppModuleDependencies = this.&AppModuleDependencies
 
@@ -110,5 +112,16 @@ def sliderDependencies(DependencyHandler handler)
 def lottieDependencies(DependencyHandler handler)
 {
     handler.implementation "com.airbnb.android:lottie:$versions.lottie"
+}
+def imagePickerDependencies(DependencyHandler handler)
+{
+    handler.implementation "com.github.Mariovc:ImagePicker:$versions.imagePicker"
+}
+
+def placePickerDependencies(DependencyHandler handler){
+
+    handler.implementation "com.google.android.gms:play-services-location:$versions.placePicker"
+    handler.implementation "com.google.android.gms:play-services-places:$versions.placePicker"
+    handler.implementation "com.google.android.gms:play-services:$versions.placePicker"
 }
 

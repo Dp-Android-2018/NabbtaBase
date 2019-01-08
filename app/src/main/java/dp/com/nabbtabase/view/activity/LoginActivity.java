@@ -50,6 +50,7 @@ public  class LoginActivity extends AppCompatActivity implements CallBackInterfa
             }
             case ConfigurationFile.Constants.SUCCESS_CODE:{
                 CustomUtils.getInstance().moveToContainer(this);
+                finishAffinity();
                 break;
             }
             case ConfigurationFile.Constants.ENTER_MAIL:{
