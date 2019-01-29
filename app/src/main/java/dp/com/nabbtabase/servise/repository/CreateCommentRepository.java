@@ -27,9 +27,7 @@ public class CreateCommentRepository {
 
     public void createComment(Application application, CreateCommentRequest request,String token){
         CustomUtils.getInstance().getEndpoint(application).createComment(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,request)
+               token,request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {

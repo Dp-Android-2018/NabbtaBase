@@ -32,11 +32,12 @@ public class OfferRepository {
 
     public LiveData<List<Product>>getOffers(Application application){
         final MutableLiveData<List<Product>>offers=new MutableLiveData<>();
-
+        String token=null;
+        if(CustomUtils.getInstance().getSaveUserObject(application)!=null){
+            token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
+        }
         CustomUtils.getInstance().getEndpoint(application).getOffers(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE)
+               token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productsResponse -> {

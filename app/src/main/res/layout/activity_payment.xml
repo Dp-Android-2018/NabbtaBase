@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginTop="5dp"
-        android:text="Payment options"
+        android:text="@string/payment_options"
         android:textColor="@color/text_color_green"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
         app:layout_constraintTop_toTopOf="@+id/view6">
@@ -60,13 +60,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="5dp"
+            android:button="@drawable/radio_button_selector"
+            android:checked="true"
             android:text="@string/cash_on_delivery_cod"
             android:textColor="@android:color/white"
-            android:checked="true"
             android:textSize="17sp"
-            android:button="@drawable/radio_button_selector"
             app:layout_constraintStart_toStartOf="@+id/view6"
-            app:layout_constraintTop_toTopOf="@+id/view6"/>
+            app:layout_constraintTop_toTopOf="@+id/view6" />
         <RadioButton
             android:id="@+id/rb_online_payment"
             android:layout_width="wrap_content"
@@ -88,6 +88,7 @@
         android:layout_height="25dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/user_icon"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/et_first_name"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -100,6 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/sdad"
+        android:visibility="gone"
         android:focusable="false"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@null"
@@ -118,6 +120,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_shape"
         android:text="@string/pay"
+        android:visibility="gone"
         android:focusable="false"
         android:clickable="false"
         android:textColor="@android:color/white"

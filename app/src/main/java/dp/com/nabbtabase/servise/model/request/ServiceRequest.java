@@ -5,9 +5,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ServiceRequest implements Parcelable{
+public class ServiceRequest implements Serializable {
 
     public ServiceRequest() {
     }
@@ -41,31 +42,6 @@ public class ServiceRequest implements Parcelable{
 
     @SerializedName("date")
     private String date;
-
-    protected ServiceRequest(Parcel in) {
-        lat = in.readFloat();
-        lang = in.readFloat();
-        serviceId = in.readInt();
-        size = in.readFloat();
-        images = in.createStringArrayList();
-        firstName = in.readString();
-        lastName = in.readString();
-        phone = in.readString();
-        email = in.readString();
-        date = in.readString();
-    }
-
-    public static final Creator<ServiceRequest> CREATOR = new Creator<ServiceRequest>() {
-        @Override
-        public ServiceRequest createFromParcel(Parcel in) {
-            return new ServiceRequest(in);
-        }
-
-        @Override
-        public ServiceRequest[] newArray(int size) {
-            return new ServiceRequest[size];
-        }
-    };
 
     public double getLat() {
         return lat;
@@ -147,23 +123,47 @@ public class ServiceRequest implements Parcelable{
         this.date = date;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
 
-        dest.writeDouble(lat);
-        dest.writeDouble(lang);
-        dest.writeInt(serviceId);
-        dest.writeFloat(size);
-        dest.writeStringList(images);
-        dest.writeString(firstName);
-        dest.writeString(lastName);
-        dest.writeString(phone);
-        dest.writeString(email);
-        dest.writeString(date);
-    }
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeDouble(lat);
+//        dest.writeDouble(lang);
+//        dest.writeInt(serviceId);
+//        dest.writeFloat(size);
+//        dest.writeStringList(images);
+//        dest.writeString(firstName);
+//        dest.writeString(lastName);
+//        dest.writeString(phone);
+//        dest.writeString(email);
+//        dest.writeString(date);
+//    }
+//    protected ServiceRequest(Parcel in) {
+//        lat = in.readFloat();
+//        lang = in.readFloat();
+//        serviceId = in.readInt();
+//        size = in.readFloat();
+//        images = in.createStringArrayList();
+//        firstName = in.readString();
+//        lastName = in.readString();
+//        phone = in.readString();
+//        email = in.readString();
+//        date = in.readString();
+//    }
+//
+//    public static final Creator<ServiceRequest> CREATOR = new Creator<ServiceRequest>() {
+//        @Override
+//        public ServiceRequest createFromParcel(Parcel in) {
+//            return new ServiceRequest(in);
+//        }
+//
+//        @Override
+//        public ServiceRequest[] newArray(int size) {
+//            return new ServiceRequest[size];
+//        }
+//    };
 }

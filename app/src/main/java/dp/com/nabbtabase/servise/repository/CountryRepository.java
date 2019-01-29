@@ -33,9 +33,7 @@ public class CountryRepository {
     public LiveData<List<Country>> getCountries(Application application){
         final MutableLiveData<List<Country>> countries=new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).getCountries(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE)
+                )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(countryResponseResponse -> {

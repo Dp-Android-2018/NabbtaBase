@@ -31,9 +31,7 @@ public class ChangePasswordRepository {
         MutableLiveData<Integer>code=new MutableLiveData<>();
         String token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
         CustomUtils.getInstance().getEndpoint(application).changePassword(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,request)
+               token,request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {

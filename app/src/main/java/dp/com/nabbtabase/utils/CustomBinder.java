@@ -14,7 +14,7 @@ public class CustomBinder {
     public static void setImageUrl(ImageView imageView, String url){
         System.out.println("image url : "+url);
         if (url!=null && !url.equals(""))
-            Picasso.with(imageView.getContext()).load(url).placeholder(R.drawable.product_icon).into(imageView);
+            Picasso.with(imageView.getContext()).load(url).placeholder(R.drawable.plant).into(imageView);
     }
 
     @BindingAdapter({"bind:recyclerListener"})

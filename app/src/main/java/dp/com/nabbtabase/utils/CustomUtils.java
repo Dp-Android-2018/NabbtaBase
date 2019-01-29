@@ -19,25 +19,32 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.view.Window;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.dagger.component.NetworkComponent;
+import dp.com.nabbtabase.notification.FirebaseMessageService;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.repository.EndPoints;
 import dp.com.nabbtabase.view.activity.ContainerActivity;
+import dp.com.nabbtabase.view.activity.LoginActivity;
+import dp.com.nabbtabase.view.callback.TaskMonitor;
 import dp.com.nabbtabase.view.callback.UpdateDateListener;
 import dp.com.nabbtabase.view.callback.UpdateTimeListener;
 
@@ -110,6 +117,7 @@ public class CustomUtils {
     public void moveToContainer(Context context) {
         Intent intent = new Intent(context, ContainerActivity.class);
         context.startActivity(intent);
+        ((Activity)context).finishAffinity();
     }
 
     public Bitmap rotate(Bitmap bitmap, float degrees) {
@@ -163,7 +171,7 @@ public class CustomUtils {
         return (m.find() && m.group().equals(s));
     }
 
-    public void showProgressDialog(Context activity){
+    public void showProgressDialog(Context activity) {
         dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_layout);
@@ -233,38 +241,33 @@ public class CustomUtils {
         context.startActivity(Intent.createChooser(sendIntent, "Send To"));
     }
 
-//    public void uploadFireBasePic(StorageReference storageReference, Uri selectedImageUri , TaskMonitor callback){
-//        final UploadTask photoRef=storageReference.child(selectedImageUri.getLastPathSegment()).putFile(selectedImageUri);
-//        photoRef.addOnSuccessListener(taskSnapshot -> {
-//            (taskSnapshot.getMetadata().getReference().getDownloadUrl()).addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    callback.taskCompleted(uri.toString());
-//                    System.out.println("Activity Result View Model Url :"+uri);
-//                }
-//            });
-//        });
-//        photoRef.addOnFailureListener(e ->
-//                System.out.println("ERROR UPLOADING :"+e.getMessage()));
-//
-//
-//    }
-
-
-    public void clearSharedPref(Context context) {
-        SharedPrefrenceUtils prefrenceUtils = new SharedPrefrenceUtils(context);
-        prefrenceUtils.clearToken();
+    public void uploadFireBasePic(StorageReference storageReference, List<Uri> selectedImageUri, TaskMonitor callback) {
+        List<String> imageUrls = new ArrayList<>();
+        for (int i = 0; i < selectedImageUri.size(); i++) {
+            final UploadTask photoRef = storageReference.child(selectedImageUri.get(i).getLastPathSegment()).putFile(selectedImageUri.get(i));
+            System.out.println("uri is : " + selectedImageUri.size());
+            photoRef.addOnSuccessListener(taskSnapshot -> {
+                System.out.println("ERROR UPLOADING : Success");
+                taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(uri -> {
+                    imageUrls.add(uri.toString());
+                    System.out.println("image url  :" + uri);
+                    if (imageUrls.size() == selectedImageUri.size()) {
+                        callback.taskCompleted(imageUrls);
+                    }
+                });
+            });
+            photoRef.addOnFailureListener(e -> {
+                System.out.println("ERROR UPLOADING :" + e.getMessage());
+            });
+        }
     }
 
-
-//    public String getFirebaseToken(Context context){
-//        final MyFirebaseInstanceIdService mfs=new MyFirebaseInstanceIdService();
-//        FirebaseApp.initializeApp(context);
-//      //  zzahn.runOnUiThread(() -> mfs.onTokenRefresh());
-//        mfs.onTokenRefresh();
-//        return MyFirebaseInstanceIdService.TOKEN;
-//    }
-
+    public void clearSharedPref(Context context) {
+        String appLang=getAppLanguage(context);
+        SharedPrefrenceUtils prefrenceUtils = new SharedPrefrenceUtils(context);
+        prefrenceUtils.clearToken();
+        saveAppLanguage(context,appLang);
+    }
 
     public void showTimePickerDialog(Context context, UpdateTimeListener listener) {
         Calendar mCuurTime = Calendar.getInstance();
@@ -273,7 +276,7 @@ public class CustomUtils {
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(context, (view, hourOfDay, minute1) -> {
             selectedTime = ((hourOfDay < 10 ? "0" + hourOfDay : String.valueOf(hourOfDay)) + ":" +
-                    (minute1 < 10 ? "0" + minute1 : minute1));
+                    (minute1 < 10 ? "0" + minute1 : minute1) + ":00");
             listener.onTimeSet(selectedTime);
         }, hour, minute, true);
         mTimePicker.setTitle(context.getString(R.string.select_time));
@@ -283,21 +286,19 @@ public class CustomUtils {
     public void showDatePickerDialog(Context context, UpdateDateListener listener) {
         Calendar mCuurDate = Calendar.getInstance();
         int year = mCuurDate.get(Calendar.YEAR);
-        int month = mCuurDate.get(Calendar.MONTH);
+        int month = mCuurDate.get(Calendar.MONTH) + 1;
         int day = mCuurDate.get(Calendar.DAY_OF_WEEK);
         DatePickerDialog mDatePicker;
         mDatePicker = new DatePickerDialog(context, (view, year1, month1, dayOfMonth) -> {
-            selectedDate = String.valueOf(year1) + "-" + String.valueOf(month1) + "-" + String.valueOf(dayOfMonth);
-            System.out.println("Date on utils : "+selectedDate);
+            selectedDate = String.valueOf(year1) + "-" + (month1 < 10 ? "0" + month1 : month1) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+            System.out.println("Date on utils : " + selectedDate);
             listener.onDateSet(selectedDate);
         }, year, month, mCuurDate.get(Calendar.DATE));
         mDatePicker.setTitle(context.getString(R.string.select_date));
         mDatePicker.show();
     }
 
-
-
-    public void startPlacePicker(Activity activity){
+    public void startPlacePicker(Activity activity) {
         try {
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
             activity.startActivityForResult(builder.build(activity),
@@ -309,4 +310,29 @@ public class CustomUtils {
         }
     }
 
+    public String getAppLanguage(Context context){
+        SharedPrefrenceUtils sharedPrefrenceUtils=new SharedPrefrenceUtils(context);
+        String lang=sharedPrefrenceUtils.getStringFromSharedPrederances(ConfigurationFile.SharedPrefConstants.APP_LANGUAGE);
+        if (lang == null)
+            return "en";
+        return lang;
+    }
+
+    public void saveAppLanguage(Context context,String lang){
+        SharedPrefrenceUtils sharedPrefrenceUtils=new SharedPrefrenceUtils(context);
+        sharedPrefrenceUtils.addStringToSharedPrederances(ConfigurationFile.SharedPrefConstants.APP_LANGUAGE,lang);
+    }
+
+    public void logout(Context context) {
+        CustomUtils.getInstance().clearSharedPref(context);
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((Activity)context).finishAffinity();
+    }
+
+    public String getFirebaseToken(Context context){
+        final FirebaseMessageService mfs=new FirebaseMessageService();
+        FirebaseApp.initializeApp(context);
+        return FirebaseMessageService.TOKEN;
+    }
 }

@@ -31,4 +31,6 @@ public class CodeViewModel extends AndroidViewModel {
     public void resend(View view){
         ForgetPasswordRepository.getInstance().sendCode(application,login);
     }
+
+
 }

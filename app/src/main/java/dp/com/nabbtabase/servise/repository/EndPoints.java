@@ -1,10 +1,8 @@
 package dp.com.nabbtabase.servise.repository;
 
-import android.databinding.ObservableField;
-import android.support.annotation.StringRes;
-
 import java.util.List;
 
+import dp.com.nabbtabase.servise.model.request.ActivatePhoneRequest;
 import dp.com.nabbtabase.servise.model.request.AddToCartRequest;
 import dp.com.nabbtabase.servise.model.request.ChangePasswordRequest;
 import dp.com.nabbtabase.servise.model.request.CheckCodeRequest;
@@ -25,15 +23,17 @@ import dp.com.nabbtabase.servise.model.response.CountryResponse;
 import dp.com.nabbtabase.servise.model.response.CreateOrderResponse;
 import dp.com.nabbtabase.servise.model.response.ImageResponse;
 import dp.com.nabbtabase.servise.model.response.LoginRegisterResponse;
+import dp.com.nabbtabase.servise.model.response.OrderDetailedResponse;
+import dp.com.nabbtabase.servise.model.response.OrderHistoryResponse;
 import dp.com.nabbtabase.servise.model.response.ProductCommentsResponse;
 import dp.com.nabbtabase.servise.model.response.Products;
+import dp.com.nabbtabase.servise.model.response.ServiceHistoryResponse;
 import dp.com.nabbtabase.servise.model.response.ServicesResponse;
 import dp.com.nabbtabase.servise.model.response.ShippingAddressResponse;
 import dp.com.nabbtabase.servise.model.response.StringResponse;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -50,100 +50,123 @@ public interface EndPoints {
 
     // TODO: 12/3/2018    login
     @POST(ConfigurationFile.UrlConstants.LOGIN_URL)
-    Observable<Response<LoginRegisterResponse>> login(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Body LoginRequest loginRequest);
+    Observable<Response<LoginRegisterResponse>> login(@Body LoginRequest loginRequest);
 
     // TODO: 12/3/2018 register
     @POST(ConfigurationFile.UrlConstants.CLIENT_REGISTER_URL)
-    Observable<Response<LoginRegisterResponse>> register(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept,@Body RegisterRequest request);
+    Observable<Response<LoginRegisterResponse>> register(@Body RegisterRequest request);
 
     // TODO: 12/3/2018 get countries
     @GET(ConfigurationFile.UrlConstants.COUNTRIES_URL)
-    Observable<Response<CountryResponse>>getCountries(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept);
+    Observable<Response<CountryResponse>> getCountries();
 
     // TODO: 12/4/2018 get products offers
     @GET(ConfigurationFile.UrlConstants.OFFERS)
-    Observable<Response<Products>>getOffers(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept);
+    Observable<Response<Products>> getOffers(@Header("Authorization") String token);
 
     // TODO: 12/4/2018 get products bset seller
     @GET(ConfigurationFile.UrlConstants.BESET_SELLER)
-    Observable<Response<Products>>getBesetSeller(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept);
+    Observable<Response<Products>> getBesetSeller(@Header("Authorization") String token);
 
     // TODO: 12/5/2018 get products
     @GET(ConfigurationFile.UrlConstants.PRODUCTS_SEARCH)
-    Observable<Response<Products>>getProducts(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept,@Header("Authorization")String token, @Query("sort") String sort,@Query("category") String subCategoryId,@Query("page")String pageId);
+    Observable<Response<Products>> getProducts(@Header("Authorization") String token, @Query("sort") String sort, @Query("category") String subCategoryId, @Query("page") String pageId);
 
     // TODO: 12/10/2018 create comment
     @POST(ConfigurationFile.UrlConstants.CREATE_COMMENT)
-    Observable<Response<StringResponse>>createComment(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body CreateCommentRequest request);
+    Observable<Response<StringResponse>> createComment(@Header("Authorization") String token, @Body CreateCommentRequest request);
 
     // TODO: 12/10/2018 get company comments
     @GET(ConfigurationFile.UrlConstants.GET_PRODUCT_COMMENTS)
-    Observable<Response<ProductCommentsResponse>>getProductComments(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Path("id")int id);
+    Observable<Response<ProductCommentsResponse>> getProductComments(@Path("id") int id);
 
     // TODO: 12/10/2018 forget password
     @POST(ConfigurationFile.UrlConstants.FORGET_PASSWORD_URL)
-    Observable<Response<StringResponse>>forgetPassword(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept,@Body ForgetPasswordRequest request);
+    Observable<Response<StringResponse>> forgetPassword(@Body ForgetPasswordRequest request);
 
     // TODO: 12/12/2018 check code
     @POST(ConfigurationFile.UrlConstants.CHECK__CODE)
-    Observable<Response<CheckCodeResponse>>checkCode(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Body CheckCodeRequest request);
+    Observable<Response<CheckCodeResponse>> checkCode(@Body CheckCodeRequest request);
 
     // TODO: 12/15/2018 reset password
     @POST(ConfigurationFile.UrlConstants.RESET_PASSWORD_URL)
-    Observable<Response<StringResponse>>resetPassword(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Path("token")String token, @Body ResetPasswordRequest resetPasswordRequest);
+    Observable<Response<StringResponse>> resetPassword(@Path("token") String token, @Body ResetPasswordRequest resetPasswordRequest);
 
     // TODO: 12/15/2018 update profile
     @PUT(ConfigurationFile.UrlConstants.EDIT_PROFILE_URL)
-    Observable<Response<StringResponse>>editProfile(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body EditProfileRequest request);
+    Observable<Response<StringResponse>> editProfile(@Header("Authorization") String token, @Body EditProfileRequest request);
 
     // TODO: 12/16/2018 change password
     @POST(ConfigurationFile.UrlConstants.CHANGE_PASSWORD_URL)
-    Observable<Response<StringResponse>>changePassword(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body ChangePasswordRequest request);
+    Observable<Response<StringResponse>> changePassword(@Header("Authorization") String token, @Body ChangePasswordRequest request);
 
     // TODO: 12/16/2018 shipping address
     @POST(ConfigurationFile.UrlConstants.SHIPPING_ADDRESS_URL)
-    Observable<Response<ShippingAddressResponse>>shippingAddress(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body ShippingAddressRequest request);
+    Observable<Response<ShippingAddressResponse>> shippingAddress(@Header("Authorization") String token, @Body ShippingAddressRequest request);
 
     // TODO: 12/17/2018 get services
     @GET(ConfigurationFile.UrlConstants.SERVICES_URL)
-    Observable<Response<ServicesResponse>>getServices(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept);
+    Observable<Response<ServicesResponse>> getServices();
 
     // TODO: 12/19/2018 get categories
     @GET(ConfigurationFile.UrlConstants.CATEGORIES_URL)
-    Observable<Response<CategoryResponse>>getCategories(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept);
+    Observable<Response<CategoryResponse>> getCategories();
 
     // TODO: 12/22/2018 upload image
     @Multipart
     @POST(ConfigurationFile.UrlConstants.UPLOAD_IMAGE)
-    Observable<Response<ImageResponse>>uploadImage(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept,@Part List<MultipartBody.Part> file);
+    Observable<Response<ImageResponse>> uploadImage(@Part List<MultipartBody.Part> file);
 
     // TODO: 12/24/2018 request a service
     @POST(ConfigurationFile.UrlConstants.SERVICE_REQUEST)
-    Observable<Response<StringResponse>>requestService(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body ServiceRequest request);
+    Observable<Response<StringResponse>> requestService(@Header("Authorization") String token, @Body ServiceRequest request);
 
     // TODO: 12/25/2018 add product to cart
     @POST(ConfigurationFile.UrlConstants.ADD_TO_CART_ULR)
-    Observable<Response<StringResponse>>addProductToCart(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body AddToCartRequest request);
+    Observable<Response<StringResponse>> addProductToCart(@Header("Authorization") String token, @Body AddToCartRequest request);
 
     // TODO: 12/25/2018 get all cart products
     @GET(ConfigurationFile.UrlConstants.CART_PRODUCTS)
-    Observable<Response<CartProductsResponse>>getCartProducts(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token);
+    Observable<Response<CartProductsResponse>> getCartProducts(@Header("Authorization") String token);
 
     // TODO: 12/26/2018 delete item from cart
     @DELETE(ConfigurationFile.UrlConstants.DELETE_ITEM_FROM_CART)
-    Observable<Response<StringResponse>>deleteItemFromCart(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token,@Path("id")int id);
+    Observable<Response<StringResponse>> deleteItemFromCart(@Header("Authorization") String token, @Path("id") int id);
 
     // TODO: 12/30/2018 update cart item product
     @PUT(ConfigurationFile.UrlConstants.UPDATE_CART_ITEM)
-    Observable<Response<StringResponse>> updateCartItem(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Path("id")int id, @Body UpdateCartItemRequest request);
+    Observable<Response<StringResponse>> updateCartItem(@Header("Authorization") String token, @Path("id") int id, @Body UpdateCartItemRequest request);
 
     // TODO: 12/30/2018 get Services History
     @GET(ConfigurationFile.UrlConstants.SERVICES_HISTORY)
-    Observable<Response<StringResponse>>getServicesHistory(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token);
+    Observable<Response<ServiceHistoryResponse>> getServicesHistory(@Header("Authorization") String token);
 
     // TODO: 1/6/2019 create order
     @POST(ConfigurationFile.UrlConstants.CREATE_ORDER)
-    Observable<Response<CreateOrderResponse>>createOrder(@Header("x-api-key") String key, @Header("Content-Type") String contentType, @Header("Accept") String accept, @Header("Authorization")String token, @Body CreateOrderRequest request);
+    Observable<Response<CreateOrderResponse>> createOrder(@Header("Authorization") String token, @Body CreateOrderRequest request);
+
+    // TODO: 1/8/2019 get order History
+    @GET(ConfigurationFile.UrlConstants.GET_ORDER_HISTORY_URL)
+    Observable<Response<OrderHistoryResponse>> getOrderHistory(@Header("Authorization") String token);
+
+    // TODO: 1/8/2019 get order detailed
+    @GET(ConfigurationFile.UrlConstants.GET_HISTORY_PRODUCT)
+    Observable<Response<OrderDetailedResponse>> getOrder(@Header("Authorization") String token, @Path("id") int id);
 
 
+    // TODO: 1/13/2019 update address
+    @PUT(ConfigurationFile.UrlConstants.UPDATE_ADDRESS)
+    Observable<Response<StringResponse>> updateAddress(@Header("Authorization") String token, @Path("id") int id, @Body ShippingAddressRequest request);
+
+    // TODO: 1/14/2019 delete order
+    @DELETE(ConfigurationFile.UrlConstants.DELETE_ORDER)
+    Observable<Response<StringResponse>> deleteOrder(@Header("Authorization") String token, @Path("id") int id);
+
+    // TODO: 1/19/2019 activate phone
+    @POST(ConfigurationFile.UrlConstants.ACTIVATE_PHONE)
+    Observable<Response<StringResponse>> activatePhone(@Header("Authorization") String token, @Body ActivatePhoneRequest request);
+
+    // TODO: 1/22/2019 send mail
+    @POST(ConfigurationFile.UrlConstants.SEND_MAIL)
+    Observable<Response<StringResponse>> sendMail(@Header("Authorization") String token);
 }

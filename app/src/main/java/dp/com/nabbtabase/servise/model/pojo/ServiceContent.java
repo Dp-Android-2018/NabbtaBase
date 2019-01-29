@@ -3,8 +3,8 @@ package dp.com.nabbtabase.servise.model.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.appindexing.builders.StickerBuilder;
 import com.google.gson.annotations.SerializedName;
+
 
 public class ServiceContent implements Parcelable {
     @SerializedName("id")
@@ -36,6 +36,7 @@ public class ServiceContent implements Parcelable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -43,6 +44,7 @@ public class ServiceContent implements Parcelable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
     public String getDescription() {
         return description;
     }
@@ -67,15 +69,15 @@ public class ServiceContent implements Parcelable {
     public ServiceContent(Parcel in) {
         id = in.readInt();
         name = in.readString();
-        imageUrl=in.readString();
+        imageUrl = in.readString();
         description = in.readString();
     }
 
     public static final Creator<ServiceContent> CREATOR = new Creator<ServiceContent>() {
         @Override
         public ServiceContent createFromParcel(Parcel in) {
-           return new ServiceContent(in);
-       }
+            return new ServiceContent(in);
+        }
 
         @Override
         public ServiceContent[] newArray(int size) {

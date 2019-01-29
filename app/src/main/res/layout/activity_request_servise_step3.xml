@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="dp.com.nabbtabase.view.activity.RequestServiceStep3Activity"/>
+    </data>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,18 +13,23 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.RequestServiceStep3Activity">
 
+    <include
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/action_bar"/>
     <TextView
         android:id="@+id/textView62"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
         android:gravity="center"
-        android:text="You will be contacted by the service provider within the next 24 hours. If you have any questions, please do not hesitate to contact us through the communication channels"
+        android:text="@string/register_step3_text"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/action_bar" />
 
     <ImageView
         android:id="@+id/imageView28"
@@ -40,7 +51,7 @@
         android:layout_marginTop="122dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_shape"
-        android:text="@string/next"
+        android:text="@string/done"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.475"
@@ -67,13 +78,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="step3"
+        android:text="@string/step3"
         android:textColor="@color/text_color_green"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
-
-
 </android.support.constraint.ConstraintLayout>
+</layout>

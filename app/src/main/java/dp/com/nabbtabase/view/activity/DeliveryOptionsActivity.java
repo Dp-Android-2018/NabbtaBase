@@ -10,17 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityDeliveryOptionsBinding;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
+import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.CreateShippingAddressFactory;
 import dp.com.nabbtabase.viewmodel.CreateShippingAddressViewModel;
 
-public class DeliveryOptionsActivity extends AppCompatActivity implements CallBackInterface {
+public class DeliveryOptionsActivity extends BaseActivity                                                                                                                                                                                  implements CallBackInterface {
 
     ActivityDeliveryOptionsBinding binding;
     CreateShippingAddressViewModel viewModel;
@@ -35,6 +39,9 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
         binding = DataBindingUtil.setContentView(this, R.layout.activity_delivery_options);
         binding.layout.setViewModel(viewModel);
         binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
+        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+            binding.actionBar.ivBack.setRotation(180);
+        }
         observViewModel(viewModel);
         setDataToView();
 
@@ -49,7 +56,7 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
     }
 
     @Override
-    public void updateUi(int code) {
+     public void updateUi(int code) {
         switch (code) {
             case ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE:
                 errorMessage(getResources().getString(R.string.fill_all_data_error_message));
@@ -62,11 +69,11 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
     }
 
     public String getName() {
-        return data.getFirstName() != null ? data.getFirstName() + " " + data.getLastName() : "";
+        return data.getAddress() != null ? data.getAddress().getFirstName() + " " + data.getAddress().getLastName() : "";
     }
 
     public String getAddress() {
-        return data.getAddress() != null ? data.getAddress().getAddress() : "";
+        return data.getAddress() != null ? data.getAddress().getAddress(): "";
     }
 
     public String getCity() {
@@ -75,7 +82,7 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
     }
 
     public String getPhone() {
-        return data.getPhones() != null ? data.getPhones() : "";
+        return data.getAddress() != null ? data.getAddress().getPhone() : "";
     }
 
     public void setDataToView() {
@@ -83,6 +90,7 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
         binding.tvAddress.setText(getAddress());
         binding.tvCityCountry.setText(getCity());
         binding.tvPhone.setText(getPhone());
+        System.out.println("my address id : "+data.getAddress().getId());
         binding.layout.getRoot().setVisibility(View.GONE);
         binding.radioGroup.check(binding.rbShipToMyAddress.getId());
         binding.rbShipToAnotherAddress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -100,7 +108,18 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
     public void next(View view) {
         Intent intent = new Intent(DeliveryOptionsActivity.this, PaymentActivity.class);
         if (binding.rbShipToAnotherAddress.isChecked()) {
-            viewModel.getShippingAddressCode();
+            if (ValidationUtils.isEmpty(viewModel.firstName.get()) ||
+                    ValidationUtils.isEmpty(viewModel.lastName.get()) ||
+                    ValidationUtils.isEmpty(viewModel.countryName.get()) ||
+                    ValidationUtils.isEmpty(viewModel.cityName.get()) ||
+                    ValidationUtils.isEmpty(viewModel.address.get()) ||
+                    ValidationUtils.isEmpty(viewModel.phone.get())) {
+                errorMessage(getResources().getString(R.string.fill_all_data_error_message));
+                return;
+                //Snackbar.make(binding.clRoot, R.string.fill_all_data_error_message, Snackbar.LENGTH_LONG).show();
+            }else {
+                viewModel.getShippingAddressCode();
+            }
             viewModel.getResponse().observe(this, shippingAddressResponseResponse -> {
                 System.out.println("code is : " + shippingAddressResponseResponse.code());
                 if (shippingAddressResponseResponse.code() == ConfigurationFile.Constants.SUCCESS_CODE_SECOND) {
@@ -108,11 +127,12 @@ public class DeliveryOptionsActivity extends AppCompatActivity implements CallBa
                     intent.putExtra(ConfigurationFile.IntentConstants.ADDRESS_ID, shippingAddressResponseResponse.body().getId());
                     startActivity(intent);
                 }else {
-                    errorMessage("be sure you entered all data correctly");
+                    errorMessage(getString(R.string.invaled_data_entered));
                 }
             });
         } else if (binding.rbShipToMyAddress.isChecked()) {
             if (data.getAddress() != null) {
+                System.out.println("my address id : "+data.getAddress().getId());
                 intent.putExtra(ConfigurationFile.IntentConstants.ADDRESS_ID, data.getAddress().getId());
                 startActivity(intent);
             } else {

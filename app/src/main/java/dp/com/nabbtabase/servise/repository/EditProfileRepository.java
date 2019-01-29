@@ -36,9 +36,7 @@ public class EditProfileRepository {
         data=CustomUtils.getInstance().getSaveUserObject(application);
         MutableLiveData<Integer>code=new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).editProfile(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,
+
                 "Bearer "+data.getApiToken(),request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

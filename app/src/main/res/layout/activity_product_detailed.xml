@@ -51,8 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_margin="15dp"
-                        android:background="@drawable/image_shape" />
+                        android:layout_margin="5dp" />
                 </me.crosswall.lib.coverflow.core.PagerContainer>
 
                 <ImageButton
@@ -73,6 +72,7 @@
                     android:layout_marginTop="12dp"
                     android:hint="Product name"
                     android:maxLines="1"
+                    android:gravity="center"
                     android:text="@{ViewModel.product.name}"
                     android:textColor="@color/text_color_green"
                     android:textSize="21sp"
@@ -85,29 +85,29 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="5dp"
                     android:hint="product sub category"
+                    android:gravity="center"
                     android:text="@{ViewModel.product.category.name}"
                     android:textColor="@color/text_color_green"
                     android:textSize="15sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="5dp"
                     android:hint="sale price"
+                    android:gravity="center"
                     android:text="@{ViewModel.salePrice}"
                     android:textColor="@color/text_color_green"
                     android:textSize="21sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <TextView
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="21dp"
-                    android:text="Description:"
+                    android:text="@string/description"
                     android:textColor="@color/text_color_green"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -127,12 +127,13 @@
                     android:id="@+id/textView21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginEnd="19dp"
                     android:hint="description"
                     android:maxLines="8"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
+                    android:paddingStart="2dp"
+                    android:paddingEnd="2dp"
+                    android:layout_marginTop="7dp"
                     android:scrollbars="vertical"
                     android:text="@{ViewModel.product.description}"
                     android:textColor="@color/text_color_green"
@@ -146,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Dimensions:"
+                    android:text="@string/dimensions"
                     android:textColor="@color/text_color_green"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -157,7 +158,7 @@
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="7dp"
                     android:hint="21*45"
                     android:text="@{ViewModel.dimension}"
@@ -171,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="21dp"
-                    android:text="Reviews:"
+                    android:text="@string/reviews"
                     android:textColor="@color/text_color_green"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -191,8 +192,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_comments"
                     android:layout_width="match_parent"
-                    android:layout_height="152dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:maxHeight="150dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recyc_top"
                     tools:listitem="@layout/comment_list_item" />
@@ -209,7 +211,7 @@
                 <View
                     android:id="@+id/view7"
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
+                    android:layout_height="115dp"
                     android:layout_marginTop="15dp"
                     android:background="@color/text_color_green"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,108 +222,113 @@
                     android:id="@+id/imageView17"
                     android:layout_width="25dp"
                     android:layout_height="27dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="17dp"
                     android:src="@drawable/feedback"
-                    app:layout_constraintBottom_toBottomOf="@+id/view7"
-                    app:layout_constraintEnd_toStartOf="@+id/editText8"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/view7"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/view7"
                     app:layout_constraintTop_toTopOf="@+id/view7" />
 
                 <EditText
-                    android:id="@+id/editText8"
+                    android:id="@+id/et_comment"
                     android:layout_width="310dp"
-                    android:layout_height="35dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/image_shape"
                     android:backgroundTint="@android:color/white"
                     android:text="@={ViewModel.comment}"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:layout_marginStart="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView17"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView17"
                     app:layout_constraintTop_toTopOf="@+id/imageView17"
                     app:layout_constraintVertical_bias="0.454" />
 
                 <Button
-                    android:layout_width="60dp"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@android:color/white"
                     android:onClick="@{ViewModel::createComment}"
-                    android:text="Submit"
+                    android:text="@string/submit"
+                    android:textAllCaps="false"
                     android:textColor="@color/text_color_green"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/editText8"
-                    app:layout_constraintTop_toBottomOf="@+id/editText8" />
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_comment" />
 
                 <RatingBar
+                    android:id="@+id/ratingBar"
                     style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="58dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:isIndicator="false"
                     android:numStars="5"
                     android:rating="@={ViewModel.rate}"
                     android:stepSize=".5"
                     android:theme="@style/RatingBar"
-                    app:layout_constraintStart_toStartOf="@+id/editText8"
-                    app:layout_constraintTop_toBottomOf="@+id/editText8" />
-
-                <View
-                    android:id="@+id/view8"
-                    android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/green_color_op50"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/view7"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view7" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_comment" />
 
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="11dp"
-                    android:text="ship to Riyadh (change city)"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/view8"
-                    app:layout_constraintTop_toTopOf="@+id/view8" />
+                <!--<View-->
+                    <!--android:id="@+id/view8"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="85dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@color/green_color_op50"-->
+                    <!--app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/view7" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:text="Delivered by Wednesday, Oct24"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/view8"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView24"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="22dp"-->
+                    <!--android:layout_marginTop="11dp"-->
+                    <!--android:text="ship to Riyadh (change city)"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="15sp"-->
+                    <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/view8" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="22dp"-->
+                    <!--android:text="Delivered by Wednesday, Oct24"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="15sp"-->
+                    <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
+                    <!--app:layout_constraintTop_toBottomOf="@+id/textView24" />-->
 
                 <Button
+                    android:id="@+id/view8"
                     android:layout_width="220dp"
                     android:layout_height="24dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/button_shape"
                     android:onClick="addToCart"
-                    android:text="ADD TO CART"
+                    android:text="@{ViewModel.inCart?@string/delete_from_cart:@string/add_to_cart}"
                     android:textColor="@android:color/white"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/view8"
-                    app:layout_constraintEnd_toEndOf="@+id/view8"
-                    app:layout_constraintStart_toStartOf="@+id/view8" />
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view7"/>
 
                 <TextView
                     android:id="@+id/bought"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="17dp"
-                    android:text="People also bought"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/people_also_bought"
                     android:textColor="@color/text_color_green"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -329,9 +336,10 @@
                     app:layout_constraintTop_toBottomOf="@id/view8" />
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_related_product"
                     android:layout_width="match_parent"
-                    android:layout_height="183dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:background="@color/green_color_op10"
                     app:layout_constraintBottom_toBottomOf="parent"

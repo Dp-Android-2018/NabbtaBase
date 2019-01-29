@@ -31,9 +31,7 @@ public class DeleteItemFromCartRepository {
         MutableLiveData<Integer>code=new MutableLiveData<>();
         String token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
         CustomUtils.getInstance().getEndpoint(application).deleteItemFromCart(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,id)
+               token,id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResResponse -> {

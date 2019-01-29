@@ -15,6 +15,7 @@ import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.databinding.CardListItemBinding;
 import dp.com.nabbtabase.servise.model.pojo.CartProduct;
+import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.view.viewholder.CartViewHolder;
 
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
@@ -60,6 +61,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         CardListItemBinding binding=DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.card_list_item,viewGroup,false);
+        if(CustomUtils.getInstance().getAppLanguage(viewGroup.getContext()).equals("ar")){
+            binding.tvMinus.setRotation(180);
+            binding.tvPluse.setRotation(180);
+        }
         return new CartViewHolder(binding);
     }
 

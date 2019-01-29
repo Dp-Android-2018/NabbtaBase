@@ -1,13 +1,14 @@
 //////////top level repositories//////////////////////////////
 def addTopLevelFilesRepositories (RepositoryHandler handler){
-
     handler.google()
     handler.jcenter()
+    handler.mavenCentral()
     handler.maven {url "https://jitpack.io"}
 }
 ext.addTopLevelFilesRepositories=this.&addTopLevelFilesRepositories
 //////////////////////Top Level Dependencies/////////////////////////
 def addTopLevelFileDependencies (DependencyHandler handler){
     handler.classpath "com.android.tools.build:gradle:$versions.gradleVersion"
+    handler.classpath "com.google.gms:google-services:$versions.gms"
 }
 ext.addTopLevelFileDependencies=this.&addTopLevelFileDependencies

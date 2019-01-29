@@ -27,7 +27,7 @@ public class LoginRegisterContent {
     @SerializedName("phone")
     private String phones;
 
-    @SerializedName("addressName")
+    @SerializedName("address")
     private Address address;
 
     public String getFirstName() {

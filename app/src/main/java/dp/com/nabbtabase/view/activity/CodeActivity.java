@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.goodiebag.pinview.Pinview;
 
@@ -19,7 +20,7 @@ import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.viewmodel.CodeViewModel;
 
-public class CodeActivity extends AppCompatActivity implements CallBackInterface {
+public class CodeActivity extends BaseActivity implements CallBackInterface {
     ActivityCodeBinding binding;
     CodeViewModel viewModel;
     CheckCodeRequest request;
@@ -35,14 +36,12 @@ public class CodeActivity extends AppCompatActivity implements CallBackInterface
         binding = DataBindingUtil.setContentView(CodeActivity.this, R.layout.activity_code);
         binding.setViewModel(viewModel);
         CodeRepository.getInstance().setCallBackInterface(this);
-        binding.firstPinView.setPinViewEventListener(new Pinview.PinViewEventListener() {
-            @Override
-            public void onDataEntered(Pinview pinview, boolean b) {
-                request = new CheckCodeRequest();
-                request.setLogin(login);
-                request.setCode(pinview.getValue());
-                CodeRepository.getInstance().checkCode(viewModel.application, request);
-            }
+        binding.firstPinView.setPinViewEventListener((pinview, b) -> {
+            request = new CheckCodeRequest();
+            request.setLogin(login);
+            request.setCode(pinview.getValue());
+            System.out.println("Code entered is : "+pinview.getValue());
+            CodeRepository.getInstance().checkCode(viewModel.application, request);
         });
 
     }
@@ -55,7 +54,7 @@ public class CodeActivity extends AppCompatActivity implements CallBackInterface
                 break;
             }
             case ConfigurationFile.Constants.MOVE_TO_CODE_ACTIVITY: {
-                Snackbar.make(binding.clRoot, "code has been sent", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(binding.clRoot, R.string.activation_code_sent, Snackbar.LENGTH_LONG).show();
                 break;
             }
         }
@@ -76,4 +75,12 @@ public class CodeActivity extends AppCompatActivity implements CallBackInterface
             startActivity(intent);
         }
     }
+
+    public void back(View view){
+        Intent intent=new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finishAffinity();
+    }
+
+
 }

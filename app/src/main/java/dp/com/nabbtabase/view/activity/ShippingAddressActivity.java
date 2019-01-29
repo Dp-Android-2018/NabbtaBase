@@ -54,6 +54,9 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shipping_address);
         initVariables();
         binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
+        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+            binding.actionBar.ivBack.setRotation(180);
+        }
     }
 
     public void initVariables() {
@@ -63,6 +66,8 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         adapter = new PopupRecyclerAdapter(this);
         data = CustomUtils.getInstance().getSaveUserObject(this);
         address = data.getAddress();
+        System.out.println("address : "+address.toString());
+        shippingAddressRequest.setCityId(address.getCity().getId());
         setDataToview();
     }
 
@@ -100,7 +105,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         // Log.i("Countries size vm",""+countries.getValue().size());
         if (!countrySelected) {
             Log.i("select", "" + countrySelected);
-            Snackbar.make(binding.clShippingAddressRoot, "select country first", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.clShippingAddressRoot, R.string.select_country, Snackbar.LENGTH_LONG).show();
             return;
         }
         select = "city";
@@ -175,7 +180,14 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
             address.setPhone(binding.etPhone.getText().toString());
             address.setAddress(binding.etAddress.getText().toString());
             System.out.println("done method :" + "data completed");
-            viewModel.setRequest(shippingAddressRequest);
+            viewModel.getCode(shippingAddressRequest).observe(this, integer -> {
+                System.out.println("Code update is : "+integer);
+                if(integer==ConfigurationFile.Constants.SUCCESS_CODE){
+                    Snackbar.make(binding.clShippingAddressRoot,R.string.shipping_address_update, Snackbar.LENGTH_LONG).show();
+                    data.setAddress(address);
+                    CustomUtils.getInstance().saveDataToPrefs(data,this);
+                }
+            });
         }
     }
 }

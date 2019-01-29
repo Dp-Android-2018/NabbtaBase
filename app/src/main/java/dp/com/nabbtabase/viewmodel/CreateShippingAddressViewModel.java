@@ -84,23 +84,23 @@ public class CreateShippingAddressViewModel extends AndroidViewModel implements 
     }
 
     public void  getShippingAddressCode() {
-        System.out.println("done method :" + "flag");
-        if (ValidationUtils.isEmpty(firstName.get()) ||
-                ValidationUtils.isEmpty(lastName.get()) ||
-                ValidationUtils.isEmpty(countryName.get()) ||
-                ValidationUtils.isEmpty(cityName.get()) ||
-                ValidationUtils.isEmpty(address.get()) ||
-                ValidationUtils.isEmpty(phone.get())) {
-            System.out.println("done method :" + "data empty");
-            callBackInterface.updateUi(ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE);
-            //Snackbar.make(binding.clRoot, R.string.fill_all_data_error_message, Snackbar.LENGTH_LONG).show();
-        } else {
+//        System.out.println("done method :" + "flag");
+//        if (ValidationUtils.isEmpty(firstName.get()) ||
+//                ValidationUtils.isEmpty(lastName.get()) ||
+//                ValidationUtils.isEmpty(countryName.get()) ||
+//                ValidationUtils.isEmpty(cityName.get()) ||
+//                ValidationUtils.isEmpty(address.get()) ||
+//                ValidationUtils.isEmpty(phone.get())) {
+//            System.out.println("done method :" + "data empty");
+//            callBackInterface.updateUi(ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE);
+//            //Snackbar.make(binding.clRoot, R.string.fill_all_data_error_message, Snackbar.LENGTH_LONG).show();
+        //} else {
             shippingAddressRequest.setFirstName(firstName.get());
             shippingAddressRequest.setLastName(lastName.get());
             shippingAddressRequest.setPhone(phone.get());
             shippingAddressRequest.setAddress(address.get());
             response=ShippingAddressRepository.getInstance().shippingAddress(application,shippingAddressRequest);
-        }
+       // }
     }
 
     public LiveData<Response<ShippingAddressResponse>> getResponse() {

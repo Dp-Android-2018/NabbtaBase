@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableField;
 import android.databinding.ObservableFloat;
+import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
 import android.view.View;
 
@@ -21,10 +22,13 @@ public class ProductItemViewModel {
 
     public Product product;
     private Context context;
+    public ObservableInt out_of_stoc_visibality;
 
     public ProductItemViewModel(Product product, Context context) {
         this.product=product;
         this.context=context;
+        out_of_stoc_visibality=new ObservableInt(View.GONE);
+        setOut_of_stoc_visibality();
     }
 
 
@@ -46,6 +50,14 @@ public class ProductItemViewModel {
         Intent intent=new Intent(context,ProductDetailedActivity.class);
         intent.putExtra(ConfigurationFile.IntentConstants.PRODUCT_DATA,product);
         context.startActivity(intent);
+    }
+
+    public void setOut_of_stoc_visibality(){
+        if(product.getQuantity()<=0){
+            out_of_stoc_visibality.set(View.VISIBLE);
+        }else {
+            out_of_stoc_visibality.set(View.GONE);
+        }
     }
 
 

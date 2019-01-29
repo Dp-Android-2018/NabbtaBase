@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
@@ -12,7 +13,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="147dp"
+        android:layout_height="155dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/green_color_op80"
@@ -22,18 +23,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imageView18"
                 android:layout_width="196dp"
                 android:layout_height="116dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image_shape"
                 android:scaleType="centerCrop"
+                app:riv_corner_radius="8dip"
+                app:riv_mutate_background="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:imageUrl="@{ViewModel.imageUrl}" />
-
+                bind:imageUrl="@{ViewModel.imageUrl}"/>
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
@@ -41,6 +42,7 @@
                 android:text="@{ViewModel.name}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView18"
                 app:layout_constraintStart_toStartOf="@+id/imageView18"
                 app:layout_constraintTop_toBottomOf="@+id/imageView18" />
@@ -51,6 +53,7 @@
                 android:text="@{ViewModel.category}"
                 android:textColor="@android:color/white"
                 android:textSize="9sp"
+                android:paddingBottom="5dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView28"
                 app:layout_constraintHorizontal_bias="0.366"
                 app:layout_constraintStart_toStartOf="@+id/textView28"
@@ -60,12 +63,12 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Price : "
+                android:layout_marginTop="10dp"
+                android:text="@string/price"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/textView29"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/imageView18"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -74,6 +77,7 @@
                 android:id="@+id/textView29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:text="@{ViewModel.price}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -87,8 +91,9 @@
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text=" rs"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/rs"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,18 +105,18 @@
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="3dp"
-                android:text="Quantity : "
+                android:layout_marginTop="8dp"
+                android:text="@string/quantity"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView18"
+                app:layout_constraintStart_toStartOf="@+id/textView30"
                 app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
             <TextView
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:text="@{ViewModel.quantity}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -124,18 +129,18 @@
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="2dp"
-                android:text="Sale Price: "
+                android:layout_marginTop="8dp"
+                android:text="@string/sale_price"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView18"
+                app:layout_constraintStart_toStartOf="@+id/textView33"
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:text="@{ViewModel.salePrice}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -148,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="rs"
+                android:text="@string/rs"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView35"
@@ -159,24 +164,23 @@
                 android:id="@+id/textView43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total :"
+                android:layout_marginTop="8dp"
+                android:text="@string/total"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView42"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@+id/imageView18"
+                app:layout_constraintStart_toStartOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
             <TextView
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@{ViewModel.total}"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView44"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView43"
                 app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
@@ -184,21 +188,22 @@
                 android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" rs"
+                android:layout_marginTop="8dp"
+                android:text="@string/rs"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView42"
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
-            <TextView
-                android:id="@+id/textView45"
+            <EditText
+                android:id="@+id/et_quentanaty"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:inputType="none"
+                android:focusable="false"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/quentanty_shape"
                 android:gravity="center"
                 android:paddingStart="5dp"
@@ -206,11 +211,12 @@
                 android:text="@{ViewModel.quantity}"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView18"
-                app:layout_constraintTop_toBottomOf="@+id/textView43" />
+                app:layout_constraintStart_toEndOf="@+id/imageView18" />
 
             <TextView
+                android:id="@+id/tv_minus"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/quantity_minus_shape"
@@ -218,11 +224,12 @@
                 android:onClick="@{ViewModel::minseQuantity}"
                 android:text="-"
                 android:textColor="@color/green_color_op80"
-                app:layout_constraintBottom_toBottomOf="@+id/textView45"
-                app:layout_constraintEnd_toStartOf="@+id/textView45"
-                app:layout_constraintTop_toTopOf="@+id/textView45" />
+                app:layout_constraintBottom_toBottomOf="@+id/et_quentanaty"
+                app:layout_constraintEnd_toStartOf="@+id/et_quentanaty"
+                app:layout_constraintTop_toTopOf="@+id/et_quentanaty" />
 
             <TextView
+                android:id="@+id/tv_pluse"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/quantity_plus_shape"
@@ -230,9 +237,9 @@
                 android:onClick="@{ViewModel::addQuantity}"
                 android:text="+"
                 android:textColor="@color/green_color_op80"
-                app:layout_constraintBottom_toBottomOf="@+id/textView45"
-                app:layout_constraintStart_toEndOf="@+id/textView45"
-                app:layout_constraintTop_toTopOf="@+id/textView45" />
+                app:layout_constraintBottom_toBottomOf="@+id/et_quentanaty"
+                app:layout_constraintStart_toEndOf="@+id/et_quentanaty"
+                app:layout_constraintTop_toTopOf="@+id/et_quentanaty" />
 
             <ImageView
                 android:layout_width="wrap_content"

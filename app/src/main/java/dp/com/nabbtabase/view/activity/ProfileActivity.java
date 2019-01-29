@@ -6,24 +6,20 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.telecom.Call;
 import android.view.View;
 
-import dp.com.nabbtabase.ProfileViewModelFactory;
+import dp.com.nabbtabase.ViewModelFactory.ProfileViewModelFactory;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityProfileBinding;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.model.request.EditProfileRequest;
-import dp.com.nabbtabase.servise.repository.EditProfileRepository;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.ValidationUtils;
-import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ProfileViewModel;
 
-public class ProfileActivity extends AppCompatActivity{
+public class ProfileActivity extends BaseActivity{
 
     ProfileViewModel viewModel;
     ActivityProfileBinding binding;
@@ -37,6 +33,9 @@ public class ProfileActivity extends AppCompatActivity{
         data=CustomUtils.getInstance().getSaveUserObject(this);
         binding=DataBindingUtil.setContentView(this, R.layout.activity_profile);
         binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
+        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+            binding.actionBar.ivBack.setRotation(180);
+        }
         setData();
     }
 

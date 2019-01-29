@@ -12,6 +12,7 @@ import dp.com.nabbtabase.servise.model.pojo.Country;
 import dp.com.nabbtabase.servise.model.request.ShippingAddressRequest;
 import dp.com.nabbtabase.servise.repository.CountryRepository;
 import dp.com.nabbtabase.servise.repository.ShippingAddressRepository;
+import dp.com.nabbtabase.servise.repository.UpdateAddressRepository;
 
 public class ShippingAddressViewModel extends AndroidViewModel {
 
@@ -26,12 +27,9 @@ public class ShippingAddressViewModel extends AndroidViewModel {
         countries=CountryRepository.getInstance().getCountries(application);
     }
 
-    public void setRequest(ShippingAddressRequest request) {
-        this.request = request;
-        //code=ShippingAddressRepository.getInstance().shippingAddress(application,request);
-    }
 
-    public LiveData<Integer> getCode() {
+    public LiveData<Integer> getCode(ShippingAddressRequest request) {
+        code=UpdateAddressRepository.getInstance().updateAddress(application,request);
         return code;
     }
 

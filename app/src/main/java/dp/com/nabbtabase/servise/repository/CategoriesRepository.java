@@ -29,9 +29,7 @@ public class CategoriesRepository {
     public LiveData<List<Category>> getCategories(Application application) {
         MutableLiveData<List<Category>> categories = new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).getCategories(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE)
+                )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(categoryResponseResponse -> {

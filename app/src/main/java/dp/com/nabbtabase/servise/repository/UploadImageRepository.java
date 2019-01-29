@@ -40,9 +40,7 @@ public class UploadImageRepository  {
         }*/
         MutableLiveData<List<String>>imageUrl=new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).uploadImage(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,
+
                 imageToupload)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -36,13 +36,12 @@ public class ForgetPasswordRepository {
         request=new ForgetPasswordRequest();
         request.setLogin(login);
         CustomUtils.getInstance().getEndpoint(application).forgetPassword(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,request)
+               request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {
                     System.out.println("Forget password code : "+stringResponseResponse.code());
+                    callBackInterface.updateUi(stringResponseResponse.code());
                    if(stringResponseResponse.code()==ConfigurationFile.Constants.SUCCESS_CODE){
                        callBackInterface.updateUi(ConfigurationFile.Constants.MOVE_TO_CODE_ACTIVITY);
                    }else if (stringResponseResponse.code()==ConfigurationFile.Constants.SECONDS_WAIT){

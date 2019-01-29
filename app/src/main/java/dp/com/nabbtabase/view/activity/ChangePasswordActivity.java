@@ -1,24 +1,23 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import dp.com.nabbtabase.ChangePasswordViewModelFactory;
+import dp.com.nabbtabase.ViewModelFactory.ChangePasswordViewModelFactory;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityChangePasswordBinding;
 import dp.com.nabbtabase.servise.model.request.ChangePasswordRequest;
 import dp.com.nabbtabase.utils.ConfigurationFile;
+import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.ChangePasswordViewModel;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends BaseActivity {
     ChangePasswordViewModel viewModel;
     ActivityChangePasswordBinding binding;
     ChangePasswordRequest changePasswordRequest;
@@ -28,6 +27,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=DataBindingUtil.setContentView(this, R.layout.activity_change_password);
         binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
+        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+            binding.actionBar.ivBack.setRotation(180);
+        }
     }
 
     public void changepassword(View view){
@@ -42,7 +44,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         }else if (!binding.etNewPassword.getText().toString().equals(binding.etNewPasswordConfirmation.getText().toString())){
             // TODO: 11/28/2018 call pass and pass conf dont match
-            Snackbar.make(binding.clChangePasswordRoot,R.string.password_confirmation,Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.clChangePasswordRoot,R.string.password_confirmation_message,Snackbar.LENGTH_LONG).show();
         }else{
             // TODO: 11/28/2018 call back end
             setChangePasswordRequest();
@@ -55,6 +57,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         viewModel.getCode().observe(this, integer -> {
             if(integer==ConfigurationFile.Constants.SUCCESS_CODE){
                 Snackbar.make(binding.clChangePasswordRoot,R.string.password_changed_message,Snackbar.LENGTH_LONG).show();
+                finish();
             }
         });
     }

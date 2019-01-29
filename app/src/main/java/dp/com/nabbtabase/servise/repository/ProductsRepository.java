@@ -19,6 +19,7 @@ public class ProductsRepository {
     Application application;
     private MutableLiveData<Response<Products>> products;
     ObservableList<Product> productList;
+    String token;
 
     private ProductsRepository() {
         products = new MutableLiveData<>();
@@ -34,11 +35,11 @@ public class ProductsRepository {
 
     public MutableLiveData<Response<Products>> getAllProducts(Application application, String categoryId, String pageid) {
         this.application = application;
-        String token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
+        if(CustomUtils.getInstance().getSaveUserObject(application)!=null) {
+            token = "Bearer " + CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
+        }
         CustomUtils.getInstance().getEndpoint(application).getProducts(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,null, categoryId, pageid)
+               token,null, categoryId, pageid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productsResponse -> {
@@ -48,9 +49,4 @@ public class ProductsRepository {
                 });
         return products;
     }
-
-//    public void filter(int id){
-//        String categoryId=String.valueOf(id);
-//        getAllProducts(application,categoryId,"0");
-//    }
 }

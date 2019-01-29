@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
+
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.model.request.LoginRequest;
 import dp.com.nabbtabase.utils.ConfigurationFile;
@@ -19,41 +20,40 @@ public class LoginRepository {
     private CallBackInterface callBackInterface;
     private Context context;
 
-    private LoginRepository() { }
+    private LoginRepository() {
+    }
 
-    public static LoginRepository getInstance(){
-        if(instance==null){
-            instance=new LoginRepository();
+    public static LoginRepository getInstance() {
+        if (instance == null) {
+            instance = new LoginRepository();
         }
         return instance;
     }
-    public LiveData<LoginRegisterContent> login(Application application, LoginRequest request){
-        final MutableLiveData<LoginRegisterContent> data=new MutableLiveData<>();
 
-        CustomUtils.getInstance().getEndpoint(application).login(ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,ConfigurationFile.Constants.CONTENT_TYPE,request)
+    public LiveData<LoginRegisterContent> login(Application application, LoginRequest request) {
+        final MutableLiveData<LoginRegisterContent> data = new MutableLiveData<>();
+
+        CustomUtils.getInstance().getEndpoint(application).login(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginRegisterResponseResponse -> {
-                    Log.i("Login cond",""+loginRegisterResponseResponse.code());
-                    if (loginRegisterResponseResponse.code()==ConfigurationFile.Constants.SUCCESS_CODE){
+                    Log.i("Login cond", "" + loginRegisterResponseResponse.code());
+                    if (loginRegisterResponseResponse.code() == ConfigurationFile.Constants.SUCCESS_CODE) {
                         data.setValue(loginRegisterResponseResponse.body().getLoginRegisterContent());
-                        CustomUtils.getInstance().saveDataToPrefs(loginRegisterResponseResponse.body().getLoginRegisterContent(),context);
+                        CustomUtils.getInstance().saveDataToPrefs(loginRegisterResponseResponse.body().getLoginRegisterContent(), context);
                     }
+                    CustomUtils.getInstance().cancelDialog();
                     callBackInterface.updateUi(loginRegisterResponseResponse.code());
 
 
                 }, throwable -> {
-
-                    Log.e("Login Error",throwable.getMessage());
-
+                    CustomUtils.getInstance().cancelDialog();
                 });
-
         return data;
     }
 
-    public void setCallBackInterface(CallBackInterface callBackInterface,Context context) {
+    public void setCallBackInterface(CallBackInterface callBackInterface, Context context) {
         this.callBackInterface = callBackInterface;
-        this.context=context;
+        this.context = context;
     }
 }

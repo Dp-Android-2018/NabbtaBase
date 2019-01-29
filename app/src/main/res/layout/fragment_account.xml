@@ -11,7 +11,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/cl_root">
 
     <ImageView
         android:id="@+id/imageView13"
@@ -29,7 +30,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="user name"
+        android:text="@string/user_name"
         android:textColor="@color/text_color_green"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:gravity="center"
-        android:text="Services"
+        android:text="@string/services"
         android:onClick="@{ViewModel::servicesHistory}"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
@@ -135,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:gravity="center"
-        android:text="Shipping Address"
+        android:text="@string/shipping_address"
         android:onClick="@{ViewModel::shippingAddress}"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
@@ -159,7 +160,7 @@
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:gravity="center"
-        android:text="Change Password"
+        android:text="@string/change_password"
         android:onClick="@{ViewModel::changePassword}"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
@@ -183,7 +184,7 @@
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:gravity="center"
-        android:text="اللغة العربية"
+        android:text="@string/change_language"
         android:onClick="@{ViewModel::changeLanguage}"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
@@ -202,11 +203,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tv_log"
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:gravity="center"
-        android:text="Logout"
         android:onClick="@{ViewModel::logout}"
         android:textColor="@color/text_color_green"
         android:textSize="16sp"
@@ -222,7 +222,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_log" />
 
 
 </android.support.constraint.ConstraintLayout>

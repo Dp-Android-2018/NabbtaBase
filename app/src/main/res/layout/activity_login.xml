@@ -12,7 +12,8 @@
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:foreground="@drawable/anim_background">
 
         <ImageView
             android:id="@+id/imageView"
@@ -20,31 +21,44 @@
             android:layout_height="61dp"
             android:layout_marginTop="62dp"
             android:src="@drawable/logo"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toStartOf="@+id/iv_signup"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView29"
-            android:layout_width="37dp"
+            android:id="@+id/iv_anim"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/signup"
+            android:layout_marginEnd="8dp"
+            android:background="@color/text_color_green"
+            android:elevation="3dp"
+            android:translationX="215dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{ViewModel::signup}"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_signup"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/signup"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Sign in to Nabbta"
+            android:text="@string/sign_in_to_nabbta"
             android:textColor="@color/text_color_green"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toStartOf="@+id/iv_signup"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -67,12 +81,13 @@
             android:layout_marginStart="8dp"
             android:hint="@string/email_phone"
             android:inputType="textEmailAddress"
+            android:maxLines="1"
             android:text="@={ViewModel.mail}"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toStartOf="@+id/iv_signup"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -81,11 +96,10 @@
             android:id="@+id/imageView3"
             android:layout_width="17dp"
             android:layout_height="23dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="4dp"
             android:src="@drawable/password_icon"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/editText"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -94,15 +108,16 @@
             android:id="@+id/editText"
             android:layout_width="224dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:maxLines="1"
             android:text="@={ViewModel.password}"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toStartOf="@+id/iv_signup"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -111,30 +126,28 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="21dp"
-            android:layout_marginEnd="8dp"
+            android:onClick="@{ViewModel::forgetPassword}"
             android:text="@string/forget_password"
             android:textColor="@android:color/black"
             android:textSize="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
-            android:onClick="@{ViewModel::forgetPassword}"/>
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="132dp"
             android:layout_height="36dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
             android:background="@drawable/button_shape"
             android:onClick="@{ViewModel::login}"
-            android:text="Login"
+            android:text="@string/login"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="17sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView29"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -144,6 +157,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="17dp"
             android:src="@drawable/facebook"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -157,6 +171,7 @@
             android:layout_marginStart="17dp"
             android:layout_marginTop="45dp"
             android:src="@drawable/twitter"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -168,17 +183,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:onClick="@{ViewModel::skip}"
-            android:text="Skip"
+            android:text="@string/skip"
             android:textColor="@color/text_color_green"
             android:textSize="17sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_skip"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/iv_skip"
             app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/iv_skip"
             android:layout_width="17dp"
             android:layout_height="21dp"
             android:layout_marginBottom="23dp"
@@ -186,7 +201,6 @@
             android:src="@drawable/right_chevron"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView5" />
-
 
     </android.support.constraint.ConstraintLayout>
 </layout>

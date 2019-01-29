@@ -33,7 +33,7 @@ import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.CartViewModel;
 import io.reactivex.schedulers.Schedulers;
 
-public class CartActivity extends AppCompatActivity implements DeleteCartItemListiner,UpdateCartItemInterFace {
+public class CartActivity extends BaseActivity implements DeleteCartItemListiner,UpdateCartItemInterFace {
     CartViewModel viewModel;
     ActivityCardBinding binding;
     CartAdapter adapter;
@@ -44,6 +44,7 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cartProducts = new ObservableArrayList<>();
+        CustomUtils.getInstance().showProgressDialog(this);
         viewModel = ViewModelProviders.of(this).get(CartViewModel.class);
         observViewModel(viewModel);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_card);
@@ -53,6 +54,9 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
         binding.rvCartProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.setViewModel(viewModel);
         binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
+        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+            binding.actionBar.ivBack.setRotation(180);
+        }
         DeleteItemFromCartRepository.getInstance().setDeleteCartItemListiner(this);
         CartProductsRepository.getInstance().setCartItemInterFace(this);
     }
@@ -63,6 +67,7 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
                 System.out.println("Card Products Size :"+cartProducts.size());
                 this.cartProducts.clear();
                 this.cartProducts.addAll(cartProducts);
+                MyApp.setNotificationCounter(cartProducts.size());
                 resetRecyclerView();
                 for (int i = 0; i < cartProducts.size(); i++) {
                     System.out.println("for iteration : " + i);
@@ -70,6 +75,7 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
                 }
                 System.out.println("cartProducttotalSum : " + cartProducttotalSum);
                 MyApp.setTotal(cartProducttotalSum);
+                CustomUtils.getInstance().cancelDialog();
             }
         });
     }
@@ -91,6 +97,8 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
                 Snackbar.make(binding.clRoot, R.string.cart_item_deleted_message, Snackbar.LENGTH_LONG).show();
                 MyApp.setTotal(MyApp.getTotal() - total);
                 System.out.println("Card Id :" + cartId);
+                MyApp.setNotificationCounter(MyApp.getNotificationCounter()-1);
+                binding.actionBar.getViewModel().notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
 //
                 for (CartProduct cartProduct : cartProducts) {
                     System.out.println("Card Id "+cartProduct.getId());
@@ -122,14 +130,18 @@ public class CartActivity extends AppCompatActivity implements DeleteCartItemLis
     public void itemUpdated(int code) {
         CustomUtils.getInstance().cancelDialog();
         if(code==ConfigurationFile.Constants.SUCCESS_CODE){
-            Snackbar.make(binding.clRoot,"Item Updated Successfully",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.clRoot,R.string.item_updated_successfully,Snackbar.LENGTH_LONG).show();
         }else {
-            Snackbar.make(binding.clRoot,"Fail to Updated Cart Item",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.clRoot,R.string.fail_to_update_cart,Snackbar.LENGTH_LONG).show();
         }
     }
 
     public void proceed(View view){
-        Intent intent=new Intent(this,DeliveryOptionsActivity.class);
-        startActivity(intent);
+        if(cartProducts.size()>0) {
+            Intent intent = new Intent(this, DeliveryOptionsActivity.class);
+            startActivity(intent);
+        }else {
+            Snackbar.make(binding.clRoot,R.string.cart_empty,Snackbar.LENGTH_LONG).show();
+        }
     }
 }

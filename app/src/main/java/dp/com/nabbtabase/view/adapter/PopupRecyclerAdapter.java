@@ -114,6 +114,7 @@ public class PopupRecyclerAdapter extends RecyclerView.Adapter<PopupRecyclerView
     }
 
     public void setCities(List<City> cities) {
+        this.cities.clear();
         this.cities.addAll(cities);
         select=2;
     }

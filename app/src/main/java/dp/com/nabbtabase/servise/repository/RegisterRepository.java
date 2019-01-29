@@ -38,15 +38,12 @@ public class RegisterRepository  {
     }
 
     public void register(Application application, RegisterRequest request){
-
         CustomUtils.getInstance().getEndpoint(application).register(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,request)
+               request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginRegisterResponseResponse -> {
-
+                    CustomUtils.getInstance().cancelDialog();
                     if(loginRegisterResponseResponse.code()==ConfigurationFile.Constants.SUCCESS_CODE_SECOND){
                         CustomUtils.getInstance().saveDataToPrefs(loginRegisterResponseResponse.body().getLoginRegisterContent(),context);
 
@@ -57,6 +54,7 @@ public class RegisterRepository  {
                     }
                     callBackInterface.updateUi(loginRegisterResponseResponse.code());
                 }, throwable -> {
+                    CustomUtils.getInstance().cancelDialog();
                     Log.e("register error",throwable.getMessage());
                 });
 

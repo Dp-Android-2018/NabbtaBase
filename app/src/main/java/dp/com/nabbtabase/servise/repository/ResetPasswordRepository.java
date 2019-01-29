@@ -30,9 +30,7 @@ public class ResetPasswordRepository {
 
     public void resetPassword(Application application, ResetPasswordRequest resetPasswordRequest){
         CustomUtils.getInstance().getEndpoint(application).resetPassword(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,
+
                 resetPasswordRequest.getToken(),resetPasswordRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

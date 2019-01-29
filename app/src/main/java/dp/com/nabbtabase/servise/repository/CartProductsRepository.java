@@ -34,11 +34,11 @@ public class CartProductsRepository {
 
     public MutableLiveData<List<CartProduct>>getCartProducts(Application application){
         MutableLiveData<List<CartProduct>>cartProducts=new MutableLiveData<>();
-        token="Bearer "+CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
+        if(CustomUtils.getInstance().getSaveUserObject(application)!=null) {
+            token = "Bearer " + CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
+        }
         CustomUtils.getInstance().getEndpoint(application).getCartProducts(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token)
+               token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cartProductsResponseResponse -> {
@@ -55,9 +55,7 @@ public class CartProductsRepository {
 
     public void updateProductCartItem(Application application, int id, int quantity){
         CustomUtils.getInstance().getEndpoint(application).updateCartItem(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,id,new UpdateCartItemRequest(quantity))
+               token,id,new UpdateCartItemRequest(quantity))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {

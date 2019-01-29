@@ -11,7 +11,8 @@
     </data>
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/cl_root">
 
     <include
         android:id="@+id/action_bar"
@@ -26,7 +27,6 @@
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +35,12 @@
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="?attr/actionBarSize"
         app:bb_tabXmlResource="@xml/bottombar_tabs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:bb_behavior="shifting|underNavbar"
+        app:bb_behavior="shifting"
         android:background="@color/text_color_green"/>
 </android.support.constraint.ConstraintLayout>
 </layout>

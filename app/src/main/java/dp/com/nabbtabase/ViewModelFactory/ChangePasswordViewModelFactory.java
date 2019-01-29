@@ -1,4 +1,4 @@
-package dp.com.nabbtabase;
+package dp.com.nabbtabase.ViewModelFactory;
 
 import android.app.Application;
 import android.arch.lifecycle.ViewModel;

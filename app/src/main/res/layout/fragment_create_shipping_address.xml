@@ -10,7 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_root">
+    android:id="@+id/cl_root"
+    android:layout_marginTop="30dp">
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="25dp"
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/first_name"
+        android:maxLines="1"
         android:text="@={ViewModel.firstName}"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@null"
@@ -57,6 +59,7 @@
         android:layout_marginStart="8dp"
         android:hint="@string/last_name"
         android:text="@={ViewModel.lastName}"
+        android:maxLines="1"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@null"
         android:textSize="16sp"
@@ -138,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="@string/phone"
+        android:maxLines="1"
         android:text="@={ViewModel.phone}"
         android:inputType="phone"
         android:textColor="@android:color/black"
@@ -165,6 +169,7 @@
         android:layout_marginStart="8dp"
         android:hint="@string/address"
         android:text="@={ViewModel.address}"
+        android:maxLines="1"
         android:inputType="textPostalAddress"
         android:textColor="@android:color/black"
         android:textCursorDrawable="@null"

@@ -35,9 +35,7 @@ public class ProductCommentsRepository {
         MutableLiveData<List<Comment>>comments=new MutableLiveData<>();
 
         CustomUtils.getInstance().getEndpoint(application).getProductComments(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,id)
+               id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productCommentsResponseResponse -> {

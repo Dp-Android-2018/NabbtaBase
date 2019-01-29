@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "549788570585",
+    "firebase_url": "https://nabbta-7f58f.firebaseio.com",
+    "project_id": "nabbta-7f58f",
+    "storage_bucket": "nabbta-7f58f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549788570585:android:c0552a07d95e1f90",
+        "android_client_info": {
+          "package_name": "dp.com.nabbtabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549788570585-n3apv8cpkftck53fmj21m9hq0h1fl6il.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dp.com.nabbtabase",
+            "certificate_hash": "07096b2ff29e75ba5ecceacb8d4b7b363b24ce16"
+          }
+        },
+        {
+          "client_id": "549788570585-n2sj32d8dkhg3bp6riq71unm8e7f9o2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeZWCbUVZiaUCH4hOTJNtl9cWtpv_0ovs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549788570585-n2sj32d8dkhg3bp6riq71unm8e7f9o2k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "549788570585-dhtrp80elcbq8d3b7viumncrkubl5t8m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dp-itc.Nabbta"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

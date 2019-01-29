@@ -32,9 +32,7 @@ public class ServicesRepository {
     public LiveData<List<ServiceContent>>getServices(Application application){
         MutableLiveData<List<ServiceContent>>services=new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).getServices(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE)
+                )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(servicesResponseResponse -> {

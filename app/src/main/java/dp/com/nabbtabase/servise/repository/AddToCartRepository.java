@@ -30,9 +30,7 @@ public class AddToCartRepository {
     public LiveData<Response<StringResponse>>addToCart(Application application,String token,int productId){
         MutableLiveData<Response<StringResponse>>response=new MutableLiveData<>();
         CustomUtils.getInstance().getEndpoint(application).addProductToCart(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,token,new AddToCartRequest(productId))
+               token,new AddToCartRequest(productId))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stringResponseResponse -> {

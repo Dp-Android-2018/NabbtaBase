@@ -32,9 +32,7 @@ public class CodeRepository {
     public void checkCode(Application application, CheckCodeRequest request){
         ObservableField<String> token=new ObservableField<>();
         CustomUtils.getInstance().getEndpoint(application).checkCode(
-                ConfigurationFile.Constants.API_KEY,
-                ConfigurationFile.Constants.CONTENT_TYPE,
-                ConfigurationFile.Constants.CONTENT_TYPE,request)
+               request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(checkCodeResponseResponse -> {

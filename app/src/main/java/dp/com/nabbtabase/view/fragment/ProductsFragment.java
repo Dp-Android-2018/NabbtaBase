@@ -1,7 +1,6 @@
 package dp.com.nabbtabase.view.fragment;
 
 import android.app.Dialog;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -20,8 +19,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +26,13 @@ import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.FragmentProductsBinding;
 import dp.com.nabbtabase.servise.model.pojo.Product;
 import dp.com.nabbtabase.servise.model.pojo.SubCategory;
-import dp.com.nabbtabase.servise.model.response.Products;
 import dp.com.nabbtabase.utils.ConfigurationFile;
+import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.NetWorkConnection;
 import dp.com.nabbtabase.view.adapter.CategoriesAdapter;
 import dp.com.nabbtabase.view.adapter.ProductsAdapter;
 import dp.com.nabbtabase.view.callback.CloseCountryDialogInterface;
 import dp.com.nabbtabase.viewmodel.ProductsViewModel;
-import retrofit2.Response;
 
 public class ProductsFragment extends Fragment implements CloseCountryDialogInterface {
     FragmentProductsBinding binding;
@@ -58,9 +54,9 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_products, container, false);
         initVariables();
-        binding.ivGrid.setImageResource(R.drawable.grid_icon);
-        binding.ivLinear.setImageResource(R.drawable.list_icon_clicked);
-        binding.rvProducts.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.ivGrid.setImageResource(R.drawable.grid_icon_clicked);
+        binding.ivLinear.setImageResource(R.drawable.list_icon);
+        binding.rvProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.rvProducts.addOnScrollListener(onScrollListener());
         recyclerViewSelector();
         binding.tvCategory.setOnClickListener(v -> selectCategory());
@@ -79,7 +75,7 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
         subCategories = new ArrayList<>();
         countrySelected = false;
         categoryId = null;
-        productAdapter = new ProductsAdapter(false);
+        productAdapter = new ProductsAdapter(true);
 
         categoriesAdapter = new CategoriesAdapter(this);
     }
@@ -105,36 +101,33 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        CustomUtils.getInstance().showProgressDialog(getActivity());
         viewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
         observableViewModel(viewModel);
     }
 
     public void observableViewModel(ProductsViewModel viewModel) {
-        viewModel.getProducts().observe(this, new Observer<Response<Products>>() {
-            @Override
-            public void onChanged(@Nullable Response<Products> productsResponse) {
-                if (productsResponse != null) {
-                    if (productsResponse.code() == ConfigurationFile.Constants.SUCCESS_CODE) {
-                        System.out.println("Load More Data Loaded Code:");
-                        System.out.println("Data Object Response :"+new Gson().toJson(productsResponse));
-                        if (pageId.equals("0")) {
-                            System.out.println("Load More Data Reset:");
-                            resetRecyclerViewAdapter();
-                        }
-                        if (!TextUtils.isEmpty(productsResponse.body().getLinks().getNext())) {
-                            nextPageUrl = productsResponse.body().getLinks().getNext();
-                            System.out.println("Load More Data Next Page Data :" + nextPageUrl);
-                            pageId = nextPageUrl.substring(nextPageUrl.length() - 1);
-                        }else {
-                            nextPageUrl = null;
-                        }
-                        isLoading = false;
-                        productList.addAll(productsResponse.body().getProducts());
-                        productAdapter.notifyDataSetChanged();
+        CustomUtils.getInstance().cancelDialog();
+        viewModel.getProducts().observe(this, productsResponse -> {
+            if (productsResponse != null) {
+                if (productsResponse.code() == ConfigurationFile.Constants.SUCCESS_CODE) {
+                    if (pageId.equals("0")) {
+                        System.out.println("Load More Data Reset:");
+                        resetRecyclerViewAdapter();
+                        CustomUtils.getInstance().cancelDialog();
                     }
+                    if (!TextUtils.isEmpty(productsResponse.body().getLinks().getNext())) {
+                        nextPageUrl = productsResponse.body().getLinks().getNext();
+                        System.out.println("Load More Data Next Page Data :" + nextPageUrl);
+                        pageId = nextPageUrl.substring(nextPageUrl.length() - 1);
+                    } else {
+                        nextPageUrl = null;
+                    }
+                    isLoading = false;
+                    productList.addAll(productsResponse.body().getProducts());
+                    productAdapter.notifyDataSetChanged();
                 }
             }
-
         });
 
         viewModel.getCategories().
@@ -165,8 +158,10 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
             title.setText("Categories");
             //Log.i("Size in vm ",""+getCountries().getValue().size());
-            categoriesAdapter.setCategories(viewModel.getCategories().getValue());
-            recyclerView.setAdapter(categoriesAdapter);
+            viewModel.getCategories().observe(this, categories -> {
+                categoriesAdapter.setCategories(categories);
+                recyclerView.setAdapter(categoriesAdapter);
+            });
             dialog.show();
         }
     }
@@ -208,20 +203,21 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
             //productList.clear();
             categoryId = String.valueOf(subCategories.get(postion).getId());
             pageId = "0";
+            CustomUtils.getInstance().showProgressDialog(getActivity());
             viewModel.getProducts(categoryId, pageId);
             //registerRequest.setCityId(cities.get(postion).getId());
         }
         dialog.dismiss();
     }
 
-    public RecyclerView.OnScrollListener onScrollListener(){
+    public RecyclerView.OnScrollListener onScrollListener() {
         return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() == (productList.size() - 1)) {
                     if (!TextUtils.isEmpty(nextPageUrl) && isLoading == false) {
-                        System.out.println("Load More Data Success :"+pageId);
+                        System.out.println("Load More Data Success :" + pageId);
                         isLoading = true;
                         viewModel.getProducts(categoryId, pageId);
                     }
@@ -231,4 +227,9 @@ public class ProductsFragment extends Fragment implements CloseCountryDialogInte
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        observableViewModel(viewModel);
+    }
 }

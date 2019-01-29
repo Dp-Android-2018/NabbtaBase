@@ -15,25 +15,44 @@
     app:cardCornerRadius="10dp"
     android:layout_marginTop="20dp"
     android:layout_gravity="center"
-    android:onClick="@{ViewModel::onItemClick}">
+    android:onClick="@{ViewModel::onItemClick}"
+    android:backgroundTint="@color/green_color_op80">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/green_color_op80">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageView21"
             android:layout_width="116dp"
             android:layout_height="116dp"
             android:layout_marginStart="5dp"
-            android:src="@drawable/product_icon"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/image_shape"
+            android:src="@drawable/product_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:imageUrl="@{ViewModel.image}"/>
+            app:riv_corner_radius="8dip"
+            bind:imageUrl="@{ViewModel.image}" />
+        <TextView
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/black_color_opacity30"
+            android:background="@drawable/image_shape"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:visibility="@{ViewModel.out_of_stoc_visibality}"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:text="@string/out_of_stock"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/textView46"
@@ -44,7 +63,8 @@
             android:layout_marginEnd="8dp"
             android:text="@{ViewModel.product.name}"
             android:textColor="@android:color/white"
-            android:textSize="12sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView21"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +76,7 @@
             android:layout_marginTop="5dp"
             android:text="@{ViewModel.product.category.name}"
             android:textColor="@android:color/white"
-            android:textSize="9sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/textView46"
             app:layout_constraintStart_toStartOf="@+id/textView46"
             app:layout_constraintTop_toBottomOf="@+id/textView46" />
@@ -66,9 +86,10 @@
             android:layout_width="110dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
+            android:gravity="center"
             android:text="@{ViewModel.product.description}"
             android:textColor="@android:color/white"
-            android:textSize="6sp"
+            android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="@+id/textView46"
             app:layout_constraintStart_toStartOf="@+id/textView46"
             app:layout_constraintTop_toBottomOf="@+id/textView47" />
@@ -81,7 +102,8 @@
             android:layout_marginEnd="16dp"
             android:text="@{ViewModel.salePrice}"
             android:textColor="@android:color/white"
-            android:textSize="9sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/textView49"
             app:layout_constraintStart_toStartOf="@+id/textView49"
             app:layout_constraintTop_toBottomOf="@+id/textView49" />
@@ -93,7 +115,8 @@
             android:layout_marginStart="3dp"
             android:text="rs"
             android:textColor="@android:color/white"
-            android:textSize="9sp"
+            android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView50"
             app:layout_constraintStart_toEndOf="@+id/textView50"
             app:layout_constraintTop_toTopOf="@+id/textView50" />

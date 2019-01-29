@@ -10,4 +10,6 @@
     <color name="transparent">#00000000</color>
     <color name="pics_color">#e59124</color>
     <color name="black_text_color">#4d4d4d</color>
+    <color name="notification_bar_color">#2e8446</color>
+    <color name="black_color_opacity30">#4d000000</color>
 </resources>

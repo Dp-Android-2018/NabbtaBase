@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="22dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="11dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/text_color_green"
         android:onClick="@{ViewModel::onItemClick}"
@@ -26,13 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/cardView1"
                     android:layout_width="133dp"
                     android:layout_height="134dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/product_icon"
-                    android:padding="15dp"
                     bind:imageUrl="@{ViewModel.image}"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
@@ -40,7 +39,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/image_shape"/>
+                    app:riv_corner_radius="8dip"/>
+            <TextView
+                android:layout_width="133dp"
+                android:layout_height="134dp"
+                android:backgroundTint="@color/black_color_opacity30"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="@{ViewModel.out_of_stoc_visibality}"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:text="@string/out_of_stock"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/image_shape"/>
 
             <TextView
                 android:id="@+id/textView16"
