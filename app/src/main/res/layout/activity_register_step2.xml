@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="ViewModel"
-            type="dp.com.nabbtabase.viewmodel.RegisterStep2ViewModel"/>
+            type="dp.com.nabbtabase.viewmodel.RegisterStep2ViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -109,9 +110,9 @@
             android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:hint="@string/phone"
-            android:maxLines="1"
+            android:hint="@string/phone_number_format"
             android:inputType="phone"
+            android:maxLines="1"
             android:text="@={ViewModel.phone}"
             android:textColor="@android:color/black"
             android:textColorLink="@color/text_color_green"
@@ -137,8 +138,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:hint="@string/address"
-            android:maxLines="1"
             android:inputType="textPostalAddress"
+            android:maxLines="1"
             android:text="@={ViewModel.addressName}"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
@@ -154,10 +155,10 @@
             android:layout_marginStart="33dp"
             android:layout_marginTop="28dp"
             android:buttonTint="@color/text_color_green"
+            android:checked="@={ViewModel.policy}"
             android:textColorLink="@color/text_color_green"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_address"
-            android:checked="@={ViewModel.policy}"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_address" />
 
         <TextView
             android:id="@+id/textView2"
@@ -189,10 +190,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/text_color_green"
+            android:checked="@={ViewModel.terms}"
             app:layout_constraintEnd_toEndOf="@+id/cb_policy"
             app:layout_constraintStart_toStartOf="@+id/cb_policy"
-            app:layout_constraintTop_toBottomOf="@+id/cb_policy"
-            android:checked="@={ViewModel.terms}"/>
+            app:layout_constraintTop_toBottomOf="@+id/cb_policy" />
 
         <TextView
             android:id="@+id/textView4"
@@ -210,8 +211,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="@string/terms_and_conditions"
             android:onClick="terms"
+            android:text="@string/terms_and_conditions"
             android:textColor="@color/text_color_green"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
@@ -248,13 +249,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="@string/step_2"
             android:textColor="@color/text_color_green"
             android:textSize="13sp"
-            android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@id/view" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

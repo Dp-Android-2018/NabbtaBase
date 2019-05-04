@@ -13,14 +13,17 @@ public class CommentItemViewModel {
         this.comment = comment;
     }
 
-    public String getComment(){
+    public String getComment() {
         return comment.getComment();
     }
 
-    public float getRate(){
+    public float getRate() {
         return comment.getRate();
     }
 
+    public String getName(){
+        return comment.getUser().getFirstName()+" "+comment.getUser().getLastName();
+    }
 
 
 }

@@ -1,7 +1,7 @@
 package dp.com.nabbtabase.view.viewholder;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import dp.com.nabbtabase.databinding.OrderListItemBinding;
 import dp.com.nabbtabase.servise.model.pojo.OrderItem;
@@ -17,7 +17,7 @@ public class OrderHistoryViewHolder extends RecyclerView.ViewHolder {
 
     public void bindItem(OrderItem item) {
         if (binding.getViewModel() == null) {
-            binding.setViewModel(new OrderListItemViewModel(item,itemView.getContext()));
+            binding.setViewModel(new OrderListItemViewModel(item, itemView.getContext()));
         } else {
             binding.getViewModel().setOrderItem(item);
         }

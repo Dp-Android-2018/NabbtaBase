@@ -1,20 +1,21 @@
 package dp.com.nabbtabase.view.activity;
 
 import android.app.Dialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class RegisterStep2Activity extends BaseActivity implements CallBackInter
         observableViewModel(viewModel);
     }
 
-    public void setRegisterRequest(){
+    public void setRegisterRequest() {
         registerRequest = (RegisterRequest) getIntent().getSerializableExtra(ConfigurationFile.IntentConstants.REGISTER_STEP1_DATA);
     }
 
@@ -74,12 +75,13 @@ public class RegisterStep2Activity extends BaseActivity implements CallBackInter
                 Snackbar.make(binding.clRoot, R.string.no_internet_connection_error_message, Snackbar.LENGTH_LONG).show();
                 break;
             }
-            case ConfigurationFile.Constants.SHOW_PROGRESS_DIALOG:{
+            case ConfigurationFile.Constants.SHOW_PROGRESS_DIALOG: {
                 CustomUtils.getInstance().showProgressDialog(this);
                 viewModel.callSignUpRepository();
             }
         }
     }
+
     @Override
     public void errorMessage(String error) {
         System.out.println("Error message  :" + error);
@@ -93,6 +95,9 @@ public class RegisterStep2Activity extends BaseActivity implements CallBackInter
         View filter = inflater.inflate(R.layout.bottom_dialog_layout, null);
         builder.setView(filter);
         builder.setCancelable(true);
+        TextView title= filter.findViewById(R.id.tv_title);
+        TextView content=filter.findViewById(R.id.tv_content);
+        title.setText(getString(R.string.policy));
         Dialog dialog = builder.create();
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -102,12 +107,17 @@ public class RegisterStep2Activity extends BaseActivity implements CallBackInter
         //window.setBackgroundDrawableResource(Color.WHITE);
         dialog.show();
     }
+
     public void terms(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = (this).getLayoutInflater();
         View filter = inflater.inflate(R.layout.bottom_dialog_layout, null);
         builder.setView(filter);
         builder.setCancelable(true);
+        TextView title= filter.findViewById(R.id.tv_title);
+        TextView content=filter.findViewById(R.id.tv_content);
+        title.setText(getString(R.string.terms_and_conditions));
+        content.setText(getString(R.string.terms_content));
         Dialog dialog = builder.create();
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -119,12 +129,7 @@ public class RegisterStep2Activity extends BaseActivity implements CallBackInter
     }
 
     private void observableViewModel(RegisterStep2ViewModel viewModel) {
-        viewModel.getCountries().observe(this, new Observer<List<Country>>() {
-            @Override
-            public void onChanged(@Nullable List<Country> countries) {
-                viewModel.adapter.setCountries(countries);
-            }
-        });
+        viewModel.getCountries().observe(this, countries -> viewModel.adapter.setCountries(countries));
     }
 
 

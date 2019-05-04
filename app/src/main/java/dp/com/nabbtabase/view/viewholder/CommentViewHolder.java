@@ -1,6 +1,7 @@
 package dp.com.nabbtabase.view.viewholder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import dp.com.nabbtabase.databinding.CommentListItemBinding;
 import dp.com.nabbtabase.servise.model.pojo.Comment;
 import dp.com.nabbtabase.viewmodel.CommentItemViewModel;
@@ -10,13 +11,13 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
 
     public CommentViewHolder(CommentListItemBinding binding) {
         super(binding.getRoot());
-        this.binding=binding;
+        this.binding = binding;
     }
 
-    public void bindComment(Comment comment){
-        if (binding.getViewModel()==null){
+    public void bindComment(Comment comment) {
+        if (binding.getViewModel() == null) {
             binding.setViewModel(new CommentItemViewModel(comment));
-        }else {
+        } else {
             binding.getViewModel().setComment(comment);
         }
     }

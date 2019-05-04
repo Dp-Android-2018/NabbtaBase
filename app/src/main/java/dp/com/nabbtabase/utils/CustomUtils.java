@@ -15,16 +15,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Window;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -39,7 +38,6 @@ import java.util.regex.Pattern;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.dagger.component.NetworkComponent;
-import dp.com.nabbtabase.notification.FirebaseMessageService;
 import dp.com.nabbtabase.servise.model.pojo.LoginRegisterContent;
 import dp.com.nabbtabase.servise.repository.EndPoints;
 import dp.com.nabbtabase.view.activity.ContainerActivity;
@@ -59,7 +57,7 @@ public class CustomUtils {
     private static String selectedTime;
     private static String selectedDate;
     private Dialog dialog = null;
-    private AlertDialog registerDialog = null;
+    //private AlertDialog registerDialog = null;
     private SharedPrefrenceUtils pref;
 
     private CustomUtils() {
@@ -206,7 +204,7 @@ public class CustomUtils {
     public void openGallery(Activity activity, boolean checker) {
         Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        if (checker == true) {
+        if (checker) {
             pickPhoto.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
 //**These following line is the important one!
             pickPhoto.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
@@ -245,19 +243,19 @@ public class CustomUtils {
         List<String> imageUrls = new ArrayList<>();
         for (int i = 0; i < selectedImageUri.size(); i++) {
             final UploadTask photoRef = storageReference.child(selectedImageUri.get(i).getLastPathSegment()).putFile(selectedImageUri.get(i));
-            System.out.println("uri is : " + selectedImageUri.size());
+            //System.out.println("uri is : " + selectedImageUri.size());
             photoRef.addOnSuccessListener(taskSnapshot -> {
-                System.out.println("ERROR UPLOADING : Success");
+                //System.out.println("ERROR UPLOADING : Success");
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(uri -> {
                     imageUrls.add(uri.toString());
-                    System.out.println("image url  :" + uri);
+                    //System.out.println("image url  :" + uri);
                     if (imageUrls.size() == selectedImageUri.size()) {
                         callback.taskCompleted(imageUrls);
                     }
                 });
             });
             photoRef.addOnFailureListener(e -> {
-                System.out.println("ERROR UPLOADING :" + e.getMessage());
+                //System.out.println("ERROR UPLOADING :" + e.getMessage());
             });
         }
     }
@@ -269,7 +267,7 @@ public class CustomUtils {
         saveAppLanguage(context,appLang);
     }
 
-    public void showTimePickerDialog(Context context, UpdateTimeListener listener) {
+    public static void showTimePickerDialog(Context context, UpdateTimeListener listener) {
         Calendar mCuurTime = Calendar.getInstance();
         int hour = mCuurTime.get(Calendar.HOUR_OF_DAY);
         int minute = mCuurTime.get(Calendar.MINUTE);
@@ -283,14 +281,14 @@ public class CustomUtils {
         mTimePicker.show();
     }
 
-    public void showDatePickerDialog(Context context, UpdateDateListener listener) {
+    public static void showDatePickerDialog(Context context, UpdateDateListener listener) {
         Calendar mCuurDate = Calendar.getInstance();
         int year = mCuurDate.get(Calendar.YEAR);
         int month = mCuurDate.get(Calendar.MONTH) + 1;
-        int day = mCuurDate.get(Calendar.DAY_OF_WEEK);
+        //int day = mCuurDate.get(Calendar.DAY_OF_WEEK);
         DatePickerDialog mDatePicker;
         mDatePicker = new DatePickerDialog(context, (view, year1, month1, dayOfMonth) -> {
-            selectedDate = String.valueOf(year1) + "-" + (month1 < 10 ? "0" + month1 : month1) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+            selectedDate =(year1) + "-" + (month1 < 10 ? "0" + month1 : month1) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
             System.out.println("Date on utils : " + selectedDate);
             listener.onDateSet(selectedDate);
         }, year, month, mCuurDate.get(Calendar.DATE));
@@ -330,9 +328,20 @@ public class CustomUtils {
         ((Activity)context).finishAffinity();
     }
 
-    public String getFirebaseToken(Context context){
-        final FirebaseMessageService mfs=new FirebaseMessageService();
-        FirebaseApp.initializeApp(context);
-        return FirebaseMessageService.TOKEN;
+    public void showRegisterAlertDialog(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog;
+        builder.setMessage(R.string.you_must_be_Register)
+                .setTitle(R.string.alert);
+        builder.setPositiveButton(R.string.login, (dialog, which) -> {
+           Intent intent=new Intent(context,LoginActivity.class);
+           context.startActivity(intent);
+            ((Activity)context).finishAffinity();
+        });
+        builder.setNegativeButton(R.string.not_now, (dialog, which) -> {
+            cancelDialog();
+        });
+        alertDialog= builder.create();
+        alertDialog.show();
     }
 }

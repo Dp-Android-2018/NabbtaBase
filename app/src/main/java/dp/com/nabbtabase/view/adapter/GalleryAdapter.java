@@ -1,10 +1,9 @@
 package dp.com.nabbtabase.view.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import dp.com.nabbtabase.view.callback.DeleteImageIterface;
 import dp.com.nabbtabase.view.viewholder.ImageItemViewHolder;
 
 public class GalleryAdapter extends RecyclerView.Adapter<ImageItemViewHolder> {
-    List<String>imageUrls;
+    List<String> imageUrls;
     DeleteImageIterface deleteImageIterface;
 
     public GalleryAdapter(DeleteImageIterface deleteImageIterface) {
@@ -29,8 +28,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<ImageItemViewHolder> {
     @NonNull
     @Override
     public ImageItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        RecyclerItemImageViewBinding binding=DataBindingUtil.inflate(
-                LayoutInflater.from(viewGroup.getContext()),R.layout.recycler_item_image_view,viewGroup,false);
+        RecyclerItemImageViewBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(viewGroup.getContext()), R.layout.recycler_item_image_view, viewGroup, false);
 
         return new ImageItemViewHolder(binding);
     }

@@ -1,23 +1,17 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.databinding.ActivityCardBinding;
@@ -31,9 +25,8 @@ import dp.com.nabbtabase.view.callback.DeleteCartItemListiner;
 import dp.com.nabbtabase.view.callback.UpdateCartItemInterFace;
 import dp.com.nabbtabase.viewmodel.ActionBarViewModel;
 import dp.com.nabbtabase.viewmodel.CartViewModel;
-import io.reactivex.schedulers.Schedulers;
 
-public class CartActivity extends BaseActivity implements DeleteCartItemListiner,UpdateCartItemInterFace {
+public class CartActivity extends BaseActivity implements DeleteCartItemListiner, UpdateCartItemInterFace {
     CartViewModel viewModel;
     ActivityCardBinding binding;
     CartAdapter adapter;
@@ -47,14 +40,14 @@ public class CartActivity extends BaseActivity implements DeleteCartItemListiner
         CustomUtils.getInstance().showProgressDialog(this);
         viewModel = ViewModelProviders.of(this).get(CartViewModel.class);
         observViewModel(viewModel);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_card);
+        binding = DataBindingUtil.setContentView(CartActivity.this, R.layout.activity_card);
         MyApp.setBinding(binding);
         adapter = new CartAdapter();
         binding.rvCartProducts.setAdapter(adapter);
-        binding.rvCartProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rvCartProducts.setLayoutManager(new LinearLayoutManager(this));
         binding.setViewModel(viewModel);
-        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
-        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+        binding.actionBar.setViewModel(new ActionBarViewModel(this, false, false, true));
+        if (CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
             binding.actionBar.ivBack.setRotation(180);
         }
         DeleteItemFromCartRepository.getInstance().setDeleteCartItemListiner(this);
@@ -64,7 +57,7 @@ public class CartActivity extends BaseActivity implements DeleteCartItemListiner
     public void observViewModel(CartViewModel viewModel) {
         viewModel.getCartProducts().observe(this, cartProducts -> {
             if (cartProducts != null) {
-                System.out.println("Card Products Size :"+cartProducts.size());
+                System.out.println("Card Products Size :" + cartProducts.size());
                 this.cartProducts.clear();
                 this.cartProducts.addAll(cartProducts);
                 MyApp.setNotificationCounter(cartProducts.size());
@@ -85,23 +78,23 @@ public class CartActivity extends BaseActivity implements DeleteCartItemListiner
         adapter.notifyDataSetChanged();
         binding.rvCartProducts.setAdapter(adapter);
         binding.rvCartProducts.invalidate();
-        setView(cartProducts.size()>0?false:true);
+        setView(cartProducts.size() > 0 ? false : true);
 
     }
 
     @Override
-    public void itemDeleted(LiveData<Integer> code, int cartId,double total) {
+    public void itemDeleted(LiveData<Integer> code, int cartId, double total) {
         System.out.println("listener called : " + code);
         code.observe(this, integer -> {
             if (integer == ConfigurationFile.Constants.SUCCESS_CODE) {
                 Snackbar.make(binding.clRoot, R.string.cart_item_deleted_message, Snackbar.LENGTH_LONG).show();
                 MyApp.setTotal(MyApp.getTotal() - total);
                 System.out.println("Card Id :" + cartId);
-                MyApp.setNotificationCounter(MyApp.getNotificationCounter()-1);
+                MyApp.setNotificationCounter(MyApp.getNotificationCounter() - 1);
                 binding.actionBar.getViewModel().notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
 //
                 for (CartProduct cartProduct : cartProducts) {
-                    System.out.println("Card Id "+cartProduct.getId());
+                    System.out.println("Card Id " + cartProduct.getId());
                     if (cartProduct.getProduct().getId() == cartId) {
                         System.out.println("Card Id Data deleted:" + cartProduct.getId());
                         cartProducts.remove(cartProduct);
@@ -114,12 +107,12 @@ public class CartActivity extends BaseActivity implements DeleteCartItemListiner
     }
 
 
-    public void setView(boolean emptyData){
-        if(emptyData){
+    public void setView(boolean emptyData) {
+        if (emptyData) {
             binding.rvCartProducts.setVisibility(View.GONE);
             binding.ivNoData.setVisibility(View.VISIBLE);
             binding.tvEmtyData.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             binding.rvCartProducts.setVisibility(View.VISIBLE);
             binding.ivNoData.setVisibility(View.GONE);
             binding.tvEmtyData.setVisibility(View.GONE);
@@ -129,19 +122,19 @@ public class CartActivity extends BaseActivity implements DeleteCartItemListiner
     @Override
     public void itemUpdated(int code) {
         CustomUtils.getInstance().cancelDialog();
-        if(code==ConfigurationFile.Constants.SUCCESS_CODE){
-            Snackbar.make(binding.clRoot,R.string.item_updated_successfully,Snackbar.LENGTH_LONG).show();
-        }else {
-            Snackbar.make(binding.clRoot,R.string.fail_to_update_cart,Snackbar.LENGTH_LONG).show();
+        if (code == ConfigurationFile.Constants.SUCCESS_CODE) {
+            Snackbar.make(binding.clRoot, R.string.item_updated_successfully, Snackbar.LENGTH_LONG).show();
+        } else {
+            Snackbar.make(binding.clRoot, R.string.fail_to_update_cart, Snackbar.LENGTH_LONG).show();
         }
     }
 
-    public void proceed(View view){
-        if(cartProducts.size()>0) {
+    public void proceed(View view) {
+        if (cartProducts.size() > 0) {
             Intent intent = new Intent(this, DeliveryOptionsActivity.class);
             startActivity(intent);
-        }else {
-            Snackbar.make(binding.clRoot,R.string.cart_empty,Snackbar.LENGTH_LONG).show();
+        } else {
+            Snackbar.make(binding.clRoot, R.string.cart_empty, Snackbar.LENGTH_LONG).show();
         }
     }
 }

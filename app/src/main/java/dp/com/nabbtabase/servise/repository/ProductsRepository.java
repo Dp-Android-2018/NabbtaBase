@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.servise.repository;
 
 import android.app.Application;
-import android.arch.lifecycle.MutableLiveData;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+import androidx.lifecycle.MutableLiveData;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 
 import dp.com.nabbtabase.servise.model.pojo.Product;
 import dp.com.nabbtabase.servise.model.response.Products;

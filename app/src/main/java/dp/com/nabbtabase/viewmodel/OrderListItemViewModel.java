@@ -13,9 +13,9 @@ public class OrderListItemViewModel {
     private OrderItem orderItem;
     Context context;
 
-    public OrderListItemViewModel(OrderItem orderItem,Context context) {
+    public OrderListItemViewModel(OrderItem orderItem, Context context) {
         this.orderItem = orderItem;
-        this.context=context;
+        this.context = context;
     }
 
     public void setOrderItem(OrderItem orderItem) {
@@ -56,9 +56,9 @@ public class OrderListItemViewModel {
         }
     }
 
-    public void onItemClick(View view){
-        Intent intent=new Intent(context,OrderDetailedActivity.class);
-        intent.putExtra(ConfigurationFile.IntentConstants.ORDER_ID,orderItem.getId());
+    public void onItemClick(View view) {
+        Intent intent = new Intent(context, OrderDetailedActivity.class);
+        intent.putExtra(ConfigurationFile.IntentConstants.ORDER_ID, orderItem.getId());
         context.startActivity(intent);
     }
 

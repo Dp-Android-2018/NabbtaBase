@@ -1,7 +1,7 @@
 package dp.com.nabbtabase.servise.repository;
 
 import android.app.Application;
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 import dp.com.nabbtabase.servise.model.request.CheckCodeRequest;
 import dp.com.nabbtabase.utils.ConfigurationFile;
 import dp.com.nabbtabase.utils.CustomUtils;

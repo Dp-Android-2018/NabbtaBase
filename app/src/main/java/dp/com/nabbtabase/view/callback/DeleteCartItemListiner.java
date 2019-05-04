@@ -1,6 +1,6 @@
 package dp.com.nabbtabase.view.callback;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 public interface DeleteCartItemListiner {
 

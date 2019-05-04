@@ -1,11 +1,10 @@
 package dp.com.nabbtabase.view.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -27,8 +26,8 @@ public class ServiceDetailedActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         serviceContent = (ServiceContent) getIntent().getParcelableExtra(ConfigurationFile.IntentConstants.SERVICE_DATA);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service_detail);
-        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,true,true));
-        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+        binding.actionBar.setViewModel(new ActionBarViewModel(this, false, true, true));
+        if (CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
             binding.actionBar.ivBack.setRotation(180);
         }
         setDataToView();
@@ -37,12 +36,12 @@ public class ServiceDetailedActivity extends BaseActivity {
     public void setDataToView() {
         binding.tvName.setText(serviceContent.getName());
         binding.tvDescription.setText(serviceContent.getDescription());
-        Picasso.with(this).load(serviceContent.getImageUrl()).into(binding.imageView25);
+        Picasso.get().load(serviceContent.getImageUrl()).into(binding.imageView25);
     }
 
     public void requestService(View view) {
-        if(CustomUtils.getInstance().getSaveUserObject(this)==null) {
-            Snackbar.make(binding.clRoot,getResources().getString(R.string.you_must_be_Register),Snackbar.LENGTH_LONG).show();
+        if (CustomUtils.getInstance().getSaveUserObject(this) == null) {
+            Snackbar.make(binding.clRoot, getResources().getString(R.string.you_must_be_Register), Snackbar.LENGTH_LONG).show();
             return;
         }
         Intent intent = new Intent(this, RequestServiceStep1Activity.class);

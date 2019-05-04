@@ -7,7 +7,7 @@
     <tab
         icon="@drawable/service_icon"
         id="@+id/service"
-        title="@string/services"/>
+        title="@string/services" />
     <tab
         icon="@drawable/home_icon"
         id="@+id/main_tap"

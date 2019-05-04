@@ -10,16 +10,16 @@
             type="dp.com.nabbtabase.viewmodel.ServiceListItemViewModel" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
         android:backgroundTint="@color/green_color_op80"
-        android:onClick="@{ViewModel::onItemClick}">
+        android:onClick="@{ViewModel::onItemClick}"
+        app:cardCornerRadius="10dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -27,15 +27,15 @@
                 android:id="@+id/imageView24"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:scaleType="centerCrop"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:imageUrl="@{ViewModel.imageUrl}"
-                app:riv_corner_radius="8dip"/>
+                app:riv_corner_radius="8dip"
+                bind:imageUrl="@{ViewModel.imageUrl}" />
 
             <TextView
                 android:id="@+id/textView53"
@@ -52,6 +52,6 @@
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView24" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.ViewModelFactory;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import dp.com.nabbtabase.servise.model.request.EditProfileRequest;
 import dp.com.nabbtabase.viewmodel.ProfileViewModel;
@@ -20,6 +20,6 @@ public class ProfileViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return(T) new ProfileViewModel(mApplication,mRequest);
+        return (T) new ProfileViewModel(mApplication, mRequest);
     }
 }

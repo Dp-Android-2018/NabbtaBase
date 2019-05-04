@@ -1,11 +1,11 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityResetPasswordBinding;
@@ -24,36 +24,32 @@ public class ResetPasswordActivity extends BaseActivity implements CallBackInter
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        resetPasswordRequest=(ResetPasswordRequest) getIntent().getSerializableExtra(ConfigurationFile.IntentConstants.RESET_PASSWORD_DATA);
-        viewModel=ViewModelProviders.of(this).get(ResetPasswordViewModel.class);
+        resetPasswordRequest = (ResetPasswordRequest) getIntent().getSerializableExtra(ConfigurationFile.IntentConstants.RESET_PASSWORD_DATA);
+        viewModel = ViewModelProviders.of(this).get(ResetPasswordViewModel.class);
         viewModel.setResetPasswordRequest(resetPasswordRequest);
         viewModel.setCallBackInterface(this);
-        binding=DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
         binding.setViewModel(viewModel);
         ResetPasswordRepository.getInstance().setCallBackInterface(this);
     }
 
     @Override
     public void updateUi(int code) {
-        switch (code){
-            case ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE:
-            {
-                Snackbar.make(binding.clRoot,R.string.fill_all_data_error_message,Snackbar.LENGTH_LONG).show();
+        switch (code) {
+            case ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE: {
+                Snackbar.make(binding.clRoot, R.string.fill_all_data_error_message, Snackbar.LENGTH_LONG).show();
                 break;
             }
-            case ConfigurationFile.Constants.PASSWORD_LENGTH_ERROR:
-            {
-                Snackbar.make(binding.clRoot,R.string.password_lengrh_error_message,Snackbar.LENGTH_LONG).show();
+            case ConfigurationFile.Constants.PASSWORD_LENGTH_ERROR: {
+                Snackbar.make(binding.clRoot, R.string.password_lengrh_error_message, Snackbar.LENGTH_LONG).show();
                 break;
             }
-            case ConfigurationFile.Constants.PASSWORD_CONFIRMATION_ERROR:
-            {
-                Snackbar.make(binding.clRoot,R.string.password_confirmation_message,Snackbar.LENGTH_LONG).show();
+            case ConfigurationFile.Constants.PASSWORD_CONFIRMATION_ERROR: {
+                Snackbar.make(binding.clRoot, R.string.password_confirmation_message, Snackbar.LENGTH_LONG).show();
                 break;
             }
-            case ConfigurationFile.Constants.SUCCESS_CODE:
-            {
-                Intent intent=new Intent(this,LoginActivity.class);
+            case ConfigurationFile.Constants.SUCCESS_CODE: {
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finishAffinity();
                 break;

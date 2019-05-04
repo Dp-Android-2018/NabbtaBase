@@ -1,9 +1,10 @@
 package dp.com.nabbtabase.servise.repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -41,6 +42,9 @@ public class BestSellerRepository {
                     Log.i("bestseller code", "" + productsResponse.code());
                     if (productsResponse.code() == ConfigurationFile.Constants.SUCCESS_CODE) {
                         bestSellerProducts.setValue(productsResponse.body().getProducts());
+                    }
+                    else {
+                        Toast.makeText(application.getBaseContext(),"server error",Toast.LENGTH_LONG).show();
                     }
 
                 }, throwable -> {

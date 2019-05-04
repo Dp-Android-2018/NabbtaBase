@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.view.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,20 +18,19 @@ import dp.com.nabbtabase.view.viewholder.ProductViewHolder;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
-    List<?extends Product>products;
+    List<? extends Product> products;
     private boolean grid;
 
-        public ProductsAdapter(boolean grid) {
+    public ProductsAdapter(boolean grid) {
         this.grid = grid;
     }
 
     public void setProducts(List<? extends Product> products) {
-        if(this.products==null)
-        {
+        if (this.products == null) {
             this.products = products;
-            notifyItemRangeInserted(0,products.size());
-        }else {
-            DiffUtil.DiffResult result=DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            notifyItemRangeInserted(0, products.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
                     return ProductsAdapter.this.products.size();
@@ -44,21 +43,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return ProductsAdapter.this.products.get(oldItemPosition).getId()==
+                    return ProductsAdapter.this.products.get(oldItemPosition).getId() ==
                             products.get(newItemPosition).getId();
                 }
 
                 @Override
-                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition)
-                {
-                    Product newProduct=products.get(newItemPosition);
-                    Product oldProduct=products.get(oldItemPosition);
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                    Product newProduct = products.get(newItemPosition);
+                    Product oldProduct = products.get(oldItemPosition);
 
-                    return newProduct.getId()==oldProduct.getId()
-                            &&Objects.equals(newProduct.getName(),oldProduct.getName());
+                    return newProduct.getId() == oldProduct.getId()
+                            && Objects.equals(newProduct.getName(), oldProduct.getName());
                 }
             });
-            this.products=products;
+            this.products = products;
             result.dispatchUpdatesTo(this);
         }
     }
@@ -72,13 +70,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 
 
-        if(grid) {
+        if (grid) {
             ProductItemGridLayoutBinding binding;
             binding = DataBindingUtil.inflate
                     (LayoutInflater.from(parent.getContext()), R.layout.product_item_grid_layout, parent, false);
             return new ProductViewHolder(binding);
-        }else {
-            ProductItemLinearLayoutBinding binding ;
+        } else {
+            ProductItemLinearLayoutBinding binding;
             binding = DataBindingUtil.inflate
                     (LayoutInflater.from(parent.getContext()), R.layout.product_item_linear_layout, parent, false);
             return new ProductViewHolder(binding);
@@ -88,16 +86,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        if(grid) {
+        if (grid) {
             holder.bindProduct(products.get(position));
-        }else {
+        } else {
             holder.bindProductLinear(products.get(position));
         }
     }
 
     @Override
     public int getItemCount() {
-        return products==null?0:products.size();
+        return products == null ? 0 : products.size();
     }
 
     @Override

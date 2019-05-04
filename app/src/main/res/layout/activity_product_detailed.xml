@@ -10,7 +10,7 @@
             type="dp.com.nabbtabase.viewmodel.ProductDetailedViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/action_bar">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -47,7 +47,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <android.support.v4.view.ViewPager
+                    <androidx.viewpager.widget.ViewPager
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -70,9 +70,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:gravity="center"
                     android:hint="Product name"
                     android:maxLines="1"
-                    android:gravity="center"
                     android:text="@{ViewModel.product.name}"
                     android:textColor="@color/text_color_green"
                     android:textSize="21sp"
@@ -86,8 +86,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:hint="product sub category"
                     android:gravity="center"
+                    android:hint="product sub category"
                     android:text="@{ViewModel.product.category.name}"
                     android:textColor="@color/text_color_green"
                     android:textSize="15sp"
@@ -100,8 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:hint="sale price"
                     android:gravity="center"
+                    android:hint="sale price"
                     android:text="@{ViewModel.salePrice}"
                     android:textColor="@color/text_color_green"
                     android:textSize="21sp"
@@ -128,12 +128,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginEnd="19dp"
                     android:hint="description"
                     android:maxLines="8"
                     android:paddingStart="2dp"
                     android:paddingEnd="2dp"
-                    android:layout_marginTop="7dp"
                     android:scrollbars="vertical"
                     android:text="@{ViewModel.product.description}"
                     android:textColor="@color/text_color_green"
@@ -189,12 +189,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/review" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_comments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:maxHeight="150dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recyc_top"
                     tools:listitem="@layout/comment_list_item" />
@@ -232,12 +232,12 @@
                     android:id="@+id/et_comment"
                     android:layout_width="310dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="12dp"
                     android:background="@drawable/image_shape"
                     android:backgroundTint="@android:color/white"
-                    android:text="@={ViewModel.comment}"
-                    android:paddingEnd="5dp"
                     android:paddingStart="5dp"
-                    android:layout_marginStart="12dp"
+                    android:paddingEnd="5dp"
+                    android:text="@={ViewModel.comment}"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView17"
                     app:layout_constraintStart_toEndOf="@+id/imageView17"
                     app:layout_constraintTop_toTopOf="@+id/imageView17"
@@ -276,51 +276,51 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_comment" />
 
                 <!--<View-->
-                    <!--android:id="@+id/view8"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="85dp"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:background="@color/green_color_op50"-->
-                    <!--app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--app:layout_constraintStart_toStartOf="parent"-->
-                    <!--app:layout_constraintTop_toBottomOf="@id/view7" />-->
+                <!--android:id="@+id/view8"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="85dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:background="@color/green_color_op50"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/view7" />-->
 
                 <!--<TextView-->
-                    <!--android:id="@+id/textView24"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginStart="22dp"-->
-                    <!--android:layout_marginTop="11dp"-->
-                    <!--android:text="ship to Riyadh (change city)"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="15sp"-->
-                    <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
-                    <!--app:layout_constraintTop_toTopOf="@+id/view8" />-->
+                <!--android:id="@+id/textView24"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="22dp"-->
+                <!--android:layout_marginTop="11dp"-->
+                <!--android:text="ship to Riyadh (change city)"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="15sp"-->
+                <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/view8" />-->
 
                 <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginStart="22dp"-->
-                    <!--android:text="Delivered by Wednesday, Oct24"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="15sp"-->
-                    <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
-                    <!--app:layout_constraintTop_toBottomOf="@+id/textView24" />-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="22dp"-->
+                <!--android:text="Delivered by Wednesday, Oct24"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="15sp"-->
+                <!--app:layout_constraintStart_toStartOf="@+id/view8"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/textView24" />-->
 
                 <Button
                     android:id="@+id/view8"
                     android:layout_width="220dp"
                     android:layout_height="24dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/button_shape"
                     android:onClick="addToCart"
                     android:text="@{ViewModel.inCart?@string/delete_from_cart:@string/add_to_cart}"
                     android:textColor="@android:color/white"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view7"/>
+                    app:layout_constraintTop_toBottomOf="@id/view7" />
 
                 <TextView
                     android:id="@+id/bought"
@@ -335,7 +335,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view8" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_related_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -347,8 +347,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bought"
                     tools:listitem="@layout/product_item_grid_layout" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,20 +14,19 @@ public class ListItemServiceHistoryViewModel {
         this.serviceHistoryItem = serviceHistoryItem;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return serviceHistoryItem.getName();
     }
 
-    public String getCode(){
+    public String getCode() {
         return serviceHistoryItem.getCode();
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return serviceHistoryItem.getStatus();
     }
 
-    public String getDate(){
+    public String getDate() {
         return serviceHistoryItem.getDate();
     }
 }

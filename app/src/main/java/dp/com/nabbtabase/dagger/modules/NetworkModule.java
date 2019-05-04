@@ -51,6 +51,7 @@ public class NetworkModule {
                 return chain.proceed(request);
             }
         });
+
         OkHttpClient client = okHttpClient.build();
         return client;
     }

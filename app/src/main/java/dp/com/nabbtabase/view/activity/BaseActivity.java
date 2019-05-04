@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -32,7 +32,7 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        if (CustomUtils.getInstance().getAppLanguage(newBase)!=null&&
+        if (CustomUtils.getInstance().getAppLanguage(newBase) != null &&
                 CustomUtils.getInstance().getAppLanguage(newBase).equals("ar"))
             super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
         else super.attachBaseContext(newBase);
@@ -44,9 +44,9 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
         MyApp.getInstance().setConnectionListener(this);
     }
 
-    public void checkConnection(){
-        if(!NetWorkConnection.isConnectingToInternet(this)){
-            Intent intent=new Intent(this,NoInternetActivity.class);
+    public void checkConnection() {
+        if (!NetWorkConnection.isConnectingToInternet(this)) {
+            Intent intent = new Intent(this, NoInternetActivity.class);
             startActivity(intent);
             finishAffinity();
         }
@@ -55,12 +55,12 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
 
-        if(NetWorkConnection.isConnectingToInternet(this)){
-            Intent intent=new Intent(this,MainActivity.class);
+        if (NetWorkConnection.isConnectingToInternet(this)) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finishAffinity();
-        }else {
-            Intent intent=new Intent(this,NoInternetActivity.class);
+        } else {
+            Intent intent = new Intent(this, NoInternetActivity.class);
             startActivity(intent);
             finishAffinity();
         }

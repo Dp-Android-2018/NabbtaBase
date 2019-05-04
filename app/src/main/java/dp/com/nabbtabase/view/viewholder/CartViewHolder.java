@@ -1,7 +1,7 @@
 package dp.com.nabbtabase.view.viewholder;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -22,7 +22,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
     public void bindCartItem(CartProduct cartProduct) {
         if (binding.getViewModel() == null) {
-            cartListItemViewModel=new CartListItemViewModel(cartProduct, itemView.getContext());
+            cartListItemViewModel = new CartListItemViewModel(cartProduct, itemView.getContext());
             binding.setViewModel(cartListItemViewModel);
         } else {
             binding.getViewModel().setCartProduct(cartProduct);
@@ -32,7 +32,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         RxTextView.textChanges(binding.etQuentanaty)
                 .debounce(3000, TimeUnit.MILLISECONDS)
                 .subscribe(charSequence -> {
-                    System.out.println("in text value : "+charSequence);
+                    System.out.println("in text value : " + charSequence);
                     //cartListItemViewModel.updateQuantanty(charSequence);
                 });
     }

@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -17,10 +17,11 @@ public class ProductsViewModel extends AndroidViewModel {
     private LiveData<Response<Products>> products;
     private final LiveData<List<Category>> categories;
     Application application;
+
     public ProductsViewModel(@NonNull Application application) {
         super(application);
         this.application = application;
-        getProducts( null, "0");
+        getProducts(null, "0");
         categories = CategoriesRepository.getInstance().getCategories(application);
     }
 

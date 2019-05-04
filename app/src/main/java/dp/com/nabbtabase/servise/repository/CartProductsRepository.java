@@ -1,13 +1,11 @@
 package dp.com.nabbtabase.servise.repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.databinding.ObservableInt;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.databinding.ObservableInt;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import dp.com.nabbtabase.servise.model.pojo.CartProduct;
 import dp.com.nabbtabase.servise.model.request.UpdateCartItemRequest;

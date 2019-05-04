@@ -1,14 +1,14 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.View;
 
 import dp.com.nabbtabase.R;
@@ -42,9 +42,9 @@ public class ContainerActivity extends BaseActivity {
         binding.bottomBar.setDefaultTab(R.id.main_tap);
         binding.actionBar.setViewModel(actionBarViewModel);
         //cartViewModel.getCartProducts().observe(this, cartProducts -> {
-            //MyApp.setNotificationCounter(cartProducts.size());
-            System.out.println("items in cart container :" + MyApp.getNotificationCounter());
-            actionBarViewModel.notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
+        //MyApp.setNotificationCounter(cartProducts.size());
+        System.out.println("items in cart container :" + MyApp.getNotificationCounter());
+        actionBarViewModel.notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
         //});
         bottombar();
     }
@@ -108,8 +108,8 @@ public class ContainerActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-            System.out.println("items in cart container :" + MyApp.getNotificationCounter());
-            actionBarViewModel.notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
+        System.out.println("items in cart container :" + MyApp.getNotificationCounter());
+        actionBarViewModel.notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
         //binding.bottomBar.setDefaultTab(R.id.main_tap);
     }
 
@@ -118,9 +118,9 @@ public class ContainerActivity extends BaseActivity {
         super.onStart();
         System.out.println("items in cart container :" + MyApp.getNotificationCounter());
         actionBarViewModel.notificationCounter.set(String.valueOf(MyApp.getNotificationCounter()));
-        if(MyApp.getNotificationCounter()<=0){
+        if (MyApp.getNotificationCounter() <= 0) {
             actionBarViewModel.cartVisibailty.set(View.GONE);
-        }else {
+        } else {
             actionBarViewModel.cartVisibailty.set(View.VISIBLE);
         }
 

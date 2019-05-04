@@ -1,10 +1,10 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import dp.com.nabbtabase.R;
@@ -27,18 +27,18 @@ public class OrderHistoryActivity extends BaseActivity {
         CustomUtils.getInstance().showProgressDialog(this);
         viewModel = ViewModelProviders.of(this).get(OrderHistoryViewModel.class);
         adapter = new OrderHistoryAdapter();
-        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
-        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+        binding.actionBar.setViewModel(new ActionBarViewModel(this, false, false, true));
+        if (CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
             binding.actionBar.ivBack.setRotation(180);
         }
-        binding.rvOrders.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        binding.rvOrders.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvOrders.setAdapter(adapter);
         viewModel.getOrderHistory().observe(this, orderItems -> {
             if (orderItems != null) {
-                if(orderItems.size()<=0){
+                if (orderItems.size() <= 0) {
                     binding.rvOrders.setVisibility(View.GONE);
                     binding.tvNoOrders.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     binding.rvOrders.setVisibility(View.VISIBLE);
                     binding.tvNoOrders.setVisibility(View.GONE);
                 }

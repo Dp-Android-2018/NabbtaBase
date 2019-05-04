@@ -1,8 +1,8 @@
 package dp.com.nabbtabase.view.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +21,19 @@ public class CategoriesAdapter extends RecyclerView.Adapter<PopupRecyclerViewHol
     private List<Category> categories;
     private CloseCountryDialogInterface closeDialog;
     private int select;
-    private List<SubCategory>subCategories=new ArrayList<>();
+    private List<SubCategory> subCategories = new ArrayList<>();
+
     public CategoriesAdapter(CloseCountryDialogInterface closeDialog) {
         this.closeDialog = closeDialog;
-        select=0;
+        select = 0;
     }
 
     public void setCategories(List<Category> categories) {
-        if(this.categories==null){
-            this.categories=categories;
-            notifyItemRangeInserted(0,categories.size());
-        }else {
-            DiffUtil.DiffResult result=DiffUtil.calculateDiff(new DiffUtil.Callback() {
+        if (this.categories == null) {
+            this.categories = categories;
+            notifyItemRangeInserted(0, categories.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
                     return CategoriesAdapter.this.categories.size();
@@ -45,42 +46,42 @@ public class CategoriesAdapter extends RecyclerView.Adapter<PopupRecyclerViewHol
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return CategoriesAdapter.this.categories.get(oldItemPosition).getId()==
+                    return CategoriesAdapter.this.categories.get(oldItemPosition).getId() ==
                             categories.get(newItemPosition).getId();
                 }
-                @Override
-                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition)
-                {
-                    Category newCategory=categories.get(newItemPosition);
-                    Category oldCategory=categories.get(oldItemPosition);
 
-                    return newCategory.getId()==oldCategory.getId()
-                            &&Objects.equals(newCategory.getName(),oldCategory.getName());
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                    Category newCategory = categories.get(newItemPosition);
+                    Category oldCategory = categories.get(oldItemPosition);
+
+                    return newCategory.getId() == oldCategory.getId()
+                            && Objects.equals(newCategory.getName(), oldCategory.getName());
                 }
             });
-            this.categories=categories;
+            this.categories = categories;
             result.dispatchUpdatesTo(this);
         }
 
-        select=1;
+        select = 1;
     }
 
     @NonNull
     @Override
     public PopupRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
-        View v=inflater.inflate(R.layout.popup_recycler_list_item,viewGroup,false);
-        PopupRecyclerViewHolder viewHolder=new PopupRecyclerViewHolder(v);
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        View v = inflater.inflate(R.layout.popup_recycler_list_item, viewGroup, false);
+        PopupRecyclerViewHolder viewHolder = new PopupRecyclerViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull PopupRecyclerViewHolder popupRecyclerViewHolder, int i) {
         String name;
-        if(select==1){
-            name=categories.get(i).getName();
-        }else {
-            name=subCategories.get(i).getName();
+        if (select == 1) {
+            name = categories.get(i).getName();
+        } else {
+            name = subCategories.get(i).getName();
         }
 
         popupRecyclerViewHolder.textView.setText(name);
@@ -91,12 +92,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<PopupRecyclerViewHol
 
     @Override
     public int getItemCount() {
-        if(select==1){
+        if (select == 1) {
             return categories.size();
-        }else {
+        } else {
             return subCategories.size();
         }
     }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -108,7 +110,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<PopupRecyclerViewHol
     }
 
     public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories=(subCategories);
-        select=2;
+        this.subCategories = (subCategories);
+        select = 2;
     }
 }

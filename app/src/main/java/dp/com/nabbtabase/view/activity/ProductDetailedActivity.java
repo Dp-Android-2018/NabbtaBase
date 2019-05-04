@@ -1,12 +1,12 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import dp.com.nabbtabase.R;
@@ -96,6 +96,7 @@ public class ProductDetailedActivity extends BaseActivity implements CallBackInt
             }
             case ConfigurationFile.Constants.SUSBENDED: {
                 showSnackBar(getString(R.string.active_account_message));
+                break;
             }
             case ConfigurationFile.Constants.ALREADY_ACTIVATED: {
                 showSnackBar(getString(R.string.comment_before_message));
@@ -163,7 +164,8 @@ public class ProductDetailedActivity extends BaseActivity implements CallBackInt
                     }
                 });
             } else {
-                showSnackBar(getString(R.string.you_must_be_Register));
+                CustomUtils.getInstance().showRegisterAlertDialog(this);
+                //showSnackBar(getString(R.string.you_must_be_Register));
             }
         }
         CustomUtils.getInstance().cancelDialog();

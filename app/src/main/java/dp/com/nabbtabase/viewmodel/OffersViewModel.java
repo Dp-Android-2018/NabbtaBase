@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class OffersViewModel extends AndroidViewModel {
 
     public OffersViewModel(@NonNull Application application) {
         super(application);
-        offers=OfferRepository.getInstance().getOffers(application);
+        offers = OfferRepository.getInstance().getOffers(application);
     }
 
 

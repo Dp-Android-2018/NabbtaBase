@@ -1,6 +1,6 @@
 package dp.com.nabbtabase.view.viewholder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import dp.com.nabbtabase.databinding.ListItemServiceHistoryBinding;
 import dp.com.nabbtabase.servise.model.pojo.ServiceHistoryItem;

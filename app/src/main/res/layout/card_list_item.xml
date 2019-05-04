@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
@@ -11,7 +10,7 @@
             type="dp.com.nabbtabase.viewmodel.CartListItemViewModel" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="155dp"
         android:layout_gravity="center"
@@ -19,7 +18,7 @@
         android:backgroundTint="@color/green_color_op80"
         app:cardCornerRadius="10dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -30,11 +29,12 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:scaleType="centerCrop"
-                app:riv_corner_radius="8dip"
-                app:riv_mutate_background="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:imageUrl="@{ViewModel.imageUrl}"/>
+                app:riv_corner_radius="8dip"
+                app:riv_mutate_background="true"
+                bind:imageUrl="@{ViewModel.imageUrl}" />
+
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
@@ -50,10 +50,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
                 android:text="@{ViewModel.category}"
                 android:textColor="@android:color/white"
                 android:textSize="9sp"
-                android:paddingBottom="5dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView28"
                 app:layout_constraintHorizontal_bias="0.366"
                 app:layout_constraintStart_toStartOf="@+id/textView28"
@@ -201,11 +201,11 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:inputType="none"
-                android:focusable="false"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/quentanty_shape"
+                android:focusable="false"
                 android:gravity="center"
+                android:inputType="none"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:text="@{ViewModel.quantity}"
@@ -244,17 +244,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintVertical_weight="1"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
+                android:onClick="@{ViewModel::delete}"
                 android:padding="3dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/close"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintTop_toTopOf="parent"
-                android:onClick="@{ViewModel::delete}"/>
+                app:layout_constraintVertical_weight="1" />
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="ViewModel"
-            type="dp.com.nabbtabase.viewmodel.RegisterStep1ViewModel"/>
+            type="dp.com.nabbtabase.viewmodel.RegisterStep1ViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:layout_editor_absoluteY="25dp"
-        android:foreground="@drawable/anim_background">
+        android:foreground="@drawable/anim_background"
+        tools:layout_editor_absoluteY="25dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -39,13 +40,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/iv_login"
             android:layout_width="37dp"
             android:layout_height="match_parent"
+            android:elevation="3dp"
             android:scaleType="fitXY"
             android:src="@drawable/login"
-            android:elevation="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -135,8 +137,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:hint="@string/email_address"
-            android:maxLines="1"
             android:inputType="textEmailAddress"
+            android:maxLines="1"
             android:text="@={ViewModel.email}"
             android:textColor="@android:color/black"
             android:textCursorDrawable="@null"
@@ -244,5 +246,5 @@
             app:layout_constraintStart_toStartOf="@+id/view18"
             app:layout_constraintTop_toBottomOf="@id/view" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

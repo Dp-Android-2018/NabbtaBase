@@ -8,13 +8,12 @@
             type="dp.com.nabbtabase.viewmodel.ProductsViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cl_product_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:id="@+id/cl_product_root">
+        android:background="@android:color/white">
 
         <View
             android:id="@+id/view9"
@@ -35,8 +34,8 @@
             android:background="@drawable/category_shape"
             android:gravity="center"
             android:hint="@string/select_category"
-            android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/view9"
             app:layout_constraintStart_toStartOf="@+id/view9"
@@ -50,8 +49,8 @@
             android:background="@drawable/category_shape"
             android:gravity="center"
             android:hint="@string/select_subcategory"
-            android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/view9"
             app:layout_constraintStart_toStartOf="@+id/view9"
@@ -63,21 +62,22 @@
             android:layout_height="15dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="43dp"
+            android:onClick="recyclerViewSelector"
             android:src="@drawable/grid_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view9"
-            android:onClick="recyclerViewSelector"/>
+            app:layout_constraintTop_toBottomOf="@+id/view9" />
 
         <ImageView
             android:id="@+id/iv_linear"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginEnd="14dp"
+            android:onClick="recyclerViewSelector"
             android:src="@drawable/list_icon"
             app:layout_constraintBottom_toBottomOf="@+id/iv_grid"
             app:layout_constraintEnd_toStartOf="@+id/iv_grid"
-            app:layout_constraintTop_toTopOf="@+id/iv_grid"
-            android:onClick="recyclerViewSelector"/>
+            app:layout_constraintTop_toTopOf="@+id/iv_grid" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -86,9 +86,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_linear"/>
+            app:layout_constraintTop_toBottomOf="@+id/iv_linear" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_products"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -100,5 +100,5 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_linear" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

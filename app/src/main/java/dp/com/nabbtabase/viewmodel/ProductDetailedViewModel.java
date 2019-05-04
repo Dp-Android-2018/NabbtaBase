@@ -1,18 +1,17 @@
 package dp.com.nabbtabase.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.databinding.ObservableFloat;
-import android.support.annotation.NonNull;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableFloat;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import java.util.List;
 
-import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.servise.model.pojo.Comment;
 import dp.com.nabbtabase.servise.model.pojo.Product;
@@ -72,8 +71,8 @@ public class ProductDetailedViewModel extends AndroidViewModel {
 
         if (CustomUtils.getInstance().getSaveUserObject(application) != null) {
             token = "Bearer " + CustomUtils.getInstance().getSaveUserObject(application).getApiToken();
-        }else {
-            token=null;
+        } else {
+            token = null;
         }
     }
 
@@ -100,7 +99,8 @@ public class ProductDetailedViewModel extends AndroidViewModel {
         if (rate.get() <= 0 || ValidationUtils.isEmpty(comment.get())) {
             callBackInterface.updateUi(ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE);
         } else if (token == null) {
-            callBackInterface.errorMessage(context.getResources().getString(R.string.you_must_be_Register));
+            CustomUtils.getInstance().showRegisterAlertDialog(context);
+            //callBackInterface.errorMessage(context.getResources().getString(R.string.you_must_be_Register));
         } else {
             commentRequest.setComment(comment.get());
             commentRequest.setRate(rate.get());

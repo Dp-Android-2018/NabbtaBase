@@ -1,10 +1,9 @@
 package dp.com.nabbtabase.ViewModelFactory;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
-import android.telecom.Call;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import dp.com.nabbtabase.servise.model.request.ServiceRequest;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
@@ -25,6 +24,6 @@ public class ServiceRequestViewModelFactory implements ViewModelProvider.Factory
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T)new RequestServiceStep2ViewModel(mApplication,serviceRequest,callBackInterface);
+        return (T) new RequestServiceStep2ViewModel(mApplication, serviceRequest, callBackInterface);
     }
 }

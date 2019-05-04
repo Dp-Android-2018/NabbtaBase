@@ -4,17 +4,15 @@ package dp.com.nabbtabase.viewmodel;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +32,6 @@ import dp.com.nabbtabase.servise.model.request.RegisterRequest;
 import dp.com.nabbtabase.servise.repository.CountryRepository;
 import dp.com.nabbtabase.servise.repository.RegisterRepository;
 import dp.com.nabbtabase.utils.ConfigurationFile;
-import dp.com.nabbtabase.utils.CustomUtils;
 import dp.com.nabbtabase.utils.NetWorkConnection;
 import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.view.adapter.PopupRecyclerAdapter;
@@ -78,8 +75,8 @@ public class RegisterStep2ViewModel extends AndroidViewModel implements CloseCou
         cities = new ArrayList<>();
         countrySelected = false;
         adapter = new PopupRecyclerAdapter(this);
-        policy=new ObservableBoolean();
-        terms=new ObservableBoolean();
+        policy = new ObservableBoolean();
+        terms = new ObservableBoolean();
     }
 
     public void country(View view) {
@@ -140,19 +137,19 @@ public class RegisterStep2ViewModel extends AndroidViewModel implements CloseCou
                 ValidationUtils.isEmpty(phone.get()) ||
                 ValidationUtils.isEmpty(addressName.get())) {
             callBackInterface.updateUi(ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE);
-        } else if (!terms.get()||!policy.get()){
+        } else if (!terms.get() || !policy.get()) {
             callBackInterface.errorMessage(context.getString(R.string.agree_to_policy_conditions));
-        }else{
+        } else {
             registerRequest.setAddress(addressName.get());
             registerRequest.setPhone(phone.get());
             FirebaseToken.getInstance().getFirebaseToken().observeForever(s -> {
                 registerRequest.setDevice_token(s);
                 callBackInterface.updateUi(ConfigurationFile.Constants.SHOW_PROGRESS_DIALOG);
             });
-            }
+        }
     }
 
-    public void callSignUpRepository(){
+    public void callSignUpRepository() {
         RegisterRepository.getInstance().register(application, registerRequest);
     }
 

@@ -1,13 +1,10 @@
 package dp.com.nabbtabase.viewmodel;
 
 import android.content.Context;
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 import android.view.View;
 
-import com.jakewharton.rxbinding.widget.RxTextView;
-
 import java.text.DecimalFormat;
-import java.util.concurrent.TimeUnit;
 
 import dp.com.nabbtabase.application.MyApp;
 import dp.com.nabbtabase.databinding.CardListItemBinding;

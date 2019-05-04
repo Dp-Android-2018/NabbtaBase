@@ -1,16 +1,15 @@
 package dp.com.nabbtabase.view.activity;
 
 import android.app.Dialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,8 +52,8 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         observableViewModel(viewModel);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shipping_address);
         initVariables();
-        binding.actionBar.setViewModel(new ActionBarViewModel(this,false,false,true));
-        if(CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
+        binding.actionBar.setViewModel(new ActionBarViewModel(this, false, false, true));
+        if (CustomUtils.getInstance().getAppLanguage(this).equals("ar")) {
             binding.actionBar.ivBack.setRotation(180);
         }
     }
@@ -66,7 +65,7 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
         adapter = new PopupRecyclerAdapter(this);
         data = CustomUtils.getInstance().getSaveUserObject(this);
         address = data.getAddress();
-        System.out.println("address : "+address.toString());
+        System.out.println("address : " + address.toString());
         shippingAddressRequest.setCityId(address.getCity().getId());
         setDataToview();
     }
@@ -181,11 +180,11 @@ public class ShippingAddressActivity extends AppCompatActivity implements CloseC
             address.setAddress(binding.etAddress.getText().toString());
             System.out.println("done method :" + "data completed");
             viewModel.getCode(shippingAddressRequest).observe(this, integer -> {
-                System.out.println("Code update is : "+integer);
-                if(integer==ConfigurationFile.Constants.SUCCESS_CODE){
-                    Snackbar.make(binding.clShippingAddressRoot,R.string.shipping_address_update, Snackbar.LENGTH_LONG).show();
+                System.out.println("Code update is : " + integer);
+                if (integer == ConfigurationFile.Constants.SUCCESS_CODE) {
+                    Snackbar.make(binding.clShippingAddressRoot, R.string.shipping_address_update, Snackbar.LENGTH_LONG).show();
                     data.setAddress(address);
-                    CustomUtils.getInstance().saveDataToPrefs(data,this);
+                    CustomUtils.getInstance().saveDataToPrefs(data, this);
                 }
             });
         }

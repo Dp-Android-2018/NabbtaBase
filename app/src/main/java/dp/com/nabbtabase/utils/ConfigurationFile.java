@@ -3,7 +3,8 @@ package dp.com.nabbtabase.utils;
 public class ConfigurationFile {
 
     public static class UrlConstants {
-        public static final String BASE_URL = "http://dp-itc.com:4321/";//"http://dp-itc.com:8888/";
+
+        public static final String BASE_URL = "http://151.106.52.107:2020/";//"http://dp-itc.com:8888/";
         public static final String COUNTRIES_URL = "api/utilities/countries";
         public static final String CATEGORIES_URL = "api/utilities/categories";
         public static final String LOGIN_URL = "api/login";
@@ -34,6 +35,7 @@ public class ConfigurationFile {
         public static final String DELETE_ORDER = "api/order/{id}";
         public static final String ACTIVATE_PHONE = "api/activate/phone";
         public static final String SEND_MAIL = "api/activate/email/send";
+        public static final String CHECK_EXIST_MAIL ="api/check/email";
     }
 
     public static class Constants {
@@ -69,6 +71,11 @@ public class ConfigurationFile {
         public static final int SKIP = 10;
         public static final int REGISTER_STEP2 = 11;
         public static final int ENTER_MAIL = 12;
+        public static final int ERROR_DIALOG_REQUEST = 9001;
+        public static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9002;
+        public static final int PERMISSIONS_REQUEST_ENABLE_GPS = 9003;
+
+
     }
 
     public static class SharedPrefConstants {
@@ -91,9 +98,13 @@ public class ConfigurationFile {
         public static final String SPECIALIZATION_DATA = "SPECIALIZATION";
         public static final String LOGIN_INFO = "LOGININFO";
         public static final String REQUEST_ITEM_DATA = "ITEMREQUEST";
+        public static final String SELECTED_ADDRESS="address";
+        public static final String SELECTED_LAT="lat";
+        public static final String SELECTED_LANG="lang";
         public static final int REQUEST_CODE_COUNTRY = 111;
         public static final int REQUEST_CODE_CITY = 222;
         public static final int REQUEST_CODE_MAP = 333;
         public static final int REQUEST_CODE_SPECIALIZATION = 444;
+        public static final int START_PLACE_PICKER=555;
     }
 }

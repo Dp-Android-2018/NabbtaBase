@@ -2,11 +2,12 @@ package dp.com.nabbtabase.viewmodel;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
+import androidx.lifecycle.AndroidViewModel;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.NonNull;
+
+import android.net.Uri;
 import android.view.View;
 
 import dp.com.nabbtabase.R;
@@ -98,5 +99,9 @@ public class AccountViewModel extends AndroidViewModel {
 
     public void setCallBackInterface(CallBackInterface callBackInterface) {
         this.callBackInterface = callBackInterface;
+    }
+
+    public void dbWebsite(View view){
+        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://dp-itc.com/en")));
     }
 }

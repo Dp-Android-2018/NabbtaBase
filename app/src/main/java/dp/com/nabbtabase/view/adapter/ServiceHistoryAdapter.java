@@ -1,10 +1,9 @@
 package dp.com.nabbtabase.view.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.os.health.ServiceHealthStats;
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,14 +17,14 @@ import dp.com.nabbtabase.view.viewholder.ServiceHistoryViewHolder;
 
 public class ServiceHistoryAdapter extends RecyclerView.Adapter<ServiceHistoryViewHolder> {
 
-    List<ServiceHistoryItem>historyItems;
+    List<ServiceHistoryItem> historyItems;
 
     public void setHistoryItems(List<ServiceHistoryItem> historyItems) {
-        if (this.historyItems==null){
+        if (this.historyItems == null) {
             this.historyItems = historyItems;
-            notifyItemRangeInserted(0,historyItems.size());
-        }else{
-            DiffUtil.DiffResult result=DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            notifyItemRangeInserted(0, historyItems.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
                     return ServiceHistoryAdapter.this.historyItems.size();
@@ -37,21 +36,21 @@ public class ServiceHistoryAdapter extends RecyclerView.Adapter<ServiceHistoryVi
                 }
 
                 @Override
-                public boolean areItemsTheSame(int oldPosition , int newPosition) {
-                    return ServiceHistoryAdapter.this.historyItems.get(oldPosition).getId()==
+                public boolean areItemsTheSame(int oldPosition, int newPosition) {
+                    return ServiceHistoryAdapter.this.historyItems.get(oldPosition).getId() ==
                             historyItems.get(newPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    ServiceHistoryItem newHistoryItem=historyItems.get(newItemPosition);
-                    ServiceHistoryItem oldHistoryItem=historyItems.get(oldItemPosition);
+                    ServiceHistoryItem newHistoryItem = historyItems.get(newItemPosition);
+                    ServiceHistoryItem oldHistoryItem = historyItems.get(oldItemPosition);
 
-                    return newHistoryItem.getId()==oldHistoryItem.getId() &&
-                            Objects.equals(newHistoryItem.getId(),oldHistoryItem.getId());
+                    return newHistoryItem.getId() == oldHistoryItem.getId() &&
+                            Objects.equals(newHistoryItem.getId(), oldHistoryItem.getId());
                 }
             });
-            this.historyItems=historyItems;
+            this.historyItems = historyItems;
             result.dispatchUpdatesTo(this);
         }
     }
@@ -59,7 +58,7 @@ public class ServiceHistoryAdapter extends RecyclerView.Adapter<ServiceHistoryVi
     @NonNull
     @Override
     public ServiceHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        ListItemServiceHistoryBinding binding=DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.list_item_service_history,viewGroup,false);
+        ListItemServiceHistoryBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.list_item_service_history, viewGroup, false);
         return new ServiceHistoryViewHolder(binding);
     }
 
@@ -70,7 +69,7 @@ public class ServiceHistoryAdapter extends RecyclerView.Adapter<ServiceHistoryVi
 
     @Override
     public int getItemCount() {
-        return historyItems!=null?historyItems.size():0;
+        return historyItems != null ? historyItems.size() : 0;
     }
 
     @Override
@@ -80,6 +79,6 @@ public class ServiceHistoryAdapter extends RecyclerView.Adapter<ServiceHistoryVi
 
     @Override
     public long getItemId(int position) {
-        return position ;
+        return position;
     }
 }

@@ -1,8 +1,8 @@
 package dp.com.nabbtabase.ViewModelFactory;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import dp.com.nabbtabase.servise.model.pojo.Product;
 import dp.com.nabbtabase.servise.model.request.ResetPasswordRequest;

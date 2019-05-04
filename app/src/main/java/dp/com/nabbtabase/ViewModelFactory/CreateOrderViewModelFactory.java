@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.ViewModelFactory;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import dp.com.nabbtabase.servise.model.request.CreateOrderRequest;
 import dp.com.nabbtabase.view.viewholder.PaymentViewModel;
@@ -21,6 +21,6 @@ public class CreateOrderViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T)new PaymentViewModel(application,request);
+        return (T) new PaymentViewModel(application, request);
     }
 }

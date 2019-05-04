@@ -3,26 +3,24 @@ package dp.com.nabbtabase.viewmodel;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
-import android.content.Intent;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableField;
-import android.databinding.ObservableList;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableList;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.servise.model.pojo.City;
 import dp.com.nabbtabase.servise.model.pojo.Country;
@@ -30,8 +28,6 @@ import dp.com.nabbtabase.servise.model.request.ShippingAddressRequest;
 import dp.com.nabbtabase.servise.model.response.ShippingAddressResponse;
 import dp.com.nabbtabase.servise.repository.CountryRepository;
 import dp.com.nabbtabase.servise.repository.ShippingAddressRepository;
-import dp.com.nabbtabase.utils.ConfigurationFile;
-import dp.com.nabbtabase.utils.ValidationUtils;
 import dp.com.nabbtabase.view.adapter.PopupRecyclerAdapter;
 import dp.com.nabbtabase.view.callback.CallBackInterface;
 import dp.com.nabbtabase.view.callback.CloseCountryDialogInterface;
@@ -83,7 +79,7 @@ public class CreateShippingAddressViewModel extends AndroidViewModel implements 
         address = new ObservableField<>();
     }
 
-    public void  getShippingAddressCode() {
+    public void getShippingAddressCode() {
 //        System.out.println("done method :" + "flag");
 //        if (ValidationUtils.isEmpty(firstName.get()) ||
 //                ValidationUtils.isEmpty(lastName.get()) ||
@@ -95,12 +91,12 @@ public class CreateShippingAddressViewModel extends AndroidViewModel implements 
 //            callBackInterface.updateUi(ConfigurationFile.Constants.FILL_ALL_DATA_ERROR_CODE);
 //            //Snackbar.make(binding.clRoot, R.string.fill_all_data_error_message, Snackbar.LENGTH_LONG).show();
         //} else {
-            shippingAddressRequest.setFirstName(firstName.get());
-            shippingAddressRequest.setLastName(lastName.get());
-            shippingAddressRequest.setPhone(phone.get());
-            shippingAddressRequest.setAddress(address.get());
-            response=ShippingAddressRepository.getInstance().shippingAddress(application,shippingAddressRequest);
-       // }
+        shippingAddressRequest.setFirstName(firstName.get());
+        shippingAddressRequest.setLastName(lastName.get());
+        shippingAddressRequest.setPhone(phone.get());
+        shippingAddressRequest.setAddress(address.get());
+        response = ShippingAddressRepository.getInstance().shippingAddress(application, shippingAddressRequest);
+        // }
     }
 
     public LiveData<Response<ShippingAddressResponse>> getResponse() {
@@ -119,7 +115,7 @@ public class CreateShippingAddressViewModel extends AndroidViewModel implements 
         window.setBackgroundDrawableResource(R.color.transparent);
         TextView title = filter.findViewById(R.id.tv_title);
         RecyclerView recyclerView = filter.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         title.setText("Country");
         //Log.i("Size in vm ",""+getCountries().getValue().size());
         adapter.setCountries(getCountries().getValue());

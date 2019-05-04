@@ -13,26 +13,26 @@ public class ServiceListItemViewModel {
     private ServiceContent service;
     private Context context;
 
-    public ServiceListItemViewModel(ServiceContent service,Context context) {
+    public ServiceListItemViewModel(ServiceContent service, Context context) {
         this.service = service;
-        this.context=context;
+        this.context = context;
     }
 
     public void setService(ServiceContent service) {
         this.service = service;
     }
 
-    public String getName(){
+    public String getName() {
         return service.getName();
     }
 
-    public String getImageUrl(){
+    public String getImageUrl() {
         return service.getImageUrl();
     }
 
-    public void onItemClick(View view){
-        Intent intent=new Intent(context,ServiceDetailedActivity.class);
-        intent.putExtra(ConfigurationFile.IntentConstants.SERVICE_DATA,service);
+    public void onItemClick(View view) {
+        Intent intent = new Intent(context, ServiceDetailedActivity.class);
+        intent.putExtra(ConfigurationFile.IntentConstants.SERVICE_DATA, service);
         context.startActivity(intent);
     }
 }

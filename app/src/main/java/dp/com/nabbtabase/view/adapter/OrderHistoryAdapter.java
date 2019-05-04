@@ -1,9 +1,9 @@
 package dp.com.nabbtabase.view.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -69,7 +69,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryViewHo
 
     @Override
     public int getItemCount() {
-        return historyItems!=null?historyItems.size():0;
+        return historyItems != null ? historyItems.size() : 0;
     }
 
     @Override

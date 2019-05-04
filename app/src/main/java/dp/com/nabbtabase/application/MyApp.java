@@ -2,7 +2,7 @@ package dp.com.nabbtabase.application;
 
 
 import android.app.Application;
-import android.databinding.ObservableInt;
+import androidx.databinding.ObservableInt;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;

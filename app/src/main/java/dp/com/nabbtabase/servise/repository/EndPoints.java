@@ -6,6 +6,7 @@ import dp.com.nabbtabase.servise.model.request.ActivatePhoneRequest;
 import dp.com.nabbtabase.servise.model.request.AddToCartRequest;
 import dp.com.nabbtabase.servise.model.request.ChangePasswordRequest;
 import dp.com.nabbtabase.servise.model.request.CheckCodeRequest;
+import dp.com.nabbtabase.servise.model.request.CheckMailRequest;
 import dp.com.nabbtabase.servise.model.request.CreateCommentRequest;
 import dp.com.nabbtabase.servise.model.request.CreateOrderRequest;
 import dp.com.nabbtabase.servise.model.request.EditProfileRequest;
@@ -19,6 +20,7 @@ import dp.com.nabbtabase.servise.model.request.UpdateCartItemRequest;
 import dp.com.nabbtabase.servise.model.response.CartProductsResponse;
 import dp.com.nabbtabase.servise.model.response.CategoryResponse;
 import dp.com.nabbtabase.servise.model.response.CheckCodeResponse;
+import dp.com.nabbtabase.servise.model.response.CheckMailResponse;
 import dp.com.nabbtabase.servise.model.response.CountryResponse;
 import dp.com.nabbtabase.servise.model.response.CreateOrderResponse;
 import dp.com.nabbtabase.servise.model.response.ImageResponse;
@@ -169,4 +171,8 @@ public interface EndPoints {
     // TODO: 1/22/2019 send mail
     @POST(ConfigurationFile.UrlConstants.SEND_MAIL)
     Observable<Response<StringResponse>> sendMail(@Header("Authorization") String token);
+
+    // TODO: 1/29/2019 check exist mail
+    @POST(ConfigurationFile.UrlConstants.CHECK_EXIST_MAIL)
+    Observable<Response<CheckMailResponse>>checkExistMail(@Body CheckMailRequest request);
 }

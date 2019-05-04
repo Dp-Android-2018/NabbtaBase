@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Nabbta</string>
     <string name="password">Password</string>
     <string name="email_phone">Email/Phone</string>
@@ -26,7 +26,7 @@
     <string name="password_lengrh_error_message">Password must be more than 8 character</string>
     <string name="no_internet_connection_error_message">NO Internet Connection :(</string>
     <string name="enter_mail_phone">Enter mail or phone</string>
-    <string name="comment_successfully_message">comment added successfully</string>
+    <string name="comment_successfully_message">comment added successfully wait for approve</string>
     <string name="comment_before_message">you have commented before</string>
     <string name="invaled_mail">Mail or Phone incorrect try again</string>
     <string name="data_updated_successfully">Data updated successfully</string>
@@ -60,7 +60,7 @@
     <string name="offers">Offers</string>
     <string name="new_arrivales">New Arrivales</string>
     <string name="user_name">user name</string>
-    <string name="services">Services</string>
+    <string name="services">My Services</string>
     <string name="shipping_address">Shipping Address</string>
     <string name="change_password">Change Password</string>
     <string name="change_language">اللغة العربية</string>
@@ -130,11 +130,6 @@
     <string name="shipping_cost">Shipping Cost :</string>
     <string name="products_total">Products total :</string>
     <string name="payment_info">Payment information:</string>
-    <string name="order_placed">Order Placed</string>
-    <string name="confirmed">Confirmed</string>
-    <string name="pending">Pending</string>
-    <string name="on_the_way">On the way</string>
-    <string name="delivered">Delivered</string>
     <string name="out_of_stock">OUT OF STOCK</string>
     <string name="out_of_stock_message">this product is out of stock!</string>
     <string name="no_orders">No Orders</string>
@@ -147,4 +142,36 @@
     <string name="no_best_seller">No Best Seller</string>
     <string name="no_new_arrival">No New Arrival</string>
     <string name="register_step3_text">You will be contacted by the service provider within the next 24 hours. If you have any questions, please do not hesitate to contact us through the communication channels</string>
+    <string name="account_activated_successfully">Account Activated Successfully</string>
+    <string name="phone_number_format">ex:009661234567</string>
+    <string name="alert">Alert</string>
+    <string name="not_now">Not Now</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="this_mail_exist">this mail is exist</string>
+    <string name="select_this_location">Select this location</string>
+    <string name="terms_content" >
+        Nabtta is committed to protecting your personal data to the fullest extent. By accepting the privacy policy of our website and store customers, you allow us to collect, use and disclose your personal information only in accordance with our Privacy Policy and in a very limited manner. Please note that your personal data will never be sold, used or displayed to any party for a fee or without and your personal data will be used to ship products to you or for the purpose of personal training services. How the nabtta application obtains personal information for customers
+When shopping and (or) writing a comment on the nabtta application, we request a set of personal data for the customer, where such data must be completed correctly to complete the registration process or write the response on the site or to know the customer\'s location to ship commercial products or personal training services and to ensure that there is no Any false or misleading information.                                                                                                                                                                                                          The personal information we collect
+Your name, address, email, phone number, and other basic information.
+Financial information such as credit / debit card or bank account details in some transactions will not be stored or fully read
+To ensure that the customer data is correct, we may be required to request proof of your identity and place of residence, such as: a copy of your ID card, passport, driver\'s license or registration / warranty certificate.                                                                                                                                                                                                                         Security procedures
+When you complete your purchase, reply and (or) registration, you can start buying from the nabtta store, which is strictly protected against fraud and abuse by:
+Record and store your IP address and the number of times you log on.
+Compile usage and access data that allows us to block multiple accounts or fraudulent behaviors or to protect our systems against illegal attacks.
+We may share this data with specialized and trustworthy fraud management services that help us analyze this data.We use cookies; they are small text files that are stored on a client\'s computer for record keeping purposes. The information collected and stored through cookies may be against personal data that we maintain on our systems.
+We obtain this personal and confidential information through the following sources:
+Information you provide to us on the Site, through forms, written forms and other forms of data entry.
+Information entered on the site, by storing your personal information without completing or submitting a form.
+Information from third parties is entered indirectly to ensure that the user is correct and to prevent any monument or fraud.
+Information from third parties that you certify and agree to provide to us.
+Information about buying and selling and account history.Internal use of personal information
+We collect, store and process your personal information on our servers and maintain physical, electronic and procedural safeguards to protect our services 24 hours a day.
+We use your personal information to activate your account and execute your own transactions.
+We also share information such as banks, credit / debit card processing and identity verification services as part of our normal business processes, but we only disclose the last 6 digits of your credit or debit card to verify that your data The client (all financial data is stored using fully secure encryption).The purpose of sharing this data is to identify and verify customers, reduce frauds, other criminal activities, and financial risks on our site. In case of suspected user identity or fraud, the service provider is entitled to re-inquire of any personal data. By using our services you agree to share your personal data for these purposes.
+Control of personal information
+If you change your personal information (such as name, address, or phone number), you must update this information through the "Profile" section of your nabtta store account (if available) or by calling customer service.Nabtta is not responsible for any losses resulting from your failure to maintain the confidentiality of your personal data. If you want to stop your account, you will have to contact customer service. We are committed to keeping some of your records for at least 5 years after account closure.
+How to protect your personal data
+Nabtta is committed to handling your account information with a high level of security and protection of personal data against unauthorized access, use or disclosure. The credit / debit card and bank account details are stored only in an encrypted form.However, this level of protection can only be 100% effective if you follow your own security policies. You should not share your account data with anyone. If you are concerned that any of your personal data has been disclosed, you must change it immediately after you sign in to your account.
+    </string>
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDMgu01yqga2ma844kZP5lUUNCdfCSjyE8</string>-->
 </resources>

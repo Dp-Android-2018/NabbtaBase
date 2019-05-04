@@ -9,7 +9,7 @@
             type="dp.com.nabbtabase.viewmodel.ActivationViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -106,8 +106,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/logout"
             android:onClick="logout"
+            android:text="@string/logout"
             android:textColor="@color/text_color_green"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -119,6 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/text_color_green"
+            android:gravity="center"
+            android:onClick="mailActivation"
             android:text="@string/or_activate_by_email"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
@@ -126,9 +128,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center"
-            android:onClick="mailActivation"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,5 @@
 package dp.com.nabbtabase.viewmodel;
 
-import android.graphics.Bitmap;
-
 public class RecyclerItemImageView {
 
     public String imageUrl;

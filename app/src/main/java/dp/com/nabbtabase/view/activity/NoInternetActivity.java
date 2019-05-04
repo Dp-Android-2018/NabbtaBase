@@ -1,13 +1,14 @@
 package dp.com.nabbtabase.view.activity;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import dp.com.nabbtabase.R;
 import dp.com.nabbtabase.databinding.ActivityNoIternetBinding;
 
-public class NoInternetActivity extends BaseActivity {
+public class NoInternetActivity extends AppCompatActivity {
 
     ActivityNoIternetBinding binding;
 
